@@ -7,6 +7,10 @@ on:
 jobs:
   test-and-evaluate:
     runs-on: ubuntu-latest
+    env:
+      # Defaults can be overridden in repository secrets or workflow caller
+      IMPUTATION_ROW_PROP_THRESHOLD: 0.20
+      IMPUTATION_COL_RATE_THRESHOLD: 0.10
 
     steps:
       - name: Checkout
@@ -39,9 +43,68 @@ jobs:
             --stadiums data/stadium_coordinates.csv \
             --json > evaluation_metrics.json
 
+      - name: Imputation monitoring (generate report)
+        run: |
+          python monitor_imputation.py \
+            --artifact models/score_models.joblib \
+            --matches data/spi_matches.csv \
+            --stadiums data/stadium_coordinates.csv \
+            --recent-days 365 \
+            --out imputation_report.json || true
+
       - name: Upload evaluation artifact
         uses: actions/upload-artifact@v4
         with:
           name: evaluation-metrics-json-run-${{ github.run_number }}-sha-${{ github.sha }}
           path: evaluation_metrics.json
           if-no-files-found: error
+
+      - name: Upload imputation report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: imputation-report-run-${{ github.run_number }}-sha-${{ github.sha }}
+          path: imputation_report.json
+          if-no-files-found: warn
+
+      - name: Fail CI on imputation thresholds
+        run: |
+          python scripts/check_imputation_thresholds.py \
+            --report imputation_report.json \
+            --max-row-prop ${IMPUTATION_ROW_PROP_THRESHOLD} \
+            --max-col-rate ${IMPUTATION_COL_RATE_THRESHOLD}
+
+      - name: Send imputation report to telemetry (if configured)
+        if: ${{ secrets.IMPUTATION_TELEMETRY_URL != '' }}
+        run: |
+          curl -sSf -X POST -H "Content-Type: application/json" --data-binary @imputation_report.json "${{ secrets.IMPUTATION_TELEMETRY_URL }}" || true
+
+  validate-preprocessing-artifact:
+    name: Validate prediction preprocessing against production artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ensure model artifact exists (production)
+        run: |
+          if [ ! -f models/score_models.joblib ]; then
+            echo "Model artifact not found in repo: models/score_models.joblib"
+            echo "Failing validation job so artifact parity is fixed before merge."
+            exit 1
+          fi
+
+      - name: Run preprocessing validation test against artifact
+        run: |
+          # Run only the predict preprocessing unit test that asserts feature-column parity
+          python -m unittest tests.test_predict_preprocessing.TestPredictPreprocessing.test_prepare_row_matches_artifact_columns

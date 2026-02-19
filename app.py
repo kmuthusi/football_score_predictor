@@ -46,6 +46,7 @@ from predict import (
     scoreline_probability_matrix,
     top_scorelines,
 )
+from predict_helpers import prepare_and_validate_row
 
 
 HAS_MATPLOTLIB = importlib.util.find_spec("matplotlib") is not None
@@ -647,9 +648,80 @@ if predict_btn:
         config=config,
     )
 
-    # Select columns used by model
-    cols = artifact["cat_cols"] + artifact["num_cols"]
-    X = feat_row[cols].copy()
+    # Validate and prepare model inputs (assert column parity with artifact)
+    try:
+        X = prepare_and_validate_row(
+            artifact=artifact,
+            matches=matches,
+            stadiums=stadiums,
+            div=div,
+            home_team=home_team,
+            away_team=away_team,
+            asof_date=asof_ts,
+            home_odds=float(home_odds),
+            draw_odds=float(draw_odds),
+            away_odds=float(away_odds),
+        )
+    except Exception as e:
+        st.error(f"Preprocessing validation failed: {e}")
+        st.stop()
+
+    # Runtime assertion: ensure columns exactly match artifact expectation
+    expected_cols = list(artifact.get("cat_cols", []) + artifact.get("num_cols", []))
+    try:
+        assert list(X.columns) == expected_cols
+    except AssertionError:
+        st.error("Model input columns do not match the artifact's expected columns.")
+        st.stop()
+
+    # Friendly warning: show any features that will be imputed by the pipeline
+    imputed_cols = [c for c in X.columns if pd.isna(feat_row.at[0, c])]
+    if imputed_cols:
+        st.warning(
+            "Some input features are missing and will be imputed by the model: " +
+            ", ".join(imputed_cols)
+        )
+
+        # Short explanatory note for users about what imputation means
+        st.info(
+            "Missing features (for example travel distance or recent form) are filled with "
+            "default values by the model pipeline. This reduces personalization and may "
+            "degrade prediction accuracy for that match. Consider providing odds and "
+            "ensuring teams exist in the historical dataset for best results."
+        )
+
+        # Optional telemetry: POST a non-blocking imputation event if a telemetry URL is set
+        telemetry_url = os.environ.get("IMPUTATION_TELEMETRY_URL") or os.environ.get("MODEL_TELEMETRY_URL")
+        if telemetry_url:
+            try:
+                payload = {
+                    "artifact": str(artifact_path) if "artifact_path" in globals() else None,
+                    "cutoff_date": artifact.get("cutoff_date"),
+                    "div": div,
+                    "home_team": home_team,
+                    "away_team": away_team,
+                    "imputed_cols": imputed_cols,
+                    "imputed_count": len(imputed_cols),
+                }
+                # Best-effort POST; failures should not affect UX
+                try:
+                    requests.post(telemetry_url, json=payload, timeout=2.0)
+                except Exception:
+                    pass
+            except Exception:
+                pass
+
+        # Also append a local timestamped log (safe best-effort)
+        try:
+            import pathlib, datetime
+
+            log_dir = pathlib.Path("logs")
+            log_dir.mkdir(exist_ok=True)
+            log_path = log_dir / "imputation_events.log"
+            with log_path.open("a", encoding="utf-8") as f:
+                f.write(f"{datetime.datetime.utcnow().isoformat()}Z\t{div}\t{home_team}\t{away_team}\t{','.join(imputed_cols)}\n")
+        except Exception:
+            pass
 
     lam_home, lam_away = predict_expected_goals(artifact, X)
     lam_h = float(lam_home[0])
