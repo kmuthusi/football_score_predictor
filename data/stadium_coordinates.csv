@@ -1,0 +1,597 @@
+team_name,league,latitude,longitude,status
+Anderlecht,B1,50.8340203,4.2978547,success
+Beerschot VA,B1,51.1856589,4.387084,success
+Cercle Brugge,B1,,,failed
+Charleroi,B1,50.4146057,4.4537327,success
+Club Brugge,B1,51.3269145,3.189557,success
+Genk,B1,50.9886405,5.520155,success
+Gent,B1,51.0510954,3.7089472,success
+Kortrijk,B1,50.7867444,3.1673421,success
+Lierse,B1,51.0667698,4.4837031,success
+Lokeren,B1,51.1044488,3.9898689,success
+Mechelen,B1,51.0686012,4.4400457,success
+Mouscron,B1,50.7436672,3.2142729,success
+Mouscron-Peruwelz,B1,50.5060666,3.5988573,success
+Oostende,B1,51.2258565,2.919496,success
+Oud-Heverlee Leuven,B1,50.8263952,4.6604643,success
+RAAL La Louviere,B1,50.4676645,4.1147271,success
+RWD Molenbeek,B1,,,failed
+Seraing,B1,50.5951984,5.5385355,success
+St Truiden,B1,50.8134975,5.1661364,success
+St. Gilloise,B1,50.8056154,4.3296712,success
+Waasland-Beveren,B1,51.2437278,4.1959734,success
+Waregem,B1,50.8868222,3.4323622,success
+Westerlo,B1,51.086694,4.9168675,success
+Augsburg,D1,48.3231179,10.885879,success
+Bayern Munich,D1,48.1731314,11.5464786,success
+Bielefeld,D1,52.0191005,8.531007,success
+Bochum,D1,51.4695221,7.2417465,success
+Braunschweig,D1,52.3327757,10.5165744,success
+Darmstadt,D1,49.8510637,8.64124,success
+Dortmund,D1,51.4924922,7.4518549,success
+Ein Frankfurt,D1,50.1363551,8.6682317,success
+FC Koln,D1,50.9069197,6.9040912,success
+Fortuna Dusseldorf,D1,51.2268801,6.8133931,success
+Greuther Furth,D1,49.5003763,10.996705,success
+Hamburg,D1,53.5503968,9.9952523,success
+Hannover,D1,52.3766391,9.77273,success
+Heidenheim,D1,48.6685245,10.1392963,success
+Hertha,D1,52.5145846,13.2398144,success
+Hoffenheim,D1,49.2380604,8.8876414,success
+Holstein Kiel,D1,54.3190039,10.1014959,success
+Ingolstadt,D1,48.7322804,11.4361318,success
+Kaiserslautern,D1,49.4808719,7.7765038,success
+Leverkusen,D1,51.0324743,6.9881194,success
+M'gladbach,D1,50.4541589,7.5410377,success
+Mainz,D1,50.0008704,8.245563,success
+Nurnberg,D1,49.4276033,11.1229023,success
+Paderborn,D1,51.7177044,8.752653,success
+RB Leipzig,D1,51.3457079,12.3482361,success
+Schalke 04,D1,51.5580634,7.0634587,success
+St Pauli,D1,53.5546486,9.9690494,success
+Stuttgart,D1,48.7922487,9.2320857,success
+Werder Bremen,D1,53.057718,8.8523703,success
+Wolfsburg,D1,52.4344908,10.8068574,success
+Aachen,D2,50.7955364,6.0942621,success
+Aalen,D2,48.8375607,10.0929593,success
+Augsburg,D2,48.3231179,10.885879,success
+Bielefeld,D2,52.0191005,8.531007,success
+Bochum,D2,51.4695221,7.2417465,success
+Braunschweig,D2,52.3327757,10.5165744,success
+Cottbus,D2,51.7345332,14.3223664,success
+Darmstadt,D2,49.8510637,8.64124,success
+Duisburg,D2,51.4049404,6.7797033,success
+Ein Frankfurt,D2,50.1363551,8.6682317,success
+Elversberg,D2,49.31539,7.1268184,success
+Erzgebirge Aue,D2,50.5979205,12.7087091,success
+FC Koln,D2,50.9069197,6.9040912,success
+Fortuna Dusseldorf,D2,51.2268801,6.8133931,success
+Frankfurt FSV,D2,50.128031,8.7231876,success
+Greuther Furth,D2,49.5003763,10.996705,success
+Hamburg,D2,53.5503968,9.9952523,success
+Hannover,D2,52.3766391,9.77273,success
+Hansa Rostock,D2,54.116005,12.0527635,success
+Heidenheim,D2,48.6685245,10.1392963,success
+Hertha,D2,52.5145846,13.2398144,success
+Holstein Kiel,D2,54.3190039,10.1014959,success
+Ingolstadt,D2,48.7322804,11.4361318,success
+Kaiserslautern,D2,49.4808719,7.7765038,success
+Karlsruhe,D2,49.0179109,8.4653798,success
+Magdeburg,D2,52.1525895,11.6836564,success
+Munich 1860,D2,48.1371079,11.5753822,success
+Nurnberg,D2,49.4276033,11.1229023,success
+Oberhausen,D2,51.5206794,6.8409006,success
+Osnabruck,D2,52.2765532,8.0219645,success
+Paderborn,D2,51.7177044,8.752653,success
+Preußen Münster,D2,51.9310428,7.6254232,success
+RB Leipzig,D2,51.3457079,12.3482361,success
+Regensburg,D2,48.9908566,12.1073501,success
+Sandhausen,D2,49.3341259,8.6469914,success
+Schalke 04,D2,51.5580634,7.0634587,success
+St Pauli,D2,53.5546486,9.9690494,success
+Stuttgart,D2,48.7922487,9.2320857,success
+Wehen,D2,50.152338,8.1836014,success
+Werder Bremen,D2,53.057718,8.8523703,success
+Wurzburger Kickers,D2,49.7790965,9.9621004,success
+Aston Villa,E0,52.5091264,-1.8850354,success
+Bolton,E0,53.5805396,-2.5356648,success
+Bournemouth,E0,50.7351814,-1.8383279,success
+Brentford,E0,51.490713,-0.2889802,success
+Brighton,E0,50.8615471,-0.0836931,success
+Burnley,E0,53.8054523,-2.2952421,success
+Cardiff,E0,51.4782485,-3.1826256,success
+Chelsea,E0,51.4792191,-0.1808217,success
+Crystal Palace,E0,51.4191635,-0.0687969,success
+Fulham,E0,51.482781,-0.1912833,success
+Huddersfield,E0,53.6543494,-1.7682999,success
+Hull,E0,53.7462258,-0.3678239,success
+Ipswich,E0,52.0549518,1.1452848,success
+Leeds,E0,53.7778612,-1.5721775,success
+Leicester,E0,52.620397,-1.1423352,success
+Luton,E0,51.8841259,-0.4316701,success
+Middlesbrough,E0,54.5783134,-1.2169153,success
+Norwich,E0,52.6220315,1.3093222,success
+Nott'm Forest,E0,,,failed
+Reading,E0,51.4223346,-0.9831238,success
+Sheffield United,E0,53.4286674,-1.370864,success
+Southampton,E0,50.9058615,-1.3908774,success
+Stoke,E0,52.0549518,1.1452848,success
+Sunderland,E0,54.9143953,-1.3882579,success
+Swansea,E0,51.6428065,-3.934739,success
+Tottenham,E0,51.604157,-0.0662604,success
+Watford,E0,51.6497589,-0.4013489,success
+Wigan,E0,53.5477333,-2.6540131,success
+Wolves,E0,52.6076564,-2.1494975,success
+Aston Villa,E1,52.5091264,-1.8850354,success
+Barnsley,E1,53.5521491,-1.4677429,success
+Birmingham,E1,52.4797407,-1.9150322,success
+Blackpool,E1,53.8047874,-3.0482513,success
+Bolton,E1,53.5805396,-2.5356648,success
+Bournemouth,E1,50.7351814,-1.8383279,success
+Brentford,E1,51.490713,-0.2889802,success
+Brighton,E1,50.8615471,-0.0836931,success
+Bristol City,E1,51.4398694,-2.6203405,success
+Burnley,E1,53.8054523,-2.2952421,success
+Burton,E1,52.8218506,-1.6269256,success
+Cardiff,E1,51.4782485,-3.1826256,success
+Charlton,E1,51.4794928,0.0527221,success
+Coventry,E1,52.4481581,-1.4970174,success
+Crystal Palace,E1,51.4191635,-0.0687969,success
+Derby,E1,52.9149454,-1.4473191,success
+Doncaster,E1,53.5890159,-1.0298081,success
+Fulham,E1,51.482781,-0.1912833,success
+Huddersfield,E1,53.6543494,-1.7682999,success
+Hull,E1,53.7462258,-0.3678239,success
+Ipswich,E1,52.0549518,1.1452848,success
+Leeds,E1,53.7778612,-1.5721775,success
+Leicester,E1,52.620397,-1.1423352,success
+Luton,E1,51.8841259,-0.4316701,success
+Middlesbrough,E1,54.5783134,-1.2169153,success
+Millwall,E1,51.4855805,-0.0513983,success
+Milton Keynes Dons,E1,52.0460472,-0.7466835,success
+Norwich,E1,52.6220315,1.3093222,success
+Nott'm Forest,E1,,,failed
+Oxford,E1,51.7265293,-1.1998903,success
+Preston,E1,53.7722148,-2.6885609,success
+Reading,E1,51.4223346,-0.9831238,success
+Rotherham,E1,53.4267854,-1.362678,success
+Scunthorpe,E1,53.5825219,-0.6783354,success
+Sheffield United,E1,53.4286674,-1.370864,success
+Sheffield Weds,E1,,,failed
+Southampton,E1,50.9058615,-1.3908774,success
+Stoke,E1,52.0549518,1.1452848,success
+Sunderland,E1,54.9143953,-1.3882579,success
+Swansea,E1,51.6428065,-3.934739,success
+Watford,E1,51.6497589,-0.4013489,success
+Wigan,E1,53.5477333,-2.6540131,success
+Wolves,E1,52.6076564,-2.1494975,success
+Wrexham,E1,53.0443125,-2.9766849,success
+Wycombe,E1,51.6304108,-0.8002826,success
+Yeovil,E1,50.9420451,-2.6318629,success
+AFC Wimbledon,E2,51.4315282,-0.1867047,success
+Accrington,E2,53.7654011,-2.370969,success
+Barnsley,E2,53.5521491,-1.4677429,success
+Birmingham,E2,52.4797407,-1.9150322,success
+Blackpool,E2,53.8047874,-3.0482513,success
+Bolton,E2,53.5805396,-2.5356648,success
+Bournemouth,E2,50.7351814,-1.8383279,success
+Brentford,E2,51.490713,-0.2889802,success
+Brighton,E2,50.8615471,-0.0836931,success
+Bristol City,E2,51.4398694,-2.6203405,success
+Bristol Rvs,E2,,,failed
+Burton,E2,52.8218506,-1.6269256,success
+Bury,E2,53.5805538,-2.2949212,success
+Cambridge,E2,52.2120297,0.1541831,success
+Cardiff,E2,51.4782485,-3.1826256,success
+Charlton,E2,51.4794928,0.0527221,success
+Cheltenham,E2,51.9061781,-2.0602145,success
+Chesterfield,E2,53.2535581,-1.4258193,success
+Colchester,E2,51.923439,0.8976478,success
+Coventry,E2,52.4481581,-1.4970174,success
+Crawley Town,E2,51.1191344,-0.191615,success
+Crewe,E2,53.087402,-2.4357333,success
+Dag and Red,E2,,,failed
+Derby,E2,52.9149454,-1.4473191,success
+Doncaster,E2,53.5890159,-1.0298081,success
+Exeter,E2,50.7093752,-3.4675489,success
+Fleetwood Town,E2,53.885312,-3.0084092,success
+Forest Green,E2,51.6989868,-2.2377653,success
+Gillingham,E2,51.3842253,0.5609658,success
+Hartlepool,E2,54.6890602,-1.2126565,success
+Huddersfield,E2,53.6543494,-1.7682999,success
+Hull,E2,53.7462258,-0.3678239,success
+Ipswich,E2,52.0549518,1.1452848,success
+Leyton Orient,E2,51.5599794,-0.013533,success
+Luton,E2,51.8841259,-0.4316701,success
+Millwall,E2,51.4855805,-0.0513983,success
+Milton Keynes Dons,E2,52.0460472,-0.7466835,success
+Morecambe,E2,54.0614689,-2.8672646,success
+Northampton,E2,52.2352633,-0.9335741,success
+Notts County,E2,52.9536232,-1.144662,success
+Oldham,E2,53.5475003,-2.1438254,success
+Oxford,E2,51.7265293,-1.1998903,success
+Port Vale,E2,53.0500906,-2.1926292,success
+Preston,E2,53.7722148,-2.6885609,success
+Reading,E2,51.4223346,-0.9831238,success
+Rochdale,E2,53.6207953,-2.1799129,success
+Rotherham,E2,53.4267854,-1.362678,success
+Scunthorpe,E2,53.5825219,-0.6783354,success
+Sheffield United,E2,53.4286674,-1.370864,success
+Sheffield Weds,E2,,,failed
+Shrewsbury,E2,52.6865188,-2.7485853,success
+Southampton,E2,50.9058615,-1.3908774,success
+Southend,E2,51.5490442,0.7015486,success
+Stevenage,E2,51.8896479,-0.1937405,success
+Stockport,E2,53.3996433,-2.1664844,success
+Sunderland,E2,54.9143953,-1.3882579,success
+Swindon,E2,51.607755,-1.7924329,success
+Tranmere,E2,53.3738916,-3.0317875,success
+Walsall,E2,52.5655014,-1.9904976,success
+Wigan,E2,53.5477333,-2.6540131,success
+Wolves,E2,52.6076564,-2.1494975,success
+Wrexham,E2,53.0443125,-2.9766849,success
+Wycombe,E2,51.6304108,-0.8002826,success
+Yeovil,E2,50.9420451,-2.6318629,success
+AFC Wimbledon,E3,51.4315282,-0.1867047,success
+Accrington,E3,53.7654011,-2.370969,success
+Aldershot,E3,51.2646793,-0.754589,success
+Barnet,E3,51.6033587,-0.2242463,success
+Blackpool,E3,53.8047874,-3.0482513,success
+Bolton,E3,53.5805396,-2.5356648,success
+Bristol Rvs,E3,,,failed
+Bromley,E3,51.4191635,-0.0687969,success
+Burton,E3,52.8218506,-1.6269256,success
+Bury,E3,53.5805538,-2.2949212,success
+Cambridge,E3,52.2120297,0.1541831,success
+Cheltenham,E3,51.9061781,-2.0602145,success
+Chesterfield,E3,53.2535581,-1.4258193,success
+Colchester,E3,51.923439,0.8976478,success
+Coventry,E3,52.4481581,-1.4970174,success
+Crawley Town,E3,51.1191344,-0.191615,success
+Crewe,E3,53.087402,-2.4357333,success
+Dag and Red,E3,,,failed
+Doncaster,E3,53.5890159,-1.0298081,success
+Exeter,E3,50.7093752,-3.4675489,success
+Fleetwood Town,E3,53.885312,-3.0084092,success
+Forest Green,E3,51.6989868,-2.2377653,success
+Gillingham,E3,51.3842253,0.5609658,success
+Grimsby,E3,53.5702297,-0.0465117,success
+Harrogate,E3,53.9662795,-1.4991883,success
+Hartlepool,E3,54.6890602,-1.2126565,success
+Leyton Orient,E3,51.5599794,-0.013533,success
+Luton,E3,51.8841259,-0.4316701,success
+Macclesfield,E3,53.2726576,-2.1597453,success
+Milton Keynes Dons,E3,52.0460472,-0.7466835,success
+Morecambe,E3,54.0614689,-2.8672646,success
+Northampton,E3,52.2352633,-0.9335741,success
+Notts County,E3,52.9536232,-1.144662,success
+Oldham,E3,53.5475003,-2.1438254,success
+Oxford,E3,51.7265293,-1.1998903,success
+Port Vale,E3,53.0500906,-2.1926292,success
+Rochdale,E3,53.6207953,-2.1799129,success
+Rotherham,E3,53.4267854,-1.362678,success
+Salford,E3,53.4693387,-2.3751921,success
+Scunthorpe,E3,53.5825219,-0.6783354,success
+Shrewsbury,E3,52.6865188,-2.7485853,success
+Southend,E3,51.5490442,0.7015486,success
+Stevenage,E3,51.8896479,-0.1937405,success
+Stockport,E3,53.3996433,-2.1664844,success
+Swindon,E3,51.607755,-1.7924329,success
+Tranmere,E3,53.3738916,-3.0317875,success
+Walsall,E3,52.5655014,-1.9904976,success
+Wrexham,E3,53.0443125,-2.9766849,success
+Wycombe,E3,51.6304108,-0.8002826,success
+Yeovil,E3,50.9420451,-2.6318629,success
+AFC Telford United,EC,52.6973792,-2.5014353,success
+AFC Wimbledon,EC,51.4315282,-0.1867047,success
+Aldershot,EC,51.2646793,-0.754589,success
+Alfreton Town,EC,53.094456,-1.3811612,success
+Altrincham,EC,53.3833838,-2.3352283,success
+Barnet,EC,51.6033587,-0.2242463,success
+Bath City,EC,51.378837,-2.3950494,success
+Boreham Wood,EC,51.6620316,-0.2724395,success
+Boston Utd,EC,,,failed
+Brackley Town,EC,52.0316579,-1.1385272,success
+Braintree Town,EC,51.9464939,0.6326725,success
+Bristol Rvs,EC,,,failed
+Bromley,EC,51.4191635,-0.0687969,success
+Cambridge,EC,52.2120297,0.1541831,success
+Cheltenham,EC,51.9061781,-2.0602145,success
+Chester,EC,53.1892245,-2.923472,success
+Chesterfield,EC,53.2535581,-1.4258193,success
+Chorley,EC,53.6460264,-2.6294423,success
+Crawley Town,EC,51.1191344,-0.191615,success
+Dag and Red,EC,,,failed
+Darlington,EC,54.5084255,-1.5344062,success
+Dartford,EC,51.4371824,0.2316846,success
+Dorking,EC,51.2344704,-0.3333497,success
+Dover Athletic,EC,51.1378031,1.284886,success
+Eastbourne Borough,EC,50.8041757,0.32079,success
+Eastleigh,EC,50.9524511,-1.3719149,success
+Ebbsfleet,EC,51.4494932,0.3223573,success
+Fleetwood Town,EC,53.885312,-3.0084092,success
+Forest Green,EC,51.6989868,-2.2377653,success
+Fylde,EC,53.7674552,-3.0238185,success
+Gateshead,EC,54.9576691,-1.5881587,success
+Grimsby,EC,53.5702297,-0.0465117,success
+Guiseley,EC,53.8767122,-1.7199209,success
+Harrogate,EC,53.9662795,-1.4991883,success
+Hartlepool,EC,54.6890602,-1.2126565,success
+Havant & Waterlooville,EC,50.8673622,-0.9740793,success
+Hayes & Yeading,EC,51.5081537,-0.3956712,success
+Histon,EC,52.2424218,0.1136269,success
+Kettering Town,EC,52.3667178,-0.6901143,success
+Kidderminster,EC,52.3804787,-2.2427359,success
+King’s Lynn,EC,52.7502176,0.4074534,success
+Leyton Orient,EC,51.5599794,-0.013533,success
+Luton,EC,51.8841259,-0.4316701,success
+Macclesfield,EC,53.2726576,-2.1597453,success
+Maidenhead,EC,51.4641206,-0.6515445,success
+Maidstone,EC,51.2797591,0.5162681,success
+Morecambe,EC,54.0614689,-2.8672646,success
+North Ferriby,EC,53.7172985,-0.5001876,success
+Notts County,EC,52.9536232,-1.144662,success
+Nuneaton Town,EC,52.5227973,-1.4679663,success
+Oldham,EC,53.5475003,-2.1438254,success
+Rochdale,EC,53.6207953,-2.1799129,success
+Salford,EC,53.4693387,-2.3751921,success
+Scunthorpe,EC,53.5825219,-0.6783354,success
+Solihull,EC,52.4318492,-1.7319529,success
+Southend,EC,51.5490442,0.7015486,success
+Southport,EC,53.6381176,-2.978788,success
+Stockport,EC,53.3996433,-2.1664844,success
+Tamworth,EC,52.6286125,-1.6890311,success
+Telford United,EC,52.6973792,-2.5014353,success
+Tranmere,EC,53.3738916,-3.0317875,success
+Wealdstone,EC,51.5886665,-0.3161194,success
+Weymouth,EC,50.6203705,-2.4856837,success
+Woking,EC,51.3063222,-0.5588831,success
+Wrexham,EC,53.0443125,-2.9766849,success
+Yeovil,EC,50.9420451,-2.6318629,success
+Ajaccio GFCO,F1,,,failed
+Amiens,F1,49.8941708,2.2956951,success
+Angers,F1,47.4544659,-0.5425734,success
+Arles,F1,43.6776223,4.6309653,success
+Auxerre,F1,47.7961287,3.570579,success
+Bordeaux,F1,44.8992249,-0.5658288,success
+Brest,F1,48.4049761,-4.508511,success
+Caen,F1,49.1945475,-0.3637361,success
+Dijon,F1,47.3037236,5.0615686,success
+Evian Thonon Gaillard,F1,,,failed
+Guingamp,F1,48.5618483,-3.1502007,success
+Le Havre,F1,49.4995445,0.1707735,success
+Lille,F1,50.6119044,3.130508,success
+Lorient,F1,47.7477336,-3.3660907,success
+Lyon,F1,45.7653624,4.9820543,success
+Marseille,F1,43.269835,5.3959117,success
+Monaco,F1,43.7275713,7.4154577,success
+Montpellier,F1,43.6495904,3.9293198,success
+Nancy,F1,48.7089174,6.1697685,success
+Nantes,F1,47.2487475,-1.5556413,success
+Nice,F1,43.7009358,7.2683912,success
+Nimes,F1,43.8348854,4.3596245,success
+Paris FC,F1,48.8607331,2.3644336,success
+Paris SG,F1,48.8768502,2.3324723,success
+Reims,F1,49.2577886,4.031926,success
+Rennes,F1,48.1055585,-1.718678,success
+Sochaux,F1,47.4640453,6.8469032,success
+St Etienne,F1,43.5934385,1.4441164,success
+Strasbourg,F1,48.8455793,2.489442,success
+Toulouse,F1,43.5832262,1.4340638,success
+Troyes,F1,48.2971626,4.0746257,success
+Valenciennes,F1,50.3218132,3.5112505,success
+Ajaccio GFCO,F2,,,failed
+Amiens,F2,49.8941708,2.2956951,success
+Angers,F2,47.4544659,-0.5425734,success
+Annecy,F2,45.8606841,6.0840922,success
+Arles,F2,43.6776223,4.6309653,success
+Auxerre,F2,47.7961287,3.570579,success
+Beziers,F2,43.2753893,3.1602074,success
+Bordeaux,F2,44.8992249,-0.5658288,success
+Boulogne,F2,48.836915,2.2264631,success
+Bourg Peronnas,F2,46.1798475,5.203589,success
+Brest,F2,48.4049761,-4.508511,success
+Caen,F2,49.1945475,-0.3637361,success
+Chambly,F2,49.1662774,2.2444986,success
+Chateauroux,F2,46.806523,1.8636384,success
+Concarneau,F2,47.8757017,-3.9223889,success
+Creteil,F2,48.7771486,2.4530731,success
+Dijon,F2,47.3037236,5.0615686,success
+Dunkerque,F2,51.0125722,2.320123,success
+Evian Thonon Gaillard,F2,,,failed
+Grenoble,F2,51.7164667,-1.2076599,success
+Guingamp,F2,48.5618483,-3.1502007,success
+Istres,F2,43.4426949,5.2983277,success
+Le Havre,F2,49.4995445,0.1707735,success
+Le Mans,F2,49.2797885,-1.5381145,success
+Lorient,F2,47.7477336,-3.3660907,success
+Martigues,F2,43.4140873,5.0454723,success
+Monaco,F2,43.7275713,7.4154577,success
+Montpellier,F2,43.6495904,3.9293198,success
+Nancy,F2,48.7089174,6.1697685,success
+Nantes,F2,47.2487475,-1.5556413,success
+Nimes,F2,43.8348854,4.3596245,success
+Niort,F2,46.3389499,-0.4020988,success
+Paris FC,F2,48.8607331,2.3644336,success
+Pau FC,F2,43.3231397,-0.5695793,success
+Quevilly Rouen,F2,49.4280853,1.0504878,success
+Reims,F2,49.2577886,4.031926,success
+Rodez,F2,44.3705665,2.5148867,success
+Sedan,F2,49.7033759,4.9433409,success
+Sochaux,F2,47.4640453,6.8469032,success
+St Etienne,F2,43.5934385,1.4441164,success
+Strasbourg,F2,48.8455793,2.489442,success
+Toulouse,F2,43.5832262,1.4340638,success
+Tours,F2,47.3783683,0.7354595,success
+Troyes,F2,48.2971626,4.0746257,success
+Valenciennes,F2,50.3218132,3.5112505,success
+Vannes,F2,48.9178072,2.3227124,success
+Benevento,I1,41.1610474,14.6710769,success
+Bologna,I1,44.5166727,11.4166826,success
+Brescia,I1,45.5707175,10.2369776,success
+Cagliari,I1,39.2171994,9.113311,success
+Carpi,I1,44.7835699,10.8854523,success
+Catania,I1,37.5152798,15.0721339,success
+Cesena,I1,44.1403668,12.261877,success
+Chievo,I1,45.4575984,10.9464024,success
+Cremonese,I1,45.1683868,9.8900934,success
+Crotone,I1,39.0806223,17.127196,success
+Empoli,I1,44.1321712,12.2258614,success
+Fiorentina,I1,44.1724202,12.4047015,success
+Frosinone,I1,41.6419807,13.3469287,success
+Genoa,I1,44.4164753,8.9525341,success
+Juventus,I1,45.1095759,7.6421338,success
+Lazio,I1,41.9339424,12.4547705,success
+Lecce,I1,40.3651144,18.2089177,success
+Livorno,I1,43.5721674,10.3347675,success
+Monza,I1,45.583112,9.3079276,success
+Napoli,I1,40.8982807,14.1739374,success
+Novara,I1,45.6269886,8.5418444,success
+Pescara,I1,44.1196234,12.2439128,success
+Roma,I1,41.9339424,12.4547705,success
+Salernitana,I1,40.6813304,14.7546939,success
+Sampdoria,I1,44.4164753,8.9525341,success
+Sassuolo,I1,44.5409769,10.7829023,success
+Spal,I1,44.8409312,11.6072586,success
+Spezia,I1,44.1457278,12.2032796,success
+Torino,I1,45.1095759,7.6421338,success
+Udinese,I1,46.4097027,13.1951425,success
+Venezia,I1,46.081402,13.1997411,success
+Verona,I1,45.4353328,10.9674348,success
+Albinoleffe,I2,45.6321365,9.6701128,success
+Ascoli,I2,42.8537246,13.580707,success
+Avellino,I2,40.9141958,14.7888764,success
+Benevento,I2,41.1610474,14.6710769,success
+Bologna,I2,44.5166727,11.4166826,success
+Brescia,I2,45.5707175,10.2369776,success
+Cagliari,I2,39.2171994,9.113311,success
+Carpi,I2,44.7835699,10.8854523,success
+Carrarese,I2,45.2316493,11.4674787,success
+Catania,I2,37.5152798,15.0721339,success
+Catanzaro,I2,39.0332743,16.434292,success
+Cesena,I2,44.1403668,12.261877,success
+Chievo,I2,45.4575984,10.9464024,success
+Cosenza,I2,39.1613374,16.0689268,success
+Cremonese,I2,45.1683868,9.8900934,success
+Crotone,I2,39.0806223,17.127196,success
+Empoli,I2,44.1321712,12.2258614,success
+FeralpiSalo,I2,,,failed
+Foggia,I2,41.4620482,15.5432595,success
+Frosinone,I2,41.6419807,13.3469287,success
+Genoa,I2,44.4164753,8.9525341,success
+Grosseto,I2,42.7597261,11.1137389,success
+Gubbio,I2,44.1073649,12.196018,success
+Juve Stabia,I2,,,failed
+Latina,I2,41.467299,12.9037518,success
+Lecce,I2,40.3651144,18.2089177,success
+Lecco,I2,45.7840111,9.4159312,success
+Livorno,I2,43.5721674,10.3347675,success
+Mantova,I2,45.2279167,10.7488286,success
+Modena,I2,44.3093525,10.813321,success
+Monza,I2,45.583112,9.3079276,success
+Nocerina,I2,40.7526044,14.6502307,success
+Novara,I2,45.6269886,8.5418444,success
+Padova,I2,45.3948658,11.8754315,success
+Perugia,I2,43.0926004,12.3992997,success
+Pescara,I2,44.1196234,12.2439128,success
+Piacenza,I2,45.0534751,9.6947461,success
+Pordenone,I2,45.9538953,12.6846712,success
+Portogruaro,I2,45.775598,12.8374571,success
+Pro Vercelli,I2,45.8575103,8.236397,success
+Reggiana,I2,43.8745265,11.0705127,success
+Reggina,I2,43.593764,10.6691766,success
+Salernitana,I2,40.6813304,14.7546939,success
+Sampdoria,I2,44.4164753,8.9525341,success
+Sassuolo,I2,44.5409769,10.7829023,success
+Spal,I2,44.8409312,11.6072586,success
+Spezia,I2,44.1457278,12.2032796,success
+Sudtirol,I2,46.4929138,11.3150559,success
+Torino,I2,45.1095759,7.6421338,success
+Trapani,I2,38.028211,12.545885,success
+Triestina,I2,44.7984146,10.2554077,success
+Varese,I2,44.1435788,12.2904555,success
+Venezia,I2,46.081402,13.1997411,success
+Verona,I2,45.4353328,10.9674348,success
+Vicenza,I2,45.5339648,11.478811,success
+Virtus Entella,I2,,,failed
+Virtus Lanciano,I2,,,failed
+Almeria,SP1,36.840067,-2.4354672,success
+Ath Bilbao,SP1,,,failed
+Ath Madrid,SP1,,,failed
+Cadiz,SP1,36.1630337,-5.4651325,success
+Cordoba,SP1,37.8721206,-4.7635163,success
+Elche,SP1,38.2653307,-0.6988391,success
+Getafe,SP1,40.3070639,-3.7331808,success
+Leganes,SP1,40.3259427,-3.7586217,success
+Malaga,SP1,37.0171996,-4.5571607,success
+Sevilla,SP1,37.4172353,-6.0046134,success
+Sp Gijon,SP1,,,failed
+Valladolid,SP1,41.6445801,-4.7612576,success
+Vallecano,SP1,40.377486,-3.6107685,success
+Albacete,SP2,38.997579,-1.8637986,success
+Alcorcon,SP2,40.3492998,-3.8284295,success
+Almeria,SP2,36.840067,-2.4354672,success
+Ath Bilbao B,SP2,,,failed
+Burgos,SP2,42.6808132,-2.9353975,success
+Cadiz,SP2,36.1630337,-5.4651325,success
+Cordoba,SP2,37.8721206,-4.7635163,success
+Elche,SP2,38.2653307,-0.6988391,success
+Extremadura UD,SP2,38.8741557,-6.9683022,success
+Fuenlabrada,SP2,40.282476,-3.7923422,success
+Getafe,SP2,40.3070639,-3.7331808,success
+Guadalajara,SP2,40.6288126,-3.1674493,success
+Jaen,SP2,37.7741964,-3.7865262,success
+Leganes,SP2,40.3259427,-3.7586217,success
+Lorca,SP2,37.9698392,-3.815181,success
+Malaga,SP2,37.0171996,-4.5571607,success
+Murcia,SP2,38.0422241,-1.1447324,success
+Numancia,SP2,40.3995283,-3.6596765,success
+Ponferradina,SP2,42.5567728,-6.6002877,success
+Rayo Majadahonda,SP2,40.4556465,-3.8642787,success
+Salamanca,SP2,40.9772747,-5.661251,success
+Sp Gijon,SP2,,,failed
+UCAM Murcia,SP2,37.9923235,-1.1863075,success
+Valladolid,SP2,41.6445801,-4.7612576,success
+Vallecano,SP2,40.377486,-3.6107685,success
+Ad. Demirspor,T1,,,failed
+Adanaspor,T1,,,failed
+Akhisar Belediyespor,T1,,,failed
+Alanyaspor,T1,,,failed
+Ankaragucu,T1,39.9815285,32.6132533,success
+Balikesirspor,T1,,,failed
+Besiktas,T1,41.0428465,29.0075283,success
+Bodrumspor,T1,,,failed
+Bucaspor,T1,,,failed
+Bursaspor,T1,40.5191774,28.8264255,success
+Buyuksehyr,T1,,,failed
+Denizlispor,T1,37.8157177,29.0579691,success
+Elazigspor,T1,38.6240127,39.107531,success
+Erciyesspor,T1,38.7135388,35.4533518,success
+Erzurum BB,T1,39.90632,41.2727715,success
+Eskisehirspor,T1,39.798069,30.5207231,success
+Eyupspor,T1,,,failed
+Fenerbahce,T1,40.9875807,29.0369773,success
+Galatasaray,T1,41.1025976,28.9922753,success
+Gaziantep,T1,37.0628317,37.3792617,success
+Gaziantepspor,T1,,,failed
+Giresunspor,T1,,,failed
+Goztep,T1,,,failed
+Hatayspor,T1,,,failed
+Istanbulspor,T1,,,failed
+Karabukspor,T1,41.2090545,32.6168834,success
+Karagumruk,T1,41.0268821,28.9373882,success
+Kasimpasa,T1,39.9733957,41.6691899,success
+Kayserispor,T1,38.7656367,35.4592488,success
+Kocaelispor,T1,40.7556968,30.0130024,success
+Konyaspor,T1,37.9461978,32.4867282,success
+Manisaspor,T1,,,failed
+Mersin Idman Yurdu,T1,36.7802711,34.6022692,success
+Orduspor,T1,,,failed
+Osmanlispor,T1,39.9519599,32.7323364,success
+Pendikspor,T1,40.887636,29.2276524,success
+Rizespor,T1,41.0466289,40.5874538,success
+Samsunspor,T1,41.276854,36.3558754,success
+Sivasspor,T1,39.7303685,36.9859944,success
+Trabzonspor,T1,40.895672,29.166289,success
+Umraniyespor,T1,,,failed
+Yeni Malatyaspor,T1,,,failed

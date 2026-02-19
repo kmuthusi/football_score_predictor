@@ -56,8 +56,38 @@ python -m calibration_trends --last-n 10
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
+### Reproducible held-out evaluation
+
+```bash
+python evaluate_reproducible.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+```
+
+JSON output for logging/CI:
+
+```bash
+python evaluate_reproducible.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --json
+```
+
 ## Notes
 
 - If the app cannot find the artifact, retrain and confirm `models/score_models.joblib` exists.
 - If convergence is weak, increase `--max-iter`.
 - Odds inputs are optional but typically improve signal quality.
+
+### Artifact compatibility (troubleshooting)
+
+If Streamlit fails while loading `models/score_models.joblib` (for example with sklearn unpickle errors such as `_RemainderColsList`), your runtime sklearn version likely differs from the version used to train/save the artifact.
+
+Fix options:
+
+1. Install the compatible version and rerun:
+
+```bash
+pip install scikit-learn==1.6.1
+```
+
+2. Or retrain in your current environment to regenerate the artifact:
+
+```bash
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-iter 1000
+```

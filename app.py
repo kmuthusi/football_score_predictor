@@ -19,6 +19,7 @@ The app will look for:
 
 from __future__ import annotations
 
+import importlib.util
 import json
 from typing import Tuple
 
@@ -43,6 +44,23 @@ from predict import (
     scoreline_probability_matrix,
     top_scorelines,
 )
+
+
+HAS_MATPLOTLIB = importlib.util.find_spec("matplotlib") is not None
+
+
+def _resolve_matplotlib_cmap(cmap_name: str | None) -> str | None:
+    if cmap_name is None:
+        return None
+    if not HAS_MATPLOTLIB:
+        return None
+    try:
+        import matplotlib.pyplot as plt  # type: ignore
+
+        plt.get_cmap(str(cmap_name))
+        return str(cmap_name)
+    except Exception:
+        return None
 
 
 # ----------------------------
@@ -229,7 +247,21 @@ if not artifact_ok:
     st.error(f"Model artifact not found at: {artifact_path}")
     st.stop()
 
-artifact = load_models(artifact_path)
+try:
+    artifact = load_models(artifact_path)
+except Exception as exc:
+    msg = str(exc)
+    st.error("Unable to load model artifact.")
+    st.exception(exc)
+    if "_RemainderColsList" in msg or "sklearn" in msg.lower() or "unpickle" in msg.lower():
+        st.info(
+            "This usually means a scikit-learn version mismatch between the saved artifact and your active environment.\n\n"
+            "Try one of these fixes:\n"
+            "1) Install the training-compatible version: `pip install scikit-learn==1.6.1`\n"
+            "2) Or retrain in your current environment to regenerate `models/score_models.joblib`."
+        )
+    st.stop()
+
 cfg_raw = artifact.get("config", {})
 time_decay_cfg = artifact.get("time_decay", {})
 decay_tuning_cfg = artifact.get("decay_tuning", {})
@@ -342,7 +374,7 @@ with colA:
         st.caption("Train with `--fit-dc` to enable Dixon-Coles controls.")
 
     st.markdown("<div class='section-title'>Prediction Controls</div>", unsafe_allow_html=True)
-    predict_btn = st.button("Run prediction", type="primary", use_container_width=True)
+    predict_btn = st.button("Run prediction", type="primary", width="stretch")
     compare_poisson_dc = st.checkbox("Compare baseline (Poisson) vs Dixon-Coles", value=False)
     grid_color_scale = st.selectbox(
         "Grid color scale",
@@ -418,7 +450,7 @@ with colB:
     )
     info_df["metric"] = info_df["metric"].astype(str)
     info_df["value"] = info_df["value"].map(lambda x: "" if x is None else str(x))
-    st.dataframe(info_df, use_container_width=True, hide_index=True)
+    st.dataframe(info_df, width="stretch", hide_index=True)
 
     rows = top_score_freq_cfg.get("rows", []) if isinstance(top_score_freq_cfg, dict) else []
     if rows:
@@ -432,7 +464,7 @@ with colB:
         diag_df = pd.DataFrame(rows)
         if "share" in diag_df.columns:
             diag_df["share"] = (diag_df["share"] * 100.0).map(lambda x: f"{x:.2f}%")
-        st.dataframe(diag_df, use_container_width=True, hide_index=True)
+        st.dataframe(diag_df, width="stretch", hide_index=True)
 
     if event_reliability_events:
         st.caption("Correct Score event reliability (validation split during training)")
@@ -474,7 +506,7 @@ with colB:
             ev_df["abs_gap"] = (ev_df["abs_gap"] * 100.0).map(lambda x: f"{x:.2f} pp")
             for col in ["mean_pred", "prevalence"]:
                 ev_df[col] = (ev_df[col] * 100.0).map(lambda x: f"{x:.2f}%")
-            st.dataframe(ev_df, use_container_width=True, hide_index=True)
+            st.dataframe(ev_df, width="stretch", hide_index=True)
 
             with st.expander("Show event reliability bins"):
                 for event in ("1-1", "1-0", "0-1", "0-0"):
@@ -490,7 +522,7 @@ with colB:
                         bins["mean_pred"] = (bins["mean_pred"] * 100.0).map(lambda x: f"{x:.2f}%")
                         bins["empirical_rate"] = (bins["empirical_rate"] * 100.0).map(lambda x: f"{x:.2f}%")
                         bins["gap"] = (bins["gap"] * 100.0).map(lambda x: f"{x:+.2f} pp")
-                        st.dataframe(bins, use_container_width=True, hide_index=True)
+                        st.dataframe(bins, width="stretch", hide_index=True)
 
     st.caption("Note: Correct Score prediction is inherently uncertain; rely on the distribution, not only the top pick.")
 
@@ -603,7 +635,7 @@ if predict_btn:
     with tab_overview:
         lead = top.iloc[0]
         st.success(f"Most likely Correct Score: {lead['score']} ({float(lead['prob']):.2%})")
-        st.dataframe(top.head(5).style.format({"prob": "{:.2%}"}), use_container_width=True)
+        st.dataframe(top.head(5).style.format({"prob": "{:.2%}"}), width="stretch")
 
     with tab_top:
         if compare_poisson_dc and active_rho is not None:
@@ -611,24 +643,33 @@ if predict_btn:
             cc1, cc2 = st.columns(2)
             with cc1:
                 st.caption("Poisson")
-                st.dataframe(top_poisson.style.format({"prob": "{:.2%}"}), use_container_width=True)
+                st.dataframe(top_poisson.style.format({"prob": "{:.2%}"}), width="stretch")
             with cc2:
                 st.caption("Dixon-Coles")
-                st.dataframe(top_dc.style.format({"prob": "{:.2%}"}), use_container_width=True)
+                st.dataframe(top_dc.style.format({"prob": "{:.2%}"}), width="stretch")
         else:
             if compare_poisson_dc and active_rho is None:
                 st.info("No `dixon_coles_rho` value found in artifact; showing baseline output.")
-            st.dataframe(top.style.format({"prob": "{:.2%}"}), use_container_width=True)
+            st.dataframe(top.style.format({"prob": "{:.2%}"}), width="stretch")
 
     with tab_grid:
         grid_styler = mat.style.format("{:.2%}")
-        selected_cmap = grid_cmap_lookup.get(grid_color_scale)
-        if selected_cmap is not None:
-            try:
-                grid_styler = grid_styler.background_gradient(cmap=selected_cmap, axis=None)
-            except ValueError as e:
-                st.warning(f"Invalid color scale '{grid_color_scale}'; showing uncolored grid. ({e})")
-        st.dataframe(grid_styler, use_container_width=True)
+        selected_cmap_raw = grid_cmap_lookup.get(grid_color_scale)
+        selected_cmap = _resolve_matplotlib_cmap(selected_cmap_raw)
+        if selected_cmap_raw is not None:
+            if selected_cmap is None:
+                if HAS_MATPLOTLIB:
+                    st.warning(
+                        f"Could not apply color scale '{grid_color_scale}' in this environment; showing uncolored grid."
+                    )
+                else:
+                    st.info("Color shading requires matplotlib; showing uncolored grid.")
+            else:
+                try:
+                    grid_styler = grid_styler.background_gradient(cmap=selected_cmap, axis=None)
+                except Exception as e:
+                    st.warning(f"Color shading failed; showing uncolored grid. ({e})")
+        st.dataframe(grid_styler, width="stretch")
 
     with tab_debug:
-        st.dataframe(feat_row, use_container_width=True)
+        st.dataframe(feat_row, width="stretch")

@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+*.pyo
+*.pyd
+*.joblib
+*.log
+*.tmp
+*.bak
+.vscode/

@@ -419,6 +419,8 @@ python -m unittest discover -s tests -p "test_*.py"
 
 ### 14.1 Common Issues
 
+For a quick artifact/version mismatch fix path, see **README → “Artifact compatibility (troubleshooting)”**.
+
 1. **Artifact not found in app**
    - Retrain with `train.py` and verify `models/score_models.joblib` exists.
 

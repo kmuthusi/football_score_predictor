@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-evaluate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Ensure model artifact exists
+        run: |
+          if [ ! -f models/score_models.joblib ]; then
+            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-iter 500
+          fi
+
+      - name: Reproducible JSON evaluation
+        run: |
+          python evaluate_reproducible.py \
+            --artifact models/score_models.joblib \
+            --matches data/spi_matches.csv \
+            --stadiums data/stadium_coordinates.csv \
+            --json > evaluation_metrics.json
+
+      - name: Upload evaluation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-metrics-json-run-${{ github.run_number }}-sha-${{ github.sha }}
+          path: evaluation_metrics.json
+          if-no-files-found: error
