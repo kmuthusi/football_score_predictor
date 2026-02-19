@@ -1,5 +1,7 @@
 # Football Prediction App
 
+[![CI — main](https://github.com/kmuthusi/football_score_predictor/actions/workflows/ci.yml/badge.svg)](https://github.com/kmuthusi/football_score_predictor/actions)
+
 Predict exact football scoreline probabilities from historical match data.
 
 For full technical and operational documentation, see:
@@ -91,3 +93,49 @@ pip install scikit-learn==1.6.1
 ```bash
 python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-iter 1000
 ```
+
+## CI monitoring & alerts ⚠️
+
+The repository includes automated imputation monitoring and alerting to catch upstream data issues that increase missingness in model inputs.
+
+What the CI does
+
+- Runs `monitor_imputation.py` each workflow to produce `imputation_report.json` (per‑column missing rates, sample matches).
+- Runs `scripts/check_imputation_thresholds.py` and **fails the job** if thresholds are exceeded.
+- If a failure occurs the workflow will:
+  - Create a GitHub **Issue** describing the breach (uses the repository `GITHUB_TOKEN`).
+  - Send a **Slack** message when `SLACK_WEBHOOK_URL` is configured.
+  - POST the report to `IMPUTATION_TELEMETRY_URL` when configured.
+
+Secrets / environment variables
+
+- `GITHUB_TOKEN` — used by the workflow to create an issue (provided automatically by GitHub Actions).
+- `SLACK_WEBHOOK_URL` — optional; when set, CI posts a short Slack alert on threshold breaches.
+- `IMPUTATION_TELEMETRY_URL` — optional; CI and the running app will POST imputation events/reports to this endpoint.
+
+Default thresholds (changeable)
+
+- Row-level: `rows_with_any_imputation_prop` &lt; **0.10** (10%).
+- Column-level: `per_column_missing_rate` &lt; **0.05** (5%).
+
+You can override by editing `.github/workflows/ci.yml` or setting appropriate repository secrets.
+
+How to run locally
+
+- Generate the imputation report:
+
+```bash
+python monitor_imputation.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --recent-days 365 --out imputation_report.json
+```
+
+- Run the threshold checker:
+
+```bash
+python scripts/check_imputation_thresholds.py --report imputation_report.json --max-row-prop 0.10 --max-col-rate 0.05
+```
+
+Notes
+
+- The Streamlit UI also logs imputation events locally to `logs/imputation_events.log` and will POST best‑effort telemetry when `IMPUTATION_TELEMETRY_URL` is set.
+- Adjust thresholds to match your operational tolerance before enabling Slack/telemetry alerts.
+

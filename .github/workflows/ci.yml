@@ -11,6 +11,8 @@ jobs:
       # Lowered defaults: stricter thresholds (override via repo secrets if needed)
       IMPUTATION_ROW_PROP_THRESHOLD: 0.10
       IMPUTATION_COL_RATE_THRESHOLD: 0.05
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      IMPUTATION_TELEMETRY_URL: ${{ secrets.IMPUTATION_TELEMETRY_URL }}
 
     steps:
       - name: Checkout
@@ -77,7 +79,7 @@ jobs:
 
       - name: Create GitHub issue for imputation threshold violation
         if: ${{ steps.imputation_check.outcome == 'failure' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -88,13 +90,13 @@ jobs:
             const title = `Imputation threshold breach — run #${process.env.GITHUB_RUN_NUMBER}`;
             const topCols = (rpt.top_imputed_columns || []).slice(0,5).map(c => `- ${c.col}: ${c.missing_rate}`).join('\n') || 'n/a';
             const body = `Imputation thresholds were exceeded in workflow run [#${process.env.GITHUB_RUN_NUMBER}](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}).\n\n` +
-              `**Rows with any imputation:** ${rpt.rows_with_any_imputation_prop || 'n/a'}\n\n` +
-              `**Top imputed columns:**\n${topCols}\n\n` +
-              `See attached imputation_report.json artifact for details and sample matches.`;
+            `**Rows with any imputation:** ${rpt.rows_with_any_imputation_prop || 'n/a'}\n\n` +
+            `**Top imputed columns:**\n${topCols}\n\n` +
+            `See attached imputation_report.json artifact for details and sample matches.`;
             await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
 
       - name: Send Slack alert for imputation threshold violation
-        if: ${{ steps.imputation_check.outcome == 'failure' && secrets.SLACK_WEBHOOK_URL != '' }}
+        if: ${{ steps.imputation_check.outcome == 'failure' && env.SLACK_WEBHOOK_URL != '' }}
         run: |
           python - <<'PY'
           import json, sys, os
@@ -111,9 +113,9 @@ jobs:
           PY
 
       - name: Send imputation report to telemetry (if configured)
-        if: ${{ secrets.IMPUTATION_TELEMETRY_URL != '' }}
+        if: ${{ env.IMPUTATION_TELEMETRY_URL != '' }}
         run: |
-          curl -sSf -X POST -H "Content-Type: application/json" --data-binary @imputation_report.json "${{ secrets.IMPUTATION_TELEMETRY_URL }}" || true
+          curl -sSf -X POST -H "Content-Type: application/json" --data-binary @imputation_report.json "$IMPUTATION_TELEMETRY_URL" || true
 
   validate-preprocessing-artifact:
     name: Validate prediction preprocessing against production artifact

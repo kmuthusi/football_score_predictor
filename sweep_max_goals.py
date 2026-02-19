@@ -26,6 +26,8 @@ def main() -> None:
     parser.add_argument("--base-out", type=str, default="models/sweeps/max_goals")
     parser.add_argument("--candidates", type=int, nargs="+", default=[4, 5, 6, 7, 8])
     parser.add_argument("--max-iter", type=int, default=500)
+    parser.add_argument("--backtest-folds", type=int, default=3,
+                        help="Rolling-origin folds passed to train.py for diagnostics and selection stability.")
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parent
@@ -52,6 +54,8 @@ def main() -> None:
             str(int(mg)),
             "--max-iter",
             str(int(args.max_iter)),
+            "--backtest-folds",
+            str(int(args.backtest_folds)),
         ]
         print(f"[Sweep] Training max_goals={mg} ...")
         run_command(train_cmd, cwd=root)
@@ -87,18 +91,37 @@ def main() -> None:
                 "ind_nll": float(metrics["ind_nll"]),
                 "top1_ece": float(top1_ece),
                 "exact_top1": float(exact_top1),
+                "rolling_backtest_nll_mean": (
+                    float(metrics["rolling_backtest_nll_mean"])
+                    if metrics.get("rolling_backtest_nll_mean") is not None
+                    else None
+                ),
+                "rolling_backtest_n_folds": int(metrics.get("rolling_backtest_n_folds", 0) or 0),
             }
         )
 
     ind_ranks = rank([float(r["ind_nll"]) for r in rows], reverse=False)
     ece_ranks = rank([float(r["top1_ece"]) for r in rows], reverse=False)
     acc_ranks = rank([float(r["exact_top1"]) for r in rows], reverse=True)
+    has_bt_metric = all(
+        (r.get("rolling_backtest_nll_mean") is not None) and (int(r.get("rolling_backtest_n_folds", 0)) > 0)
+        for r in rows
+    )
+    if has_bt_metric:
+        bt_ranks = rank([float(r["rolling_backtest_nll_mean"]) for r in rows], reverse=False)
+    else:
+        bt_ranks = None
 
     for i, row in enumerate(rows):
         row["rank_ind_nll"] = ind_ranks[i]
         row["rank_top1_ece"] = ece_ranks[i]
         row["rank_exact_top1"] = acc_ranks[i]
-        row["rank_sum"] = int(ind_ranks[i] + ece_ranks[i] + acc_ranks[i])
+        if bt_ranks is not None:
+            row["rank_rolling_backtest_nll"] = bt_ranks[i]
+            row["rank_sum"] = int(ind_ranks[i] + ece_ranks[i] + acc_ranks[i] + bt_ranks[i])
+        else:
+            row["rank_rolling_backtest_nll"] = None
+            row["rank_sum"] = int(ind_ranks[i] + ece_ranks[i] + acc_ranks[i])
 
     rows_sorted = sorted(rows, key=lambda r: (int(r["rank_sum"]), -float(r["exact_top1"])))
     best = rows_sorted[0]
@@ -112,7 +135,13 @@ def main() -> None:
 
     output = {
         "candidates": [int(x) for x in args.candidates],
-        "selection_rule": "minimize rank_sum of (ind_nll asc, top1_ece asc, exact_top1 desc)",
+        "selection_rule": (
+            "minimize rank_sum of (ind_nll asc, top1_ece asc, exact_top1 desc, rolling_backtest_nll_mean asc)"
+            if bt_ranks is not None
+            else "minimize rank_sum of (ind_nll asc, top1_ece asc, exact_top1 desc)"
+        ),
+        "backtest_folds": int(args.backtest_folds),
+        "used_rolling_backtest_in_rank": bool(bt_ranks is not None),
         "best": best,
         "results": rows_sorted,
     }

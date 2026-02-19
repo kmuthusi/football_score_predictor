@@ -177,6 +177,16 @@ def main() -> None:
     rho = artifact.get("dixon_coles", {}).get("rho_global", artifact.get("dixon_coles_rho"))
     rho = float(rho) if rho is not None else None
     calibration_cfg = artifact.get("scoreline_calibration", None)
+    rolling_bt = artifact.get("diagnostics", {}).get("rolling_backtest", {})
+    bt_enabled = bool(rolling_bt.get("enabled", False))
+    bt_n_folds = int(rolling_bt.get("n_folds", 0) or 0)
+    bt_nll_mean = rolling_bt.get("nll_mean", None)
+    bt_nll_std = rolling_bt.get("nll_std", None)
+
+    if bt_nll_mean is not None:
+        bt_nll_mean = float(bt_nll_mean)
+    if bt_nll_std is not None:
+        bt_nll_std = float(bt_nll_std)
 
     ind_nll = float(neg_log_likelihood(y_home_test, y_away_test, lam_home, lam_away))
     dc_nll = (
@@ -274,6 +284,10 @@ def main() -> None:
             "top1_ece_dc_calibrated": ece_dc_cal,
             "exact_top1_ind": exact_top1_ind,
             "exact_top1_dc_calibrated": exact_top1_dc_cal,
+            "rolling_backtest_enabled": bt_enabled,
+            "rolling_backtest_n_folds": bt_n_folds,
+            "rolling_backtest_nll_mean": bt_nll_mean,
+            "rolling_backtest_nll_std": bt_nll_std,
         },
     }
 
@@ -299,6 +313,13 @@ def main() -> None:
     )
     print(f"  exact_top1_ind:          {output['metrics']['exact_top1_ind']:.6f}")
     print(f"  exact_top1_dc_calibrated:{output['metrics']['exact_top1_dc_calibrated']:.6f}")
+    print(
+        "  rolling_backtest:        "
+        f"enabled={output['metrics']['rolling_backtest_enabled']}, "
+        f"folds={output['metrics']['rolling_backtest_n_folds']}, "
+        f"mean_nll={output['metrics']['rolling_backtest_nll_mean']}, "
+        f"std_nll={output['metrics']['rolling_backtest_nll_std']}"
+    )
 
 
 if __name__ == "__main__":

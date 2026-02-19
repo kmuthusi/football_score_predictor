@@ -719,7 +719,7 @@ if predict_btn:
             log_dir.mkdir(exist_ok=True)
             log_path = log_dir / "imputation_events.log"
             with log_path.open("a", encoding="utf-8") as f:
-                f.write(f"{datetime.datetime.utcnow().isoformat()}Z\t{div}\t{home_team}\t{away_team}\t{','.join(imputed_cols)}\n")
+                f.write(f"{datetime.datetime.now(datetime.timezone.utc).isoformat()}\t{div}\t{home_team}\t{away_team}\t{','.join(imputed_cols)}\n")
         except Exception:
             pass
 
