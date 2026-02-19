@@ -8,9 +8,9 @@ jobs:
   test-and-evaluate:
     runs-on: ubuntu-latest
     env:
-      # Defaults can be overridden in repository secrets or workflow caller
-      IMPUTATION_ROW_PROP_THRESHOLD: 0.20
-      IMPUTATION_COL_RATE_THRESHOLD: 0.10
+      # Lowered defaults: stricter thresholds (override via repo secrets if needed)
+      IMPUTATION_ROW_PROP_THRESHOLD: 0.10
+      IMPUTATION_COL_RATE_THRESHOLD: 0.05
 
     steps:
       - name: Checkout
@@ -66,12 +66,49 @@ jobs:
           path: imputation_report.json
           if-no-files-found: warn
 
-      - name: Fail CI on imputation thresholds
+      - id: imputation_check
+        name: Check imputation thresholds (may fail)
+        continue-on-error: true
         run: |
           python scripts/check_imputation_thresholds.py \
             --report imputation_report.json \
             --max-row-prop ${IMPUTATION_ROW_PROP_THRESHOLD} \
             --max-col-rate ${IMPUTATION_COL_RATE_THRESHOLD}
+
+      - name: Create GitHub issue for imputation threshold violation
+        if: ${{ steps.imputation_check.outcome == 'failure' }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = `${process.env.GITHUB_WORKSPACE}/imputation_report.json`;
+            let rpt = {};
+            try { rpt = JSON.parse(fs.readFileSync(path, 'utf8')); } catch (e) { rpt = { error: 'report not found' }; }
+            const title = `Imputation threshold breach — run #${process.env.GITHUB_RUN_NUMBER}`;
+            const topCols = (rpt.top_imputed_columns || []).slice(0,5).map(c => `- ${c.col}: ${c.missing_rate}`).join('\n') || 'n/a';
+            const body = `Imputation thresholds were exceeded in workflow run [#${process.env.GITHUB_RUN_NUMBER}](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}).\n\n` +
+              `**Rows with any imputation:** ${rpt.rows_with_any_imputation_prop || 'n/a'}\n\n` +
+              `**Top imputed columns:**\n${topCols}\n\n` +
+              `See attached imputation_report.json artifact for details and sample matches.`;
+            await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
+
+      - name: Send Slack alert for imputation threshold violation
+        if: ${{ steps.imputation_check.outcome == 'failure' && secrets.SLACK_WEBHOOK_URL != '' }}
+        run: |
+          python - <<'PY'
+          import json, sys, os
+          try:
+              rpt = json.load(open('imputation_report.json'))
+          except Exception:
+              rpt = {}
+          rows_prop = rpt.get('rows_with_any_imputation_prop', 'n/a')
+          top = rpt.get('top_imputed_columns', [])[:5]
+          top_cols = ', '.join([f"{c.get('col')}:{c.get('missing_rate'):.3f}" for c in top])
+          text = f"[{os.getenv('GITHUB_REPOSITORY')}] Imputation alert (run #{os.getenv('GITHUB_RUN_NUMBER')}) - rows_with_any_imputation_prop={rows_prop} top_cols={top_cols}"
+          payload = json.dumps({'text': text})
+          os.system(f"curl -sS -X POST -H 'Content-type: application/json' --data '{payload}' '{os.getenv('SLACK_WEBHOOK_URL')}' || true")
+          PY
 
       - name: Send imputation report to telemetry (if configured)
         if: ${{ secrets.IMPUTATION_TELEMETRY_URL != '' }}
