@@ -21,12 +21,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
-from typing import Any, Tuple
+import os
+from typing import Tuple
 
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import requests
 import streamlit as st
 
 from config import DEFAULT_ARTIFACT_ABS_PATH, DEFAULT_MATCHES_ABS_PATH, DEFAULT_STADIUMS_ABS_PATH
@@ -312,6 +314,31 @@ if "matches_path" not in locals():
     matches_path = default_matches_path
 if "stadiums_path" not in locals():
     stadiums_path = default_stadiums_path
+
+# If artifact missing, optionally download from MODEL_ARTIFACT_URL (set as an env var)
+def _maybe_fetch_remote_artifact(artifact_path: str) -> bool:
+    url = os.environ.get("MODEL_ARTIFACT_URL") or os.environ.get("MODEL_URL")
+    if not url:
+        return False
+    try:
+        resp = requests.get(url, stream=True, timeout=30)
+        resp.raise_for_status()
+        p = Path(artifact_path)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        with open(p, "wb") as fh:
+            for chunk in resp.iter_content(chunk_size=8192):
+                if chunk:
+                    fh.write(chunk)
+        return True
+    except Exception as e:
+        # safe to continue - will be handled by artifact_ok check below
+        st.warning(f"Failed to download model artifact from {url}: {e}")
+        return False
+
+# Load model artifact (try download-if-missing first)
+if not Path(artifact_path).exists():
+    if _maybe_fetch_remote_artifact(artifact_path):
+        st.info("Downloaded model artifact from MODEL_ARTIFACT_URL")
 
 # Load model artifact
 artifact_ok = Path(artifact_path).exists()
