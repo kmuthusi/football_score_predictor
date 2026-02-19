@@ -28,7 +28,7 @@ jobs:
       - name: Ensure model artifact exists
         run: |
           if [ ! -f models/score_models.joblib ]; then
-            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-iter 500
+            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-goals 4 --max-iter 500
           fi
 
       - name: Reproducible JSON evaluation

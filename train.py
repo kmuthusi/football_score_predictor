@@ -1057,7 +1057,7 @@ def main() -> None:
     parser.add_argument("--out", type=str, default=DEFAULT_MODELS_DIR)
     parser.add_argument("--test-days", type=int, default=365, help="How many most-recent days to reserve for test.")
     parser.add_argument("--windows", type=int, nargs="+", default=[5, 10], help="Rolling windows for form features.")
-    parser.add_argument("--max-goals", type=int, default=6, help="Used for app scoreline grid display.")
+    parser.add_argument("--max-goals", type=int, default=4, help="Used for app scoreline grid display.")
     parser.add_argument("--alpha", type=float, default=1e-4, help="Regularization for PoissonRegressor.")
     parser.add_argument("--max-iter", type=int, default=500)
     parser.add_argument("--decay-half-life-days", type=float, default=0.0,

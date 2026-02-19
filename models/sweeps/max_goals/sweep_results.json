@@ -1,0 +1,78 @@
+{
+  "candidates": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "selection_rule": "minimize rank_sum of (ind_nll asc, top1_ece asc, exact_top1 desc)",
+  "best": {
+    "max_goals": 4,
+    "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_4\\score_models.joblib",
+    "ind_nll": 2.882468441605323,
+    "top1_ece": 0.008647301391853721,
+    "exact_top1": 0.1325948851604496,
+    "rank_ind_nll": 1,
+    "rank_top1_ece": 2,
+    "rank_exact_top1": 1,
+    "rank_sum": 4
+  },
+  "results": [
+    {
+      "max_goals": 4,
+      "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_4\\score_models.joblib",
+      "ind_nll": 2.882468441605323,
+      "top1_ece": 0.008647301391853721,
+      "exact_top1": 0.1325948851604496,
+      "rank_ind_nll": 1,
+      "rank_top1_ece": 2,
+      "rank_exact_top1": 1,
+      "rank_sum": 4
+    },
+    {
+      "max_goals": 6,
+      "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_6\\score_models.joblib",
+      "ind_nll": 2.882468441605323,
+      "top1_ece": 0.008661310805449882,
+      "exact_top1": 0.1325134386707933,
+      "rank_ind_nll": 3,
+      "rank_top1_ece": 3,
+      "rank_exact_top1": 2,
+      "rank_sum": 8
+    },
+    {
+      "max_goals": 5,
+      "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_5\\score_models.joblib",
+      "ind_nll": 2.882468441605323,
+      "top1_ece": 0.008577793483953404,
+      "exact_top1": 0.132431992181137,
+      "rank_ind_nll": 2,
+      "rank_top1_ece": 1,
+      "rank_exact_top1": 5,
+      "rank_sum": 8
+    },
+    {
+      "max_goals": 7,
+      "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_7\\score_models.joblib",
+      "ind_nll": 2.882468441605323,
+      "top1_ece": 0.008661310805449882,
+      "exact_top1": 0.1325134386707933,
+      "rank_ind_nll": 4,
+      "rank_top1_ece": 4,
+      "rank_exact_top1": 3,
+      "rank_sum": 11
+    },
+    {
+      "max_goals": 8,
+      "artifact": "C:\\Users\\mwj6\\OneDrive - CDC\\+My_Documents\\Muthusi\\ESI\\ML\\football_score_predictor\\models\\sweeps\\max_goals\\mg_8\\score_models.joblib",
+      "ind_nll": 2.882468441605323,
+      "top1_ece": 0.008661310805449882,
+      "exact_top1": 0.1325134386707933,
+      "rank_ind_nll": 5,
+      "rank_top1_ece": 5,
+      "rank_exact_top1": 4,
+      "rank_sum": 14
+    }
+  ]
+}

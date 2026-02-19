@@ -11,7 +11,7 @@ import pandas as pd
 @dataclass(frozen=True)
 class FeatureConfig:
     windows: Tuple[int, ...] = (5, 10)
-    max_goals: int = 6
+    max_goals: int = 4
     use_travel_distance: bool = True
     ewm_span: int = 6
     use_ewm_features: bool = True

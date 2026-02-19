@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
-from typing import Tuple
+from typing import Any, Tuple
 
 from pathlib import Path
 
@@ -50,17 +50,89 @@ HAS_MATPLOTLIB = importlib.util.find_spec("matplotlib") is not None
 
 
 def _resolve_matplotlib_cmap(cmap_name: str | None) -> str | None:
+    """Resolve a colormap name to a matplotlib-registered cmap.
+
+    - Returns a valid cmap name string when available.
+    - Performs case-insensitive lookup and small alias handling.
+    - Returns None only when matplotlib isn't available or name cannot be resolved.
+    """
     if cmap_name is None:
         return None
     if not HAS_MATPLOTLIB:
         return None
+
     try:
         import matplotlib.pyplot as plt  # type: ignore
 
-        plt.get_cmap(str(cmap_name))
-        return str(cmap_name)
+        name = str(cmap_name)
+        # direct resolution
+        try:
+            plt.get_cmap(name)
+            return name
+        except Exception:
+            pass
+
+        # case-insensitive match against available colormaps
+        cmap_list = list(plt.colormaps())
+        name_lower = name.lower()
+        for cm in cmap_list:
+            if cm.lower() == name_lower:
+                return cm
+
+        # simple aliases for common user inputs
+        aliases = {
+            "ylorrd": "YlOrRd",
+            "ylorr": "YlOrRd",
+            "viridis": "viridis",
+            "magma": "magma",
+            "blues": "Blues",
+        }
+        if name_lower in aliases:
+            candidate = aliases[name_lower]
+            try:
+                plt.get_cmap(candidate)
+                return candidate
+            except Exception:
+                pass
+
+        return None
     except Exception:
         return None
+
+
+def _full_width_button(label: str, button_type: str = "secondary") -> bool:
+    try:
+        return st.button(label, type=button_type, width="stretch")
+    except TypeError:
+        try:
+            return st.button(label, type=button_type, use_container_width=True)
+        except TypeError:
+            return st.button(label)
+
+
+def _full_width_dataframe(data: Any, *, hide_index: bool | None = None) -> None:
+    kwargs: dict[str, Any] = {}
+    if hide_index is not None:
+        kwargs["hide_index"] = hide_index
+
+    try:
+        st.dataframe(data, width="stretch", **kwargs)
+        return
+    except TypeError:
+        pass
+
+    try:
+        st.dataframe(data, use_container_width=True, **kwargs)
+        return
+    except TypeError:
+        pass
+
+    st.dataframe(data, **kwargs)
+
+
+if not HAS_MATPLOTLIB:
+    st.error("matplotlib is required for colored Correct Score grid rendering. Install dependencies and rerun.")
+    st.stop()
 
 
 # ----------------------------
@@ -374,15 +446,14 @@ with colA:
         st.caption("Train with `--fit-dc` to enable Dixon-Coles controls.")
 
     st.markdown("<div class='section-title'>Prediction Controls</div>", unsafe_allow_html=True)
-    predict_btn = st.button("Run prediction", type="primary", width="stretch")
+    predict_btn = _full_width_button("Run prediction", button_type="primary")
     compare_poisson_dc = st.checkbox("Compare baseline (Poisson) vs Dixon-Coles", value=False)
     grid_color_scale = st.selectbox(
         "Grid color scale",
-        ["None", "YlOrRd", "Blues", "Greens", "Viridis", "Magma"],
-        index=1,
+        ["YlOrRd", "Blues", "Greens", "Viridis", "Magma"],
+        index=0,
     )
     grid_cmap_lookup = {
-        "None": None,
         "YlOrRd": "YlOrRd",
         "Blues": "Blues",
         "Greens": "Greens",
@@ -450,7 +521,7 @@ with colB:
     )
     info_df["metric"] = info_df["metric"].astype(str)
     info_df["value"] = info_df["value"].map(lambda x: "" if x is None else str(x))
-    st.dataframe(info_df, width="stretch", hide_index=True)
+    _full_width_dataframe(info_df, hide_index=True)
 
     rows = top_score_freq_cfg.get("rows", []) if isinstance(top_score_freq_cfg, dict) else []
     if rows:
@@ -464,7 +535,7 @@ with colB:
         diag_df = pd.DataFrame(rows)
         if "share" in diag_df.columns:
             diag_df["share"] = (diag_df["share"] * 100.0).map(lambda x: f"{x:.2f}%")
-        st.dataframe(diag_df, width="stretch", hide_index=True)
+        _full_width_dataframe(diag_df, hide_index=True)
 
     if event_reliability_events:
         st.caption("Correct Score event reliability (validation split during training)")
@@ -506,7 +577,7 @@ with colB:
             ev_df["abs_gap"] = (ev_df["abs_gap"] * 100.0).map(lambda x: f"{x:.2f} pp")
             for col in ["mean_pred", "prevalence"]:
                 ev_df[col] = (ev_df[col] * 100.0).map(lambda x: f"{x:.2f}%")
-            st.dataframe(ev_df, width="stretch", hide_index=True)
+            _full_width_dataframe(ev_df, hide_index=True)
 
             with st.expander("Show event reliability bins"):
                 for event in ("1-1", "1-0", "0-1", "0-0"):
@@ -522,7 +593,7 @@ with colB:
                         bins["mean_pred"] = (bins["mean_pred"] * 100.0).map(lambda x: f"{x:.2f}%")
                         bins["empirical_rate"] = (bins["empirical_rate"] * 100.0).map(lambda x: f"{x:.2f}%")
                         bins["gap"] = (bins["gap"] * 100.0).map(lambda x: f"{x:+.2f} pp")
-                        st.dataframe(bins, width="stretch", hide_index=True)
+                        _full_width_dataframe(bins, hide_index=True)
 
     st.caption("Note: Correct Score prediction is inherently uncertain; rely on the distribution, not only the top pick.")
 
@@ -635,7 +706,7 @@ if predict_btn:
     with tab_overview:
         lead = top.iloc[0]
         st.success(f"Most likely Correct Score: {lead['score']} ({float(lead['prob']):.2%})")
-        st.dataframe(top.head(5).style.format({"prob": "{:.2%}"}), width="stretch")
+        _full_width_dataframe(top.head(5).style.format({"prob": "{:.2%}"}))
 
     with tab_top:
         if compare_poisson_dc and active_rho is not None:
@@ -643,33 +714,29 @@ if predict_btn:
             cc1, cc2 = st.columns(2)
             with cc1:
                 st.caption("Poisson")
-                st.dataframe(top_poisson.style.format({"prob": "{:.2%}"}), width="stretch")
+                _full_width_dataframe(top_poisson.style.format({"prob": "{:.2%}"}))
             with cc2:
                 st.caption("Dixon-Coles")
-                st.dataframe(top_dc.style.format({"prob": "{:.2%}"}), width="stretch")
+                _full_width_dataframe(top_dc.style.format({"prob": "{:.2%}"}))
         else:
             if compare_poisson_dc and active_rho is None:
                 st.info("No `dixon_coles_rho` value found in artifact; showing baseline output.")
-            st.dataframe(top.style.format({"prob": "{:.2%}"}), width="stretch")
+            _full_width_dataframe(top.style.format({"prob": "{:.2%}"}))
 
     with tab_grid:
         grid_styler = mat.style.format("{:.2%}")
-        selected_cmap_raw = grid_cmap_lookup.get(grid_color_scale)
-        selected_cmap = _resolve_matplotlib_cmap(selected_cmap_raw)
-        if selected_cmap_raw is not None:
-            if selected_cmap is None:
-                if HAS_MATPLOTLIB:
-                    st.warning(
-                        f"Could not apply color scale '{grid_color_scale}' in this environment; showing uncolored grid."
-                    )
-                else:
-                    st.info("Color shading requires matplotlib; showing uncolored grid.")
-            else:
-                try:
-                    grid_styler = grid_styler.background_gradient(cmap=selected_cmap, axis=None)
-                except Exception as e:
-                    st.warning(f"Color shading failed; showing uncolored grid. ({e})")
-        st.dataframe(grid_styler, width="stretch")
+        selected_cmap = _resolve_matplotlib_cmap(grid_cmap_lookup.get(grid_color_scale))
+        if selected_cmap is None:
+            # robust fallback: don't crash the app if a colormap name is unrecognized.
+            # pick a visually-meaningful default and surface a warning to the user.
+            fallback = "viridis"
+            try:
+                st.warning(f"Colormap '{grid_color_scale}' not found in Matplotlib; using '{fallback}'.")
+            except Exception:
+                pass
+            selected_cmap = fallback
+        grid_styler = grid_styler.background_gradient(cmap=selected_cmap, axis=None)
+        _full_width_dataframe(grid_styler)
 
     with tab_debug:
-        st.dataframe(feat_row, width="stretch")
+        _full_width_dataframe(feat_row)
