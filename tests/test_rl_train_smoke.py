@@ -34,6 +34,11 @@ class TestRLTrainSmoke(unittest.TestCase):
         policy = joblib.load(self.out_policy)
         self.assertIn("W", policy)
         self.assertIn("b", policy)
+        # obs_norm stats should be saved when training used observation normalization
+        if policy.get("train_cfg", {}).get("use_obs_norm", False):
+            self.assertIn("obs_norm", policy)
+            self.assertIn("mean", policy["obs_norm"])
+            self.assertIn("std", policy["obs_norm"])
 
 
 if __name__ == "__main__":

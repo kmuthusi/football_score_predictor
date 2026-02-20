@@ -108,6 +108,10 @@ class TrainConfig:
     initial_bankroll: float = 1000.0
     stake_frac: float = 0.01
     max_stake_frac: float = 0.05
+    min_bankroll: float = 10.0
+    min_stake: float = 1.0
+    ev_threshold: float = 0.01
+
     reward_mode: str = "log_growth"  # "log_growth" or "profit"
 
     use_obs_norm: bool = True
@@ -310,17 +314,27 @@ def run_episode(
         else:
             x_in = x
 
+        # EV gating: treat bets as invalid unless model EV per unit exceeds threshold
+        # (this does not prevent the policy from learning but reduces structural
+        # exposure during episodes where no meaningful edge exists)
+        # Note: validity applied when sampling actions via masked logits below.
+
         logits = W @ x_in + b
 
         # Action validity mask:
         # - skip always valid
         # - bet actions valid only if corresponding odds are finite and > 1
+        # EV gating: only consider bet actions when model EV per unit exceeds threshold
+        ev_home = float(pH[t] * ho[t] - 1.0) if np.isfinite(ho[t]) else float("-inf")
+        ev_draw = float(pD[t] * do[t] - 1.0) if np.isfinite(do[t]) else float("-inf")
+        ev_away = float(pA[t] * ao[t] - 1.0) if np.isfinite(ao[t]) else float("-inf")
+
         valid = np.array(
             [
                 True,
-                bool(np.isfinite(ho[t]) and ho[t] > 1.0),
-                bool(np.isfinite(do[t]) and do[t] > 1.0),
-                bool(np.isfinite(ao[t]) and ao[t] > 1.0),
+                bool(np.isfinite(ho[t]) and ho[t] > 1.0 and (ev_home > float(cfg.ev_threshold))),
+                bool(np.isfinite(do[t]) and do[t] > 1.0 and (ev_draw > float(cfg.ev_threshold))),
+                bool(np.isfinite(ao[t]) and ao[t] > 1.0 and (ev_away > float(cfg.ev_threshold))),
             ],
             dtype=bool,
         )
@@ -342,6 +356,15 @@ def run_episode(
             # fixed stake fraction * current bankroll, clipped
             stake_frac = min(float(cfg.stake_frac), float(cfg.max_stake_frac))
             stake = bankroll_before * stake_frac
+
+            # stop episode early if bankroll or stake becomes too small
+            if float(bankroll_before) <= float(cfg.min_bankroll) or float(stake) < float(cfg.min_stake):
+                # trim arrays and finish episode
+                obs_mat = obs_mat[: t + 1]
+                probs_mat = probs_mat[: t + 1]
+                actions = actions[: t + 1]
+                rewards = rewards[: t + 1]
+                break
 
             pick = a - 1  # 0=home,1=draw,2=away
             true = int(outcome[t])
@@ -493,10 +516,24 @@ def train(
         payload = {
             "W": W,
             "b": b,
-            "obs_dim": obs_dim,
+            "obs_dim": int(obs_dim),
+            "action_names": ["skip", "bet_home", "bet_draw", "bet_away"],
             "note": "Linear softmax policy trained with REINFORCE",
             "train_cfg": cfg.__dict__,
         }
+
+        # persist obs_norm stats when available so evaluation is deterministic
+        if obs_norm is not None:
+            try:
+                payload["obs_norm"] = {
+                    "mean": obs_norm.mean.tolist(),
+                    "std": obs_norm.std().tolist(),
+                    "n": int(getattr(obs_norm, "n", 0)),
+                }
+            except Exception:
+                # best-effort: don't fail saving the policy over normalization metadata
+                pass
+
         joblib.dump(payload, out_path)
         print(f"\nSaved policy to: {out_path}")
 
@@ -522,6 +559,10 @@ def main() -> None:
     p.add_argument("--grad-clip", type=float, default=5.0)
     p.add_argument("--eval-every", type=int, default=5)
 
+    p.add_argument("--min-bankroll", type=float, default=10.0, help="Stop episode when bankroll falls below this value.")
+    p.add_argument("--min-stake", type=float, default=1.0, help="Stop episode when computed stake (bankroll*stake_frac) falls below this value.")
+    p.add_argument("--ev-threshold", type=float, default=0.01, help="Minimum model EV per unit required to allow betting actions during training.")
+
     p.add_argument("--save", type=str, default="models/rl_policy.joblib")
     p.add_argument("--no-test-eval", action="store_true")
 
@@ -535,6 +576,9 @@ def main() -> None:
         initial_bankroll=float(args.initial_bankroll),
         stake_frac=float(args.stake_frac),
         max_stake_frac=float(args.max_stake_frac),
+        min_bankroll=float(args.min_bankroll),
+        min_stake=float(args.min_stake),
+        ev_threshold=float(args.ev_threshold),
         reward_mode=str(args.reward_mode),
         use_obs_norm=(not bool(args.no_obs_norm)),
         grad_clip_norm=float(args.grad_clip),

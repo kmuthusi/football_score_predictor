@@ -27,6 +27,7 @@ from typing import Tuple
 
 from pathlib import Path
 
+import math
 import numpy as np
 import pandas as pd
 import requests
@@ -543,6 +544,7 @@ with st.sidebar:
         bankroll = st.number_input("Bankroll (for sizing)", min_value=0.0, value=1000.0, step=50.0)
         stake_frac = st.slider("Stake fraction", min_value=0.0, max_value=0.05, value=0.01, step=0.001)
         max_stake_frac = st.slider("Max stake fraction", min_value=0.01, max_value=0.25, value=0.05, step=0.01)
+        ev_threshold = st.number_input("EV threshold (block bets below this)", value=0.01, step=0.01, format="%.2f")
 
         policy_obj = load_rl_policy(rl_policy_path) if enable_rl else None
         if enable_rl and policy_obj is None:
@@ -898,6 +900,16 @@ if predict_btn:
             stake_frac=float(stake_frac),
             max_stake_frac=float(max_stake_frac),
         )
+        # EV gating in the UI: suppress bet if no side exceeds threshold
+        if rl_rec is not None:
+            max_ev = max(rl_rec.get("ev_per_unit", {}).values())
+            if max_ev <= float(ev_threshold):
+                rl_rec["ev_blocked"] = True
+                rl_rec["action_id"] = 0
+                rl_rec["action_name"] = "skip"
+                rl_rec["stake"] = 0.0
+            else:
+                rl_rec["ev_blocked"] = False
 
     arr_main = mat.to_numpy(dtype=float)
     wdl = {
@@ -997,6 +1009,11 @@ if predict_btn:
             if rl_rec is None:
                 st.info("Enable RL policy suggestions in the sidebar to see a recommended action.")
             else:
+                # EV-blocked recommendations are forced to skip
+                if rl_rec.get("ev_blocked", False):
+                    st.warning(
+                        f"All model EVs ≤ {ev_threshold:.2f}; policy suggestion suppressed (forced skip)."
+                    )
                 a = rl_rec["action_name"]
                 stake_amt = rl_rec["stake"]
                 probs = rl_rec["action_probs"]

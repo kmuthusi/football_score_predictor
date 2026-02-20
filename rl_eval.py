@@ -97,6 +97,7 @@ def main() -> None:
     p.add_argument("--initial-bankroll", type=float, default=1000.0)
     p.add_argument("--stake-frac", type=float, default=0.01)
     p.add_argument("--max-stake-frac", type=float, default=0.05)
+    p.add_argument("--ev-threshold", type=float, default=0.01, help="Minimum model EV per unit required to allow betting actions during evaluation.")
 
     p.add_argument("--save-bets", type=str, default="", help="Optional path to save per-bet log CSV.")
     args = p.parse_args()
@@ -221,13 +222,18 @@ def main() -> None:
 
         logits = W @ x_in + b
 
-        # Validity mask: skip always valid; bet requires finite odds > 1
+        # Compute model EV per unit for optional gating
+        evH = float(pH * ho - 1.0) if np.isfinite(ho) else float("-inf")
+        evD = float(pD * do - 1.0) if np.isfinite(do) else float("-inf")
+        evA = float(pA * ao - 1.0) if np.isfinite(ao) else float("-inf")
+
+        # Validity mask: skip always valid; bet requires finite odds > 1 and EV above threshold
         valid = np.array(
             [
                 True,
-                bool(np.isfinite(ho) and ho > 1.0),
-                bool(np.isfinite(do) and do > 1.0),
-                bool(np.isfinite(ao) and ao > 1.0),
+                bool(np.isfinite(ho) and ho > 1.0 and (evH > float(args.ev_threshold))),
+                bool(np.isfinite(do) and do > 1.0 and (evD > float(args.ev_threshold))),
+                bool(np.isfinite(ao) and ao > 1.0 and (evA > float(args.ev_threshold))),
             ],
             dtype=bool,
         )
