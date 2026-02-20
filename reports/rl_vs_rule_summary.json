@@ -1,0 +1,49 @@
+{
+  "rule_baseline": {
+    "checked_matches": 12499,
+    "prop_matches_with_positive_ev": 0.6955756460516841,
+    "ev_percentiles": {
+      "p50": 0.034672329576127536,
+      "p75": 0.09535068200472763,
+      "p90": 0.17822887167752194,
+      "p95": 0.24398149479099052
+    },
+    "rule_sim": [
+      {
+        "threshold": 0.0,
+        "n_bets": 8694,
+        "prop_bet": 0.6955756460516841,
+        "roi_on_staked": -0.08124568668046929
+      },
+      {
+        "threshold": 0.005,
+        "n_bets": 8312,
+        "prop_bet": 0.6650132010560845,
+        "roi_on_staked": -0.07799446583253128
+      },
+      {
+        "threshold": 0.01,
+        "n_bets": 7958,
+        "prop_bet": 0.636690935274822,
+        "roi_on_staked": -0.07285121889922083
+      },
+      {
+        "threshold": 0.02,
+        "n_bets": 7227,
+        "prop_bet": 0.57820625650052,
+        "roi_on_staked": -0.07720492597204916
+      },
+      {
+        "threshold": 0.05,
+        "n_bets": 5263,
+        "prop_bet": 0.4210736858948716,
+        "roi_on_staked": -0.09758502755082649
+      }
+    ]
+  },
+  "rl_policy": {
+    "bets_placed": 4942,
+    "roi_on_staked_pct": -5.82,
+    "final_bankroll": 19.72
+  }
+}
