@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-and-evaluate:
     runs-on: ubuntu-latest
@@ -22,6 +26,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
@@ -130,6 +142,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -147,3 +167,78 @@ jobs:
         run: |
           # Run only the predict preprocessing unit test that asserts feature-column parity
           python -m unittest tests.test_predict_preprocessing.TestPredictPreprocessing.test_prepare_row_matches_artifact_columns
+
+  rl-smoke:
+    name: RL training & evaluation (smoke)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine if RL smoke needed
+        id: should_run
+        run: |
+          git fetch --no-tags origin ${{ github.sha }} || true
+          if git diff --name-only ${{ github.sha }}~1 ${{ github.sha }} | grep -E '^(rl_.*\.py|tests/test_rl_.*\.py|features\.py|predict\.py)' >/dev/null; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Skip RL smoke
+        if: ${{ steps.should_run.outputs.run == 'false' }}
+        run: |
+          echo "No RL-related changes detected; skipping smoke steps."
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache model artifact
+        uses: actions/cache@v4
+        with:
+          path: models/score_models.joblib
+          key: ${{ runner.os }}-artifact-${{ hashFiles('train.py','features.py','predict.py') }}
+          restore-keys: |
+            ${{ runner.os }}-artifact-
+
+      - name: Ensure model artifact exists
+        run: |
+          if [ ! -f models/score_models.joblib ]; then
+            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-goals 4 --max-iter 500
+          fi
+
+      - name: RL train (smoke)
+        run: |
+          python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 1 --save models/rl_policy_test.joblib --no-test-eval
+
+      - name: RL eval (smoke)
+        run: |
+          python rl_eval.py --policy models/rl_policy_test.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+
+      - name: Run RL unit tests
+        run: |
+          python -m unittest tests.test_rl_env tests.test_rl_train_smoke tests.test_rl_eval_smoke
+
+      - name: Upload RL policy artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rl-policy-test-run-${{ github.run_number }}-sha-${{ github.sha }}
+          path: models/rl_policy_test.joblib
+          if-no-files-found: warn

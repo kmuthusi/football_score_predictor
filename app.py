@@ -19,6 +19,7 @@ The app will look for:
 
 from __future__ import annotations
 
+import joblib
 import importlib.util
 import json
 import os
@@ -184,6 +185,12 @@ div[data-testid="stMetric"] {
 def load_models(artifact_path: str) -> dict:
     return load_artifact(artifact_path)
 
+@st.cache_resource(show_spinner=False)
+def load_rl_policy(policy_path: str) -> dict | None:
+    p = Path(policy_path)
+    if not p.exists():
+        return None
+    return joblib.load(p)
 
 @st.cache_data(show_spinner=True)
 def load_data(matches_path: str, stadiums_path: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -242,6 +249,124 @@ def _display_metric_value(value: object) -> object:
         return None
     return str(value)
 
+
+def _softmax_np(logits: np.ndarray) -> np.ndarray:
+    z = logits - np.max(logits)
+    e = np.exp(z)
+    s = float(np.sum(e))
+    if s <= 0 or not np.isfinite(s):
+        return np.full_like(logits, 1.0 / max(len(logits), 1), dtype=float)
+    return e / s
+
+
+def _implied_probs_from_odds(home_odds: float, draw_odds: float, away_odds: float) -> tuple[float, float, float]:
+    # Same math as features.add_implied_probability_features(), but local and lightweight. :contentReference[oaicite:4]{index=4}
+    ho = float(home_odds)
+    do = float(draw_odds)
+    ao = float(away_odds)
+    qh = 1.0 / max(ho, 1e-12)
+    qd = 1.0 / max(do, 1e-12)
+    qa = 1.0 / max(ao, 1e-12)
+    s = qh + qd + qa
+    if s <= 0:
+        return 0.0, 0.0, 0.0
+    return qh / s, qd / s, qa / s
+
+
+def _wdl_from_scoreline_mat(mat: pd.DataFrame) -> tuple[float, float, float]:
+    arr = mat.to_numpy(dtype=float)
+    p_home = float(np.tril(arr, k=-1).sum())
+    p_draw = float(np.trace(arr))
+    p_away = float(np.triu(arr, k=1).sum())
+    return p_home, p_draw, p_away
+
+
+def rl_policy_recommendation(
+    *,
+    policy: dict,
+    scoreline_mat: pd.DataFrame,
+    home_odds: float,
+    draw_odds: float,
+    away_odds: float,
+    bankroll: float,
+    stake_frac: float,
+    max_stake_frac: float,
+) -> dict:
+    """
+    Returns dict with:
+      action_id (0..3), action_name, action_probs, stake, ev_per_unit (home/draw/away)
+    Action mapping:
+      0=skip, 1=bet_home, 2=bet_draw, 3=bet_away
+    """
+    W = np.asarray(policy["W"], dtype=float)
+    b = np.asarray(policy["b"], dtype=float)
+
+    pH, pD, pA = _wdl_from_scoreline_mat(scoreline_mat)
+
+    impH, impD, impA = _implied_probs_from_odds(home_odds, draw_odds, away_odds)
+    edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
+
+    eps = 1e-12
+    x = np.array(
+        [
+            pH, pD, pA,
+            impH, impD, impA,
+            edgeH, edgeD, edgeA,
+            float(home_odds), float(draw_odds), float(away_odds),
+            float(math.log(max(float(bankroll), eps))),
+        ],
+        dtype=float,
+    )
+
+    # Optional normalization if you saved it in the policy payload
+    obs_norm = policy.get("obs_norm")
+    if isinstance(obs_norm, dict) and "mean" in obs_norm and "std" in obs_norm:
+        mu = np.asarray(obs_norm["mean"], dtype=float).reshape(-1)
+        sd = np.asarray(obs_norm["std"], dtype=float).reshape(-1)
+        if mu.shape[0] == x.shape[0] and sd.shape[0] == x.shape[0]:
+            x_in = (x - mu) / np.maximum(sd, 1e-8)
+        else:
+            x_in = x
+    else:
+        x_in = x
+
+    logits = (W @ x_in) + b
+
+    # Mask invalid betting actions if odds are broken
+    valid = np.array(
+        [
+            True,
+            bool(np.isfinite(home_odds) and home_odds > 1.0),
+            bool(np.isfinite(draw_odds) and draw_odds > 1.0),
+            bool(np.isfinite(away_odds) and away_odds > 1.0),
+        ],
+        dtype=bool,
+    )
+    masked_logits = np.where(valid, logits, -1e9)
+    probs = _softmax_np(masked_logits)
+
+    action_id = int(np.argmax(probs))
+    action_name = ["skip", "bet_home", "bet_draw", "bet_away"][action_id]
+
+    stake_frac_eff = min(float(stake_frac), float(max_stake_frac))
+    stake = float(max(0.0, bankroll) * stake_frac_eff) if action_id != 0 else 0.0
+
+    # Helpful “model EV per unit stake” for transparency:
+    # profit per unit stake if win: (odds-1), else -1
+    # E[profit/unit] = p*(odds-1) - (1-p) = p*odds - 1
+    ev_home = float(pH * float(home_odds) - 1.0)
+    ev_draw = float(pD * float(draw_odds) - 1.0)
+    ev_away = float(pA * float(away_odds) - 1.0)
+
+    return {
+        "action_id": action_id,
+        "action_name": action_name,
+        "action_probs": probs,
+        "stake": stake,
+        "p_model": {"home": pH, "draw": pD, "away": pA},
+        "p_implied": {"home": impH, "draw": impD, "away": impA},
+        "ev_per_unit": {"home": ev_home, "draw": ev_draw, "away": ev_away},
+    }
 
 # ----------------------------
 # UI
@@ -408,6 +533,21 @@ with st.sidebar:
             "rolling_backtest_nll_std": rolling_bt_cfg.get("nll_std"),
         }
         st.write(diag_items)
+        
+with st.sidebar:
+    st.subheader("RL policy (optional)")
+    with st.expander("Policy suggestions", expanded=False):
+        enable_rl = st.checkbox("Enable RL policy suggestions", value=False)
+        rl_policy_path = st.text_input("RL policy path", value="models/rl_policy.joblib")
+
+        bankroll = st.number_input("Bankroll (for sizing)", min_value=0.0, value=1000.0, step=50.0)
+        stake_frac = st.slider("Stake fraction", min_value=0.0, max_value=0.05, value=0.01, step=0.001)
+        max_stake_frac = st.slider("Max stake fraction", min_value=0.01, max_value=0.25, value=0.05, step=0.01)
+
+        policy_obj = load_rl_policy(rl_policy_path) if enable_rl else None
+        if enable_rl and policy_obj is None:
+            st.info("No RL policy found at that path. Train one with rl_train.py and save to models/rl_policy.joblib.")
+        
 
 # Load data
 try:
@@ -744,6 +884,20 @@ if predict_btn:
         rho=active_rho,
     )
     mat = calibrate_scoreline_matrix(mat, scoreline_calibration_cfg, div=str(div) if div else None)
+    
+    # --- RL policy suggestion (optional) ---
+    rl_rec = None
+    if "enable_rl" in globals() and enable_rl and policy_obj is not None:
+        rl_rec = rl_policy_recommendation(
+            policy=policy_obj,
+            scoreline_mat=mat,
+            home_odds=float(home_odds),
+            draw_odds=float(draw_odds),
+            away_odds=float(away_odds),
+            bankroll=float(bankroll),
+            stake_frac=float(stake_frac),
+            max_stake_frac=float(max_stake_frac),
+        )
 
     arr_main = mat.to_numpy(dtype=float)
     wdl = {
@@ -795,12 +949,14 @@ if predict_btn:
                 f"Top Correct Score changed: Poisson `{poisson_score}` ({poisson_prob:.2%}) → Dixon-Coles `{dc_score}` ({dc_prob:.2%})."
             )
 
-    tab_overview, tab_top, tab_grid, tab_debug = st.tabs([
+    tab_overview, tab_top, tab_grid, tab_betting, tab_debug = st.tabs([
         "Overview",
         "Top Correct Scores",
         "Correct Score Grid",
+        "Betting (RL)",
         "Feature Debug",
     ])
+
 
     with tab_overview:
         lead = top.iloc[0]
@@ -836,6 +992,47 @@ if predict_btn:
             selected_cmap = fallback
         grid_styler = grid_styler.background_gradient(cmap=selected_cmap, axis=None)
         _full_width_dataframe(grid_styler)
+        
+        with tab_betting:
+            if rl_rec is None:
+                st.info("Enable RL policy suggestions in the sidebar to see a recommended action.")
+            else:
+                a = rl_rec["action_name"]
+                stake_amt = rl_rec["stake"]
+                probs = rl_rec["action_probs"]
+
+                c1, c2, c3 = st.columns(3)
+                c1.metric("Policy action", a)
+                c2.metric("Suggested stake", f"{stake_amt:.2f}")
+                c3.metric("Policy confidence", f"{float(np.max(probs)):.2%}")
+
+                # Show action probabilities
+                ap = pd.DataFrame(
+                    {
+                        "action": ["skip", "bet_home", "bet_draw", "bet_away"],
+                        "policy_prob": probs,
+                    }
+                )
+                ap["policy_prob"] = ap["policy_prob"].map(lambda x: f"{float(x):.2%}")
+                _full_width_dataframe(ap, hide_index=True)
+
+                # Show model EV transparency
+                ev = rl_rec["ev_per_unit"]
+                p_model = rl_rec["p_model"]
+                p_imp = rl_rec["p_implied"]
+                ev_df = pd.DataFrame(
+                    [
+                        {"side": "home", "p_model": p_model["home"], "p_implied": p_imp["home"], "ev_per_unit": ev["home"]},
+                        {"side": "draw", "p_model": p_model["draw"], "p_implied": p_imp["draw"], "ev_per_unit": ev["draw"]},
+                        {"side": "away", "p_model": p_model["away"], "p_implied": p_imp["away"], "ev_per_unit": ev["away"]},
+                    ]
+                )
+                ev_df["p_model"] = ev_df["p_model"].map(lambda x: f"{float(x):.2%}")
+                ev_df["p_implied"] = ev_df["p_implied"].map(lambda x: f"{float(x):.2%}")
+                ev_df["ev_per_unit"] = ev_df["ev_per_unit"].map(lambda x: f"{float(x):+.3f}")
+                st.caption("EV per unit stake uses model W/D/L probs and your entered odds (p*odds - 1).")
+                _full_width_dataframe(ev_df, hide_index=True)    
 
     with tab_debug:
         _full_width_dataframe(feat_row)
+        

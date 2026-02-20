@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
@@ -102,7 +102,7 @@ def summarize_imputation(artifact_path: str, matches_path: str, stadiums_path: s
         "per_column_missing_rate": per_col_missing,
         "top_imputed_columns": [{"col": k, "missing_rate": v} for k, v in sorted_top[:10]],
         "sample_imputed_matches": sample_imputed,
-        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
     }
 
     Path(out).write_text(json.dumps(output, indent=2), encoding="utf-8")

@@ -70,6 +70,38 @@ JSON output for logging/CI:
 python evaluate_reproducible.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --json
 ```
 
+### RL quick commands (optional)
+
+Train (30 epochs):
+
+```bash
+python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 30
+```
+
+Evaluate / backtest a saved policy:
+
+```bash
+python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+```
+
+## Reinforcement-learning policy (optional)
+
+A simple REINFORCE policy trainer / evaluator is included for experimentation. Artifacts are saved to `models/rl_policy.joblib` by default.
+
+Train a quick policy (smoke run):
+
+```bash
+python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 30 --save models/rl_policy.joblib
+```
+
+Run a greedy backtest of a saved policy:
+
+```bash
+python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+```
+
+CI integration: a lightweight smoke job (`rl-smoke`) trains for 1 epoch and runs the backtest on PRs (see `.github/workflows/ci.yml`). The CI job is optimized to run only when RL-related code or feature/predict logic changes and will reuse a cached model artifact when available to keep PR runs fast.
+
 ## Notes
 
 - If the app cannot find the artifact, retrain and confirm `models/score_models.joblib` exists.
