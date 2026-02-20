@@ -53,6 +53,37 @@ class TestRLEnv(unittest.TestCase):
         # Episode should end immediately because stake (bankroll*stake_frac=0.02) < min_stake (1.0)
         self.assertLessEqual(int(stats["n_steps"]), 1)
 
+    def test_bet_penalty_reduces_sum_reward(self):
+        from rl_train import run_episode, TrainConfig
+        rng = np.random.default_rng(1)
+
+        n = 4
+        arrays = {
+            "pH": np.array([0.5, 0.5, 0.5, 0.5]),
+            "pD": np.array([0.25, 0.25, 0.25, 0.25]),
+            "pA": np.array([0.25, 0.25, 0.25, 0.25]),
+            "impH": np.array([0.4, 0.4, 0.4, 0.4]),
+            "impD": np.array([0.3, 0.3, 0.3, 0.3]),
+            "impA": np.array([0.3, 0.3, 0.3, 0.3]),
+            "ho": np.array([2.5, 2.5, 2.5, 2.5]),
+            "do": np.array([3.0, 3.0, 3.0, 3.0]),
+            "ao": np.array([3.5, 3.5, 3.5, 3.5]),
+            "outcome": np.array([0, 0, 0, 0], dtype=int),
+        }
+
+        cfg_no_pen = TrainConfig(epochs=1, initial_bankroll=1000.0, stake_frac=0.01, min_bankroll=1.0, min_stake=0.01, ev_threshold=0.0, bet_penalty=0.0)
+        cfg_with_pen = TrainConfig(epochs=1, initial_bankroll=1000.0, stake_frac=0.01, min_bankroll=1.0, min_stake=0.01, ev_threshold=0.0, bet_penalty=0.05)
+
+        obs_dim = 13
+        W = np.zeros((4, obs_dim))
+        b = np.array([-10.0, 10.0, -10.0, -10.0])
+
+        _, _, _, stats_no = run_episode(arrays, W=W, b=b, rng=rng, cfg=cfg_no_pen, greedy=True)
+        _, _, _, stats_pen = run_episode(arrays, W=W, b=b, rng=rng, cfg=cfg_with_pen, greedy=True)
+
+        # With a per-bet penalty the sum_reward should be lower (more negative)
+        self.assertLess(stats_pen["sum_reward"], stats_no["sum_reward"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -111,6 +111,7 @@ class TrainConfig:
     min_bankroll: float = 10.0
     min_stake: float = 1.0
     ev_threshold: float = 0.01
+    bet_penalty: float = 0.001
 
     reward_mode: str = "log_growth"  # "log_growth" or "profit"
 
@@ -385,6 +386,10 @@ def run_episode(
         else:
             r = float(math.log(max(bankroll, eps)) - math.log(max(bankroll_before, eps)))
 
+        # small per-bet penalty to discourage betting on marginal / negative EV
+        if a != 0:
+            r -= float(cfg.bet_penalty)
+
         obs_mat[t] = x_in
         probs_mat[t] = probs
         actions[t] = a
@@ -452,8 +457,11 @@ def train(
         baseline_ema = beta * baseline_ema + (1.0 - beta) * ep_mean_return
 
         adv = returns - baseline_ema
-        # extra variance reduction
+        # extra variance reduction: center + normalize advantages to stabilize gradients
         adv = adv - float(np.mean(adv))
+        adv_std = float(np.std(adv))
+        if adv_std > 0:
+            adv = adv / max(adv_std, 1e-8)
 
         grad_W = np.zeros_like(W)
         grad_b = np.zeros_like(b)
@@ -562,6 +570,7 @@ def main() -> None:
     p.add_argument("--min-bankroll", type=float, default=10.0, help="Stop episode when bankroll falls below this value.")
     p.add_argument("--min-stake", type=float, default=1.0, help="Stop episode when computed stake (bankroll*stake_frac) falls below this value.")
     p.add_argument("--ev-threshold", type=float, default=0.01, help="Minimum model EV per unit required to allow betting actions during training.")
+    p.add_argument("--bet-penalty", type=float, default=0.001, help="Per-bet penalty subtracted from reward to discourage over-betting.")
 
     p.add_argument("--save", type=str, default="models/rl_policy.joblib")
     p.add_argument("--no-test-eval", action="store_true")
@@ -579,6 +588,7 @@ def main() -> None:
         min_bankroll=float(args.min_bankroll),
         min_stake=float(args.min_stake),
         ev_threshold=float(args.ev_threshold),
+        bet_penalty=float(args.bet_penalty),
         reward_mode=str(args.reward_mode),
         use_obs_norm=(not bool(args.no_obs_norm)),
         grad_clip_norm=float(args.grad_clip),
