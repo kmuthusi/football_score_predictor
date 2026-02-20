@@ -64,6 +64,14 @@
     "policy": "models/rl_policy_bp0_ev10.joblib"
   },
   {
+    "bets_placed": 3271,
+    "roi_on_staked_pct": -5.63,
+    "final_bankroll": 57.22,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp0_ev50.joblib"
+  },
+  {
     "bets_placed": 3270,
     "roi_on_staked_pct": -5.64,
     "final_bankroll": 56.61,

@@ -228,6 +228,11 @@ jobs:
         run: |
           python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 1 --save models/rl_policy_test.joblib --no-test-eval
 
+      - name: Validate RL policy safety
+        run: |
+          # Fail the job if the saved policy artifact is missing safety metadata
+          python scripts/check_rl_policy_safety.py --policy models/rl_policy_test.joblib
+
       - name: RL eval (smoke)
         run: |
           python rl_eval.py --policy models/rl_policy_test.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv

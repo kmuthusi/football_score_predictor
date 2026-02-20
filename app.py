@@ -549,6 +549,20 @@ with st.sidebar:
         policy_obj = load_rl_policy(rl_policy_path) if enable_rl else None
         if enable_rl and policy_obj is None:
             st.info("No RL policy found at that path. Train one with rl_train.py and save to models/rl_policy.joblib.")
+        else:
+            # App-level safety guard: block/flag policies that lack required
+            # safety metadata (bet_penalty, ev_threshold, saved obs_norm when
+            # training used normalization). See `rl_policy_utils.policy_is_safe`.
+            from rl_policy_utils import policy_is_safe
+
+            if policy_obj is not None:
+                ok, reason = policy_is_safe(policy_obj)
+                if not ok:
+                    st.warning(
+                        f"RL policy appears UNSAFE — suggestions disabled: {reason}"
+                    )
+                    # disable suggestions for this session so UI doesn't act on it
+                    policy_obj = None
         
 
 # Load data
