@@ -1,0 +1,10 @@
+bet_penalty,ev_threshold,bets_placed,roi_on_staked_pct,final_bankroll,policy
+0.0005,0.0,5478,-4.55,13.23,models/rl_policy_bp0_ev0.joblib
+0.0,0.0,5465,-4.59,13.12,models/rl_policy_bp0_ev0.joblib
+0.0005,0.005,5233,-5.16,17.52,models/rl_policy_bp0_ev5.joblib
+0.0,0.005,5220,-5.2,17.26,models/rl_policy_bp0_ev5.joblib
+0.0,0.02,4477,-5.35,33.59,models/rl_policy_bp0_ev20.joblib
+0.0005,0.02,4478,-5.36,33.25,models/rl_policy_bp0_ev20.joblib
+0.0005,0.01,4978,-5.42,22.94,models/rl_policy_bp0_ev10.joblib
+0.0,0.01,4972,-5.49,21.83,models/rl_policy_bp0_ev10.joblib
+0.0,0.05,3270,-5.64,56.61,models/rl_policy_bp0_ev50.joblib
