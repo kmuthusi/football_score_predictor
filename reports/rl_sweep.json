@@ -1,0 +1,242 @@
+[
+  {
+    "bets_placed": 6348,
+    "roi_on_staked_pct": -6.61,
+    "final_bankroll": 6.16,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp0_ev0.joblib"
+  },
+  {
+    "bets_placed": 6348,
+    "roi_on_staked_pct": -6.61,
+    "final_bankroll": 6.16,
+    "bet_penalty": 0.001,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp1_ev0.joblib"
+  },
+  {
+    "bets_placed": 6348,
+    "roi_on_staked_pct": -6.61,
+    "final_bankroll": 6.16,
+    "bet_penalty": 0.0025,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp2_ev0.joblib"
+  },
+  {
+    "bets_placed": 6348,
+    "roi_on_staked_pct": -6.61,
+    "final_bankroll": 6.16,
+    "bet_penalty": 0.005,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp5_ev0.joblib"
+  },
+  {
+    "bets_placed": 6348,
+    "roi_on_staked_pct": -6.61,
+    "final_bankroll": 6.16,
+    "bet_penalty": 0.01,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp10_ev0.joblib"
+  },
+  {
+    "bets_placed": 6342,
+    "roi_on_staked_pct": -6.64,
+    "final_bankroll": 6.06,
+    "bet_penalty": 0.0,
+    "ev_threshold": 0.0,
+    "policy": "models/rl_policy_bp0_ev0.joblib"
+  },
+  {
+    "bets_placed": 6002,
+    "roi_on_staked_pct": -7.1,
+    "final_bankroll": 8.67,
+    "bet_penalty": 0.0,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp0_ev5.joblib"
+  },
+  {
+    "bets_placed": 6010,
+    "roi_on_staked_pct": -7.18,
+    "final_bankroll": 8.93,
+    "bet_penalty": 0.001,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp1_ev5.joblib"
+  },
+  {
+    "bets_placed": 6010,
+    "roi_on_staked_pct": -7.18,
+    "final_bankroll": 8.93,
+    "bet_penalty": 0.0025,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp2_ev5.joblib"
+  },
+  {
+    "bets_placed": 6010,
+    "roi_on_staked_pct": -7.18,
+    "final_bankroll": 8.93,
+    "bet_penalty": 0.005,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp5_ev5.joblib"
+  },
+  {
+    "bets_placed": 6010,
+    "roi_on_staked_pct": -7.18,
+    "final_bankroll": 8.93,
+    "bet_penalty": 0.01,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp10_ev5.joblib"
+  },
+  {
+    "bets_placed": 6007,
+    "roi_on_staked_pct": -7.21,
+    "final_bankroll": 8.7,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.005,
+    "policy": "models/rl_policy_bp0_ev5.joblib"
+  },
+  {
+    "bets_placed": 5703,
+    "roi_on_staked_pct": -8.16,
+    "final_bankroll": 10.72,
+    "bet_penalty": 0.0,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp0_ev10.joblib"
+  },
+  {
+    "bets_placed": 5705,
+    "roi_on_staked_pct": -8.26,
+    "final_bankroll": 10.51,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp0_ev10.joblib"
+  },
+  {
+    "bets_placed": 5709,
+    "roi_on_staked_pct": -8.27,
+    "final_bankroll": 10.58,
+    "bet_penalty": 0.001,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp1_ev10.joblib"
+  },
+  {
+    "bets_placed": 5709,
+    "roi_on_staked_pct": -8.27,
+    "final_bankroll": 10.58,
+    "bet_penalty": 0.0025,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp2_ev10.joblib"
+  },
+  {
+    "bets_placed": 5709,
+    "roi_on_staked_pct": -8.27,
+    "final_bankroll": 10.58,
+    "bet_penalty": 0.005,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp5_ev10.joblib"
+  },
+  {
+    "bets_placed": 5709,
+    "roi_on_staked_pct": -8.27,
+    "final_bankroll": 10.58,
+    "bet_penalty": 0.01,
+    "ev_threshold": 0.01,
+    "policy": "models/rl_policy_bp10_ev10.joblib"
+  },
+  {
+    "bets_placed": 3659,
+    "roi_on_staked_pct": -8.85,
+    "final_bankroll": 27.5,
+    "bet_penalty": 0.0025,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp2_ev50.joblib"
+  },
+  {
+    "bets_placed": 3659,
+    "roi_on_staked_pct": -8.85,
+    "final_bankroll": 27.5,
+    "bet_penalty": 0.005,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp5_ev50.joblib"
+  },
+  {
+    "bets_placed": 3659,
+    "roi_on_staked_pct": -8.85,
+    "final_bankroll": 27.5,
+    "bet_penalty": 0.01,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp10_ev50.joblib"
+  },
+  {
+    "bets_placed": 5132,
+    "roi_on_staked_pct": -8.87,
+    "final_bankroll": 12.14,
+    "bet_penalty": 0.0025,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp2_ev20.joblib"
+  },
+  {
+    "bets_placed": 5132,
+    "roi_on_staked_pct": -8.87,
+    "final_bankroll": 12.14,
+    "bet_penalty": 0.005,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp5_ev20.joblib"
+  },
+  {
+    "bets_placed": 5132,
+    "roi_on_staked_pct": -8.87,
+    "final_bankroll": 12.14,
+    "bet_penalty": 0.01,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp10_ev20.joblib"
+  },
+  {
+    "bets_placed": 5135,
+    "roi_on_staked_pct": -8.89,
+    "final_bankroll": 12.34,
+    "bet_penalty": 0.001,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp1_ev20.joblib"
+  },
+  {
+    "bets_placed": 5126,
+    "roi_on_staked_pct": -8.9,
+    "final_bankroll": 11.95,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp0_ev20.joblib"
+  },
+  {
+    "bets_placed": 5127,
+    "roi_on_staked_pct": -8.94,
+    "final_bankroll": 11.83,
+    "bet_penalty": 0.0,
+    "ev_threshold": 0.02,
+    "policy": "models/rl_policy_bp0_ev20.joblib"
+  },
+  {
+    "bets_placed": 3658,
+    "roi_on_staked_pct": -9.1,
+    "final_bankroll": 25.73,
+    "bet_penalty": 0.001,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp1_ev50.joblib"
+  },
+  {
+    "bets_placed": 3652,
+    "roi_on_staked_pct": -9.16,
+    "final_bankroll": 26.22,
+    "bet_penalty": 0.0,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp0_ev50.joblib"
+  },
+  {
+    "bets_placed": 3653,
+    "roi_on_staked_pct": -9.21,
+    "final_bankroll": 25.96,
+    "bet_penalty": 0.0005,
+    "ev_threshold": 0.05,
+    "policy": "models/rl_policy_bp0_ev50.joblib"
+  }
+]

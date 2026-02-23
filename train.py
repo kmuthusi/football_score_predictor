@@ -1059,6 +1059,7 @@ def main() -> None:
     parser.add_argument("--windows", type=int, nargs="+", default=[5, 10], help="Rolling windows for form features.")
     parser.add_argument("--max-goals", type=int, default=4, help="Used for app scoreline grid display.")
     parser.add_argument("--alpha", type=float, default=1e-4, help="Regularization for PoissonRegressor.")
+    parser.add_argument("--low-score-alpha", type=float, default=0.0, help="Weight for low-score mixture calibration (0 disables).")
     parser.add_argument("--max-iter", type=int, default=500)
     parser.add_argument("--decay-half-life-days", type=float, default=0.0,
                         help="Half-life (days) for exponential time-decay sample weighting. 0 disables decay.")
@@ -1233,6 +1234,21 @@ def main() -> None:
     lam_home_train = np.clip(model_home.predict(X_train), 1e-6, None)
     lam_away_train = np.clip(model_away.predict(X_train), 1e-6, None)
 
+    # optionally compute low-score empirical mixture settings used in calibration
+    low_score_cfg: Dict[str, object] = {}
+    if float(args.low_score_alpha) > 0.0:
+        summary = low_score_calibration_summary(
+            y_home_train, y_away_train, lam_home_train, lam_away_train, rho=None
+        )
+        # target empirical probabilities for the four low scores
+        target = {score: summary[score]["empirical"] for score in summary}
+        low_score_cfg = {
+            "enabled": True,
+            "alpha": float(args.low_score_alpha),
+            "target_probs": target,
+        }
+        print(f"Low-score calibration: alpha={low_score_cfg['alpha']} target={target}")
+
     rho_global = None
     rho_global_train_fit = None
     rho_global_source = None
@@ -1342,6 +1358,17 @@ def main() -> None:
                         y_home=y_home_val_cal[idx_arr],
                         y_away=y_away_val_cal[idx_arr],
                         lam_home=lam_home_val_cal[idx_arr],
+                        lam_away=lam_away_val_cal[idx_arr],
+                        max_goals=int(config.max_goals),
+                        rho=rho_cal,
+                    )
+                    temps_by_div[str(div_name)] = float(fit_div.get("temperature", 1.0))
+                if temps_by_div:
+                    scoreline_calibration["temperatures_by_div"] = temps_by_div
+
+    # incorporate low-score mixture if configured earlier
+    if low_score_cfg:
+        scoreline_calibration["low_score_mixture"] = low_score_cfg
                         lam_away=lam_away_val_cal[idx_arr],
                         max_goals=int(config.max_goals),
                         rho=rho_cal,

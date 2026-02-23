@@ -17,6 +17,8 @@ class TestRLEnv(unittest.TestCase):
         obs = env.reset()
         self.assertIsInstance(obs, np.ndarray)
         self.assertGreaterEqual(obs.size, 10)
+        # new low1 feature adds an extra dimension
+        self.assertEqual(obs.size, 14)
 
         obs2, reward, done, info = env.step(0)
         self.assertIsInstance(obs2, np.ndarray)
@@ -45,7 +47,7 @@ class TestRLEnv(unittest.TestCase):
         }
 
         cfg = TrainConfig(epochs=1, initial_bankroll=2.0, stake_frac=0.01, min_bankroll=1.0, min_stake=1.0, ev_threshold=0.0)
-        obs_dim = 13
+        obs_dim = 14
         W = np.zeros((4, obs_dim))
         b = np.array([-10.0, 10.0, -10.0, -10.0])
 
@@ -74,15 +76,21 @@ class TestRLEnv(unittest.TestCase):
         cfg_no_pen = TrainConfig(epochs=1, initial_bankroll=1000.0, stake_frac=0.01, min_bankroll=1.0, min_stake=0.01, ev_threshold=0.0, bet_penalty=0.0)
         cfg_with_pen = TrainConfig(epochs=1, initial_bankroll=1000.0, stake_frac=0.01, min_bankroll=1.0, min_stake=0.01, ev_threshold=0.0, bet_penalty=0.05)
 
-        obs_dim = 13
+        # also test low_score_penalty effect
+        cfg_low_pen = TrainConfig(epochs=1, initial_bankroll=1000.0, stake_frac=0.01, min_bankroll=1.0, min_stake=0.01, ev_threshold=0.0, low_score_penalty=0.1)
+
+        obs_dim = 14
         W = np.zeros((4, obs_dim))
         b = np.array([-10.0, 10.0, -10.0, -10.0])
 
         _, _, _, stats_no = run_episode(arrays, W=W, b=b, rng=rng, cfg=cfg_no_pen, greedy=True)
         _, _, _, stats_pen = run_episode(arrays, W=W, b=b, rng=rng, cfg=cfg_with_pen, greedy=True)
+        _, _, _, stats_low = run_episode(arrays, W=W, b=b, rng=rng, cfg=cfg_low_pen, greedy=True)
 
         # With a per-bet penalty the sum_reward should be lower (more negative)
         self.assertLess(stats_pen["sum_reward"], stats_no["sum_reward"])
+        # low-score penalty should also reduce reward
+        self.assertLess(stats_low["sum_reward"], stats_no["sum_reward"])
 
 
 if __name__ == "__main__":

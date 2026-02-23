@@ -196,10 +196,13 @@ def main() -> None:
             rho=float(rho) if rho is not None else None,
         )
         mat = calibrate_scoreline_matrix(mat, cal_cfg, div=div)
+        arr = mat.to_numpy(dtype=float)
         pH, pD, pA = _wdl_from_scoreline_matrix(mat)
 
         edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 
+        # low1 probability (total goals <=1) for optional penalty or features
+        low1 = float(arr[0,0] + arr[0,1] + arr[1,0]) if arr.shape[0] > 1 else float(arr[0,0])
         x = np.array(
             [
                 pH, pD, pA,
@@ -209,6 +212,7 @@ def main() -> None:
                 do if np.isfinite(do) else 0.0,
                 ao if np.isfinite(ao) else 0.0,
                 math.log(max(bankroll, eps)),
+                low1,
             ],
             dtype=float,
         )

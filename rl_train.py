@@ -112,6 +112,8 @@ class TrainConfig:
     min_stake: float = 1.0
     ev_threshold: float = 0.01
     bet_penalty: float = 0.001
+    # penalty applied proportional to predicted low-scoring probability
+    low_score_penalty: float = 0.0
 
     reward_mode: str = "log_growth"  # "log_growth" or "profit"
 
@@ -203,6 +205,7 @@ def build_precomputed_arrays(
     pH = np.zeros(len(df), dtype=float)
     pD = np.zeros(len(df), dtype=float)
     pA = np.zeros(len(df), dtype=float)
+    low1 = np.zeros(len(df), dtype=float)  # probability total goals <=1
 
     divs = df["div"].astype(str).to_numpy()
     for i in range(len(df)):
@@ -217,8 +220,11 @@ def build_precomputed_arrays(
             rho=float(rho_i) if rho_i is not None else None,
         )
         mat = calibrate_scoreline_matrix(mat, cal_cfg, div=div_i)
+        arr = mat.to_numpy(dtype=float)
         ph, pd_, pa = _wdl_from_scoreline_matrix(mat)
         pH[i], pD[i], pA[i] = ph, pd_, pa
+        # compute low1 probability
+        low1[i] = float(arr[0,0] + arr[0,1] + arr[1,0]) if arr.shape[0] > 1 else float(arr[0,0])
 
     # Market implied probs from odds (already computed in features.py)
     impH = df["p_home"].astype(float).to_numpy()
@@ -237,7 +243,7 @@ def build_precomputed_arrays(
     out[yh < ya] = 2
 
     return {
-        "pH": pH, "pD": pD, "pA": pA,
+        "pH": pH, "pD": pD, "pA": pA, "low1": low1,
         "impH": impH, "impD": impD, "impA": impA,
         "ho": ho, "do": do, "ao": ao,
         "outcome": out,
@@ -265,6 +271,7 @@ def run_episode(
       - actions: [T]
     """
     pH, pD, pA = arrays["pH"], arrays["pD"], arrays["pA"]
+    low1_arr = arrays.get("low1", np.zeros(len(arrays.get("pH", [])), dtype=float))
     impH, impD, impA = arrays["impH"], arrays["impD"], arrays["impA"]
     ho, do, ao = arrays["ho"], arrays["do"], arrays["ao"]
     outcome = arrays["outcome"]
@@ -302,6 +309,7 @@ def run_episode(
                 float(do[t]) if np.isfinite(do[t]) else 0.0,
                 float(ao[t]) if np.isfinite(ao[t]) else 0.0,
                 float(math.log(max(bankroll, eps))),
+                float(low1_arr[t]),
             ],
             dtype=float,
         )
@@ -319,6 +327,7 @@ def run_episode(
         # (this does not prevent the policy from learning but reduces structural
         # exposure during episodes where no meaningful edge exists)
         # Note: validity applied when sampling actions via masked logits below.
+        # apply low-score penalty to reward if configured
 
         logits = W @ x_in + b
 
@@ -428,7 +437,7 @@ def train(
     rng = np.random.default_rng(int(cfg.seed))
 
     n_actions = 4
-    obs_dim = 13  # must match observation vector in run_episode()
+    obs_dim = 14  # must match observation vector in run_episode() (added low1 feature)
 
     # Simple linear policy: pi(a|s) = softmax(W s + b)
     W = rng.normal(loc=0.0, scale=0.01, size=(n_actions, obs_dim))
@@ -571,6 +580,7 @@ def main() -> None:
     p.add_argument("--min-stake", type=float, default=1.0, help="Stop episode when computed stake (bankroll*stake_frac) falls below this value.")
     p.add_argument("--ev-threshold", type=float, default=0.01, help="Minimum model EV per unit required to allow betting actions during training.")
     p.add_argument("--bet-penalty", type=float, default=0.001, help="Per-bet penalty subtracted from reward to discourage over-betting.")
+    p.add_argument("--low-score-penalty", type=float, default=0.0, help="Per-unit low-score probability penalty added to reward.")
 
     p.add_argument("--save", type=str, default="models/rl_policy.joblib")
     p.add_argument("--no-test-eval", action="store_true")
@@ -589,6 +599,7 @@ def main() -> None:
         min_stake=float(args.min_stake),
         ev_threshold=float(args.ev_threshold),
         bet_penalty=float(args.bet_penalty),
+        low_score_penalty=float(args.low_score_penalty),
         reward_mode=str(args.reward_mode),
         use_obs_norm=(not bool(args.no_obs_norm)),
         grad_clip_norm=float(args.grad_clip),

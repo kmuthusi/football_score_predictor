@@ -42,6 +42,8 @@ class EnvConfig:
     stake_fracs: Tuple[float, ...] = (0.0, 0.01, 0.02, 0.05)  # 0 = skip sizing
     # reward_mode: "profit" or "log_growth"
     reward_mode: str = "log_growth"
+    # per-unit penalty proportional to predicted probability of a low-scoring game
+    low_score_penalty: float = 0.0
 
 
 class FootballBettingEnv:
@@ -128,6 +130,7 @@ class FootballBettingEnv:
             rho=rho,
         )
         mat = calibrate_scoreline_matrix(mat, self.scoreline_cal_cfg, div=div)
+        arr = mat.to_numpy(dtype=float)
 
         pH, pD, pA = wdl_from_scoreline_matrix(mat)
 
@@ -144,14 +147,19 @@ class FootballBettingEnv:
 
         edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 
+        # compute low-score probability (total goals <= 1)
+        low1 = float(arr[0,0] + arr[0,1] + arr[1,0]) if arr.shape[0] > 1 else float(arr[0,0])
+
+        # build observation vector matching the layout used during RL training
         obs = np.array([
             pH, pD, pA,
+            impH, impD, impA,            # implied probabilities
+            edgeH, edgeD, edgeA,
             ho if np.isfinite(ho) else 0.0,
             do if np.isfinite(do) else 0.0,
             ao if np.isfinite(ao) else 0.0,
-            edgeH, edgeD, edgeA,
-            lam_h, lam_a,
             np.log(max(self.bankroll, 1e-12)),
+            low1,
         ], dtype=np.float32)
         return obs
 
@@ -212,5 +220,10 @@ class FootballBettingEnv:
         info["bankroll_after"] = self.bankroll
         info["t"] = self.t
 
-        obs = self._obs(self.t) if not done else np.zeros(12, dtype=np.float32)
+        obs = self._obs(self.t) if not done else np.zeros(13, dtype=np.float32)
+        # apply optional low-score penalty to reward
+        if not done and self.env_cfg.low_score_penalty:
+            # recompute low1 for current match (could reuse obs last element)
+            low1 = obs[-1] if obs.size >= 13 else 0.0
+            reward -= float(self.env_cfg.low_score_penalty) * float(low1)
         return obs, reward, done, info

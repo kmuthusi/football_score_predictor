@@ -144,7 +144,7 @@ if not HAS_MATPLOTLIB:
 # Streamlit config
 # ----------------------------
 
-st.set_page_config(page_title="Football Correct Score Predictor", layout="wide")
+st.set_page_config(page_title="Football Prediction App", layout="wide")
 
 st.markdown(
     """
@@ -307,6 +307,10 @@ def rl_policy_recommendation(
     impH, impD, impA = _implied_probs_from_odds(home_odds, draw_odds, away_odds)
     edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 
+    # low1 probability from scoreline matrix
+    arr = scoreline_mat.to_numpy(dtype=float)
+    low1 = float(arr[0,0] + arr[0,1] + arr[1,0]) if arr.shape[0] > 1 else float(arr[0,0])
+
     eps = 1e-12
     x = np.array(
         [
@@ -315,6 +319,7 @@ def rl_policy_recommendation(
             edgeH, edgeD, edgeA,
             float(home_odds), float(draw_odds), float(away_odds),
             float(math.log(max(float(bankroll), eps))),
+            low1,
         ],
         dtype=float,
     )
@@ -373,7 +378,7 @@ def rl_policy_recommendation(
 # UI
 # ----------------------------
 
-st.markdown("<div class='app-hero'><h1>Football Correct Score Predictor</h1></div>", unsafe_allow_html=True)
+st.markdown("<div class='app-hero'><h1>Football Prediction App</h1></div>", unsafe_allow_html=True)
 st.markdown(
     "<p class='app-subtitle'>Estimate Expected Goals and full Correct Score probability distributions from historical match data.</p>",
     unsafe_allow_html=True,

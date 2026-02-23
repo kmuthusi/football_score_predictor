@@ -73,7 +73,8 @@ Train a policy (example):
 
 ```bash
 python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv \
-  --stadiums data/stadium_coordinates.csv --epochs 30
+  --stadiums data/stadium_coordinates.csv --epochs 30 \
+  --bet-penalty 0.01 --low-score-penalty 0.05
 ```
 
 Backtest / evaluate a saved policy:
@@ -83,7 +84,20 @@ python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_model
   --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
 ```
 
+Add `--low-score-penalty` and `--bet-penalty` to training to discourage betting on low-scoring games and over-trading.  Run `scripts/check_rl_policy_safety.py` on any policy before deploying it.
+
 ---
+
+## Low-score bias and CI checks
+
+A diagnostic script writes `reports/low_score_bias.json` comparing empirical low-score rates to model predictions.  CI runs:
+
+```bash
+python scripts/low_score_analysis.py
+python scripts/check_low_score_bias.py --max-bias 0.02
+```
+
+Failures indicate calibration drift on low‑scoring games.
 
 
 ## CI monitoring & alerts

@@ -126,8 +126,11 @@ def add_rolling_form_features(long_df: pd.DataFrame, windows: Iterable[int], ewm
     long_df["team_loc_matches_played"] = g_loc.cumcount()
     long_df["rest_days"] = g["date"].diff().dt.days
 
+    # compute rolling means for goals-for, goals-against, points, and low-score indicator
+    long_df["low_score"] = ((long_df["goals_for"] + long_df["goals_against"]) <= 2).astype(int)
+
     for w in windows:
-        for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts")]:
+        for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("low_score", "low_score")]:
             roll = g[col].rolling(window=int(w), min_periods=1).mean()
             long_df[f"{prefix}_mean_{w}"] = roll.groupby(level=[0, 1]).shift(1).reset_index(level=[0, 1], drop=True)
 
@@ -135,14 +138,14 @@ def add_rolling_form_features(long_df: pd.DataFrame, windows: Iterable[int], ewm
             long_df[f"{prefix}_loc_mean_{w}"] = roll_loc.groupby(level=[0, 1, 2]).shift(1).reset_index(level=[0, 1, 2], drop=True)
 
     span = max(int(ewm_span), 2)
-    for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts")]:
+    for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("low_score", "low_score")]:
         long_df[f"{prefix}_ewm"] = g[col].transform(lambda s: s.ewm(span=span, adjust=False, min_periods=1).mean().shift(1))
         long_df[f"{prefix}_loc_ewm"] = g_loc[col].transform(lambda s: s.ewm(span=span, adjust=False, min_periods=1).mean().shift(1))
 
     opp_base_cols = []
     for w in windows:
-        opp_base_cols.extend([f"gf_mean_{w}", f"ga_mean_{w}", f"gf_loc_mean_{w}", f"ga_loc_mean_{w}"])
-    opp_base_cols.extend(["gf_ewm", "ga_ewm", "gf_loc_ewm", "ga_loc_ewm"])
+        opp_base_cols.extend([f"gf_mean_{w}", f"ga_mean_{w}", f"gf_loc_mean_{w}", f"ga_loc_mean_{w}", f"low_score_mean_{w}", f"low_score_loc_mean_{w}"])
+    opp_base_cols.extend(["gf_ewm", "ga_ewm", "gf_loc_ewm", "ga_loc_ewm", "low_score_ewm", "low_score_loc_ewm"])
     opp_view = long_df[["match_id", "team"] + opp_base_cols].rename(
         columns={"team": "opponent", **{c: f"opp_{c}" for c in opp_base_cols}}
     )
@@ -283,11 +286,11 @@ def model_numeric_columns(config: FeatureConfig) -> Tuple[str, ...]:
     for side in ("home", "away"):
         cols.extend([f"{side}_team_matches_played", f"{side}_team_loc_matches_played", f"{side}_rest_days"])
         for w in config.windows:
-            for prefix in ("gf", "ga", "pts"):
+            for prefix in ("gf", "ga", "pts", "low_score"):
                 cols.append(f"{side}_{prefix}_mean_{w}")
                 cols.append(f"{side}_{prefix}_loc_mean_{w}")
         if config.use_ewm_features:
-            for prefix in ("gf", "ga", "pts"):
+            for prefix in ("gf", "ga", "pts", "low_score"):
                 cols.append(f"{side}_{prefix}_ewm")
                 cols.append(f"{side}_{prefix}_loc_ewm")
         if config.use_adjusted_features:

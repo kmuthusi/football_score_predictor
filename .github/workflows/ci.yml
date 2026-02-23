@@ -15,6 +15,7 @@ jobs:
       # Lowered defaults: stricter thresholds (override via repo secrets if needed)
       IMPUTATION_ROW_PROP_THRESHOLD: 0.10
       IMPUTATION_COL_RATE_THRESHOLD: 0.05
+      LOW_SCORE_BIAS_THRESHOLD: 0.02
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       IMPUTATION_TELEMETRY_URL: ${{ secrets.IMPUTATION_TELEMETRY_URL }}
 
@@ -65,6 +66,17 @@ jobs:
             --stadiums data/stadium_coordinates.csv \
             --recent-days 365 \
             --out imputation_report.json || true
+
+      - name: Low-score bias analysis
+        run: |
+          python scripts/low_score_analysis.py || true
+
+      - name: Check low-score bias thresholds
+        continue-on-error: true
+        run: |
+          python scripts/check_low_score_bias.py \
+            --report reports/low_score_bias.json \
+            --max-bias ${LOW_SCORE_BIAS_THRESHOLD:-0.02}
 
       - name: Upload evaluation artifact
         uses: actions/upload-artifact@v4

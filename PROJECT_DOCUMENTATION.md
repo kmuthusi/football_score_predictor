@@ -224,7 +224,14 @@ Underfit trigger criteria should be based on out-of-time evidence, including:
 
 - no meaningful held-out improvement in `NLL`/`ECE` from additional calibration steps, and
 - systematic low-score residual gaps (notably `0-0`, `1-0`, `0-1`, `1-1`).
+The low-score pipeline now also includes:
 
+- `--fit-low-score-mixture` / `--no-fit-low-score-mixture` flags to optionally fit a small mixture component targeting total goals &lt;=1 during calibration training.
+- `--low-score-alpha` (float) to blend mixture probability with base model (mirrors `scoreline_calibration.low_score_alpha` in the artifact).
+
+A companion analysis script [`scripts/low_score_analysis.py`] computes empirical vs model low-score rates and writes a JSON report.  CI consumes that report via `scripts/check_low_score_bias.py` (threshold default 0.02) and will fail when the discrepancy is large.
+
+---
 ---
 
 ## 7) Training CLI Reference
@@ -280,6 +287,52 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 ### 7.6 Diagnostics Arguments
 
 - `--backtest-folds` (rolling-origin stability diagnostics)
+
+### 7.7 Reinforcement Learning Policy \(Optional\)
+
+An optional RL module trains a lightweight policy to place (or skip) bets based on model outputs and live odds.  It is **separate** from the core scoreline predictor; the policy takes the same features plus a single low-score probability and log-bankroll.
+
+- Environment defined in `rl_env.py` and training/ evaluation logic in `rl_train.py`/`rl_eval.py`.
+- Observations (14-dim) consist of:
+  1. raw W/D/L probabilities (`pH`, `pD`, `pA`)
+  2. implied probabilities from the market (`impH`, `impD`, `impA`)
+  3. edges (`edgeH`, `edgeD`, `edgeA`)
+  4. raw odds (`ho`, `do`, `ao`)
+  5. log(bankroll) and `low1` probability (total goals &lt;=1)
+
+Training configuration mirrors `EnvConfig` and `TrainConfig` with arguments:
+
+- `--initial-bankroll`, `--stake-frac`, `--max-stake-frac` etc. for sizing
+- `--ev-threshold`, `--min-bankroll`, `--min-stake` for safety gating
+- `--bet-penalty` (per-bet cost) and `--low-score-penalty` (penalty proportional to predicted low1 probability)
+- `--reward-mode` (`log_growth` or `profit`)
+
+Safety features included in the pipeline:
+
+1. **EV gating** prevents actions with negative expected value.
+2. **Min stake / bankroll** early-stop criteria.
+3. **Bet penalty** discourages over-trading.
+4. **Low-score penalty** reduces reward on potentially unfair low-scoring fixtures.
+5. **Artifact metadata validation:** `scripts/check_rl_policy_safety.py` ensures that a saved policy contains required configuration and observation dimensionality before it's used in production.
+
+Training example:
+
+```bash
+python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv \
+    --stadiums data/stadium_coordinates.csv --epochs 30 \
+    --low-score-penalty 0.05 --bet-penalty 0.01
+```
+
+Evaluation:
+
+```bash
+python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_models.joblib \
+    --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+```
+
+CI also runs a lightweight “smoke” train+eval job to ensure RL code remains functional.
+
+---
 
 ---
 
