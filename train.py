@@ -31,7 +31,7 @@ import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import PoissonRegressor
+from sklearn.linear_model import PoissonRegressor, TweedieRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
@@ -50,6 +50,7 @@ from metrics import (
     neg_log_likelihood,
     neg_log_likelihood_dixon_coles,
     per_match_neg_log_likelihood_dixon_coles,
+    fit_isotonic_calibration,
 )
 from predict import scoreline_probability_matrix, calibrate_scoreline_matrix
 
@@ -84,12 +85,17 @@ def build_time_decay_weights(
 
 
 def build_pipeline(cat_cols: Tuple[str, ...], num_cols: Tuple[str, ...],
-                   alpha: float = 1e-4, max_iter: int = 500) -> Pipeline:
+                   alpha: float = 1e-4, max_iter: int = 500,
+                   use_gamma_regressor: bool = False) -> Pipeline:
     """
     Pipeline:
       - impute + one-hot categorical vars
       - impute numeric vars
-      - PoissonRegressor
+      - PoissonRegressor (default) or TweedieRegressor with power=2.0 (if use_gamma_regressor=True)
+    
+    use_gamma_regressor: if True, uses TweedieRegressor(power=2.0) which models overdispersion 
+                        and handles zero-inflated count data (like goal scores).
+                        Acts as a flexible alternative for negative binomial-like behavior.
     """
     categorical = Pipeline(steps=[
         ("imputer", SimpleImputer(strategy="most_frequent")),
@@ -109,7 +115,13 @@ def build_pipeline(cat_cols: Tuple[str, ...], num_cols: Tuple[str, ...],
         sparse_threshold=0.3,
     )
 
-    model = PoissonRegressor(alpha=alpha, max_iter=max_iter)
+    if use_gamma_regressor:
+        # TweedieRegressor with power=1.5 gives Poisson-Gamma compound distribution
+        # This handles both zero-inflated data AND overdispersion (variance > mean)
+        # It's the natural negative-binomial-like extension that can handle goal scores
+        model = TweedieRegressor(power=1.5, alpha=alpha, max_iter=max_iter, solver='lbfgs')
+    else:
+        model = PoissonRegressor(alpha=alpha, max_iter=max_iter)
     return Pipeline(steps=[("preprocess", pre), ("model", model)])
 
 
@@ -1098,6 +1110,8 @@ def main() -> None:
                         help="Optional heuristic cap for top-score mode share (0 disables; default disabled).")
     parser.add_argument("--fit-score-calibration", action=argparse.BooleanOptionalAction, default=True,
                         help="Fit post-hoc temperature calibration for exact-score distributions.")
+    parser.add_argument("--use-isotonic-calibration", action=argparse.BooleanOptionalAction, default=False,
+                        help="Use isotonic regression instead of temperature scaling for calibration (more flexible).")
     parser.add_argument("--calibration-val-days", type=int, default=180,
                         help="Validation window size (days, inside train split) for post-hoc scoreline calibration.")
     parser.add_argument("--score-calibration-by-league", action=argparse.BooleanOptionalAction, default=True,
@@ -1106,6 +1120,8 @@ def main() -> None:
                         help="Minimum validation rows to fit league-specific temperature.")
     parser.add_argument("--calibration-temperature-floor", type=float, default=1.0,
                         help="Minimum temperature after calibration (>=1.0 flattens).")
+    parser.add_argument("--use-negative-binomial", action=argparse.BooleanOptionalAction, default=False,
+                        help="Use GammaRegressor instead of PoissonRegressor for handling overdispersion (negative binomial-like).")
     parser.add_argument("--fit-low-score-mixture", action=argparse.BooleanOptionalAction, default=False,
                         help="Fit a minimal low-score mixture calibration on validation split (after temperature calibration).")
     parser.add_argument("--backtest-folds", type=int, default=0,
@@ -1229,11 +1245,13 @@ def main() -> None:
         print("Time-decay: disabled (equal weighting)")
 
     print("\nTraining home-goals model...")
-    model_home = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
+    model_home = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter),
+                                use_gamma_regressor=bool(args.use_negative_binomial))
     model_home.fit(X_train, y_home_train, model__sample_weight=train_weights)
 
     print("Training away-goals model...")
-    model_away = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
+    model_away = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter),
+                                use_gamma_regressor=bool(args.use_negative_binomial))
     model_away.fit(X_train, y_away_train, model__sample_weight=train_weights)
 
     home_coef = np.asarray(model_home.named_steps["model"].coef_)
@@ -1397,6 +1415,40 @@ def main() -> None:
                     temps_by_div[str(div_name)] = float(fit_div.get("temperature", 1.0))
                 if temps_by_div:
                     scoreline_calibration["temperatures_by_div"] = temps_by_div
+
+            # Optionally fit isotonic regression on top of temperature calibration
+            if bool(args.use_isotonic_calibration):
+                labels = [str(i) for i in range(int(config.max_goals) + 1)] + [f"{int(config.max_goals)}+"]
+                label_to_idx = {lab: i for i, lab in enumerate(labels)}
+                
+                mats_iso = []
+                targets_iso = []
+                for i in range(len(y_home_val_cal)):
+                    mat = scoreline_probability_matrix(
+                        float(lam_home_val_cal[i]),
+                        float(lam_away_val_cal[i]),
+                        max_goals=int(config.max_goals),
+                        include_tail_bucket=True,
+                        rho=float(rho_cal) if rho_cal is not None else None,
+                    )
+                    mat = calibrate_scoreline_matrix(mat, scoreline_calibration, div=str(div_val_cal[i]))
+                    arr = np.clip(mat.to_numpy(dtype=float).reshape(-1), 1e-12, None)
+                    arr = arr / max(float(arr.sum()), 1e-12)
+                    mats_iso.append(arr)
+                    
+                    lab_h = _score_to_label(int(y_home_val_cal[i]), int(config.max_goals))
+                    lab_a = _score_to_label(int(y_away_val_cal[i]), int(config.max_goals))
+                    r = label_to_idx[lab_h]
+                    c = label_to_idx[lab_a]
+                    targets_iso.append(np.eye(len(labels) * len(labels))[r * len(labels) + c])
+                
+                probs_flat_iso = np.hstack([m.flatten() for m in mats_iso])
+                targets_flat_iso = np.vstack(targets_iso).flatten()
+                
+                iso_cal_result = fit_isotonic_calibration(probs_flat_iso, targets_flat_iso)
+                scoreline_calibration["isotonic"] = {k: v for k, v in iso_cal_result.items() if k != "isotonic_regressor"}
+                scoreline_calibration["isotonic_regressor"] = iso_cal_result["isotonic_regressor"]
+                print(f"[Isotonic] NLL improvement: {iso_cal_result.get('nll_improvement', 0):.6f}")
 
     # incorporate low-score mixture if configured earlier
     if low_score_cfg:

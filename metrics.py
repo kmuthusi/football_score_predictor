@@ -4,6 +4,7 @@ import math
 from typing import Dict, Tuple
 
 import numpy as np
+from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import mean_absolute_error, mean_poisson_deviance, mean_squared_error
 
 from predict import dixon_coles_tau
@@ -152,4 +153,42 @@ def expected_goals_regression_metrics(
         "away_rmse": float(math.sqrt(mean_squared_error(y_away, lam_away))),
         "home_dev": float(mean_poisson_deviance(y_home, lam_home)),
         "away_dev": float(mean_poisson_deviance(y_away, lam_away)),
+    }
+
+def fit_isotonic_calibration(
+    probs_flat: np.ndarray,
+    targets_flat: np.ndarray,
+) -> Dict[str, object]:
+    """
+    Fit isotonic regression calibration.
+    More flexible than temperature scaling; handles non-linear miscalibration.
+    
+    Args:
+        probs_flat: flattened predicted probabilities
+        targets_flat: flattened binary targets (0 or 1)
+    
+    Returns:
+        dict with isotonic_regressor (sklearn object) and diagnostics
+    """
+    iso_cal = IsotonicRegression(out_of_bounds='clip')
+    iso_cal.fit(probs_flat, targets_flat)
+    
+    # Evaluate on same data (in practice, should be validation set)
+    probs_cal = iso_cal.predict(probs_flat)
+    
+    # Compute NLL before/after
+    eps = 1e-12
+    nll_uncal = -np.mean(targets_flat * np.log(np.clip(probs_flat, eps, 1.0)) + 
+                          (1 - targets_flat) * np.log(np.clip(1 - probs_flat, eps, 1.0)))
+    nll_cal = -np.mean(targets_flat * np.log(np.clip(probs_cal, eps, 1.0)) + 
+                        (1 - targets_flat) * np.log(np.clip(1 - probs_cal, eps, 1.0)))
+    
+    return {
+        "enabled": True,
+        "method": "isotonic",
+        "nll_uncal": float(nll_uncal),
+        "nll_cal": float(nll_cal),
+        "nll_improvement": float(nll_uncal - nll_cal),
+        "n_rows": int(len(probs_flat)),
+        "isotonic_regressor": iso_cal,
     }

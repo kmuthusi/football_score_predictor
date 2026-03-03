@@ -250,6 +250,12 @@ def add_matchup_difference_features(df: pd.DataFrame, config: FeatureConfig) -> 
         if h in df.columns and a in df.columns:
             df[f"diff_{base}"] = df[h] - df[a]
 
+    # Add rest_days * travel_distance interaction for home advantage modeling
+    if "home_rest_days" in df.columns and "away_travel_km" in df.columns:
+        df["home_rest_travel_interaction"] = df["home_rest_days"] * df["away_travel_km"]
+    if "away_rest_days" in df.columns and "away_travel_km" in df.columns:
+        df["away_rest_travel_interaction"] = df["away_rest_days"] * df["away_travel_km"]
+
     for w in config.windows:
         for prefix in ["gf", "ga", "pts"]:
             for suffix in ["mean", "loc_mean"]:
@@ -292,6 +298,7 @@ def model_numeric_columns(config: FeatureConfig) -> Tuple[str, ...]:
     cols = ["p_home", "p_draw", "p_away", "overround"]
     if config.use_travel_distance:
         cols.append("away_travel_km")
+        cols.extend(["home_rest_travel_interaction", "away_rest_travel_interaction"])
 
     for side in ("home", "away"):
         cols.extend([f"{side}_team_matches_played", f"{side}_team_loc_matches_played", f"{side}_rest_days"])

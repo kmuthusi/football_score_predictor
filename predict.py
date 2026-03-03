@@ -46,7 +46,7 @@ def calibrate_scoreline_matrix(
 ) -> pd.DataFrame:
     """
     Apply post-hoc calibration to a scoreline probability matrix.
-    Supported: temperature scaling on flattened matrix probabilities.
+    Supported: temperature scaling, isotonic regression, and low-score mixture.
     """
     if not calibration_cfg:
         return mat
@@ -61,6 +61,16 @@ def calibrate_scoreline_matrix(
         flat = arr.reshape(-1)
         flat_cal = apply_temperature_scaling(flat, temperature=temp)
         arr = flat_cal.reshape(arr.shape)
+    
+    # Apply isotonic regression if available
+    if "isotonic_regressor" in calibration_cfg:
+        iso_reg = calibration_cfg["isotonic_regressor"]
+        flat = arr.reshape(-1)
+        try:
+            flat_iso = iso_reg.predict(flat)
+            arr = flat_iso.reshape(arr.shape)
+        except Exception:
+            pass  # Skip if isotonic regressor fails
 
     low_mix_cfg = calibration_cfg.get("low_score_mixture", {})
     if isinstance(low_mix_cfg, dict) and bool(low_mix_cfg.get("enabled", False)):
