@@ -51,13 +51,14 @@ python evaluate_reproducible.py --artifact models/score_models.joblib --matches 
 python -m calibration_trends --last-n 10
 ```
 
-- Recommended (enhanced) training run
+- Recommended (enhanced) training run with model improvements
 
 ```bash
 python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
   --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot \
   --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 \
-  --use-ewm-features --use-adjusted-features
+  --use-ewm-features --use-adjusted-features \
+  --use-isotonic-calibration --use-negative-binomial
 ```
 
 - Optional: low-score mixture extension
@@ -65,6 +66,49 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 ```bash
 python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
   --fit-dc --fit-score-calibration --fit-low-score-mixture --max-iter 1000
+```
+
+### Model Enhancements (v2.0)
+
+The training pipeline now includes three key model improvements:
+
+**1. Isotonic Calibration** (`--use-isotonic-calibration`)
+- Non-linear probability calibration using `sklearn.isotonic.IsotonicRegression`
+- Applied post-temperature-scaling to fine-tune scoreline probabilities
+- Improves NLL (negative log-likelihood) on validation data
+- Recommended for improving probability reliability and W/D/L accuracy
+
+**2. Rest/Travel Interaction Features**
+- New features: `home_rest_travel_interaction`, `away_rest_travel_interaction`
+- Captures interaction effect between team rest and travel distance
+- Modeled as: `rest_days × travel_distance`
+- Automatically included when training (no flag required)
+- Helps explain situational home advantage effects
+
+**3. Negative Binomial Regressor** (`--use-negative-binomial`)
+- Uses `TweedieRegressor(power=1.5)` instead of standard Poisson
+- Handles overdispersion in goal count data (more variance than Poisson assumes)
+- Better for zero-inflated goal distributions in low-scoring matches
+- Experimental; test on validation data before production use
+
+**Quick comparison runs:**
+
+```bash
+# Recommended: Isotonic calibration only (safest, fastest improvement)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --max-iter 500
+
+# All three enhancements (maximum accuracy potential)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --use-negative-binomial --max-iter 500
+
+# Negative binomial only (test overdispersion handling)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-negative-binomial --max-iter 500
+
+# Baseline (for comparison)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --max-iter 500
 ```
 
 ### Safe one-line training recipe

@@ -153,6 +153,12 @@ For a match at date **T**, historical form features are computed only from match
 5. **Travel distance (optional availability)**
    - `away_travel_km` based on stadium coordinates
 
+6. **Rest and Travel Interaction (NEW)**
+   - `home_rest_travel_interaction`: home team rest days × away team travel distance
+   - `away_rest_travel_interaction`: away team rest days × away team travel distance
+   - Captures combined effect of team fatigue and travel distance
+   - Improves model's ability to explain situational home advantage
+
 ### 4.3 Model Column Contracts
 
 - Categorical columns are provided by `model_categorical_columns()`.
@@ -165,16 +171,27 @@ For a match at date **T**, historical form features are computed only from match
 
 ### 5.1 Base Model
 
-Two independent `PoissonRegressor` models are trained:
+Two independent regression models are trained for goal counts:
 
 - Home goals model (`model_home`)
 - Away goals model (`model_away`)
 
+**Default: Poisson Regression**
+- `PoissonRegressor` from scikit-learn
+- Assumes mean equals variance (equidispersion)
+- Good for well-calibrated count data
+
+**Alternative: Negative Binomial (Tweedie) - EXPERIMENTAL**
+- `TweedieRegressor(power=1.5)` handles overdispersion
+- Poisson-Gamma compound distribution
+- Better for zero-inflated goal data with excess variance
+- Enable with `--use-negative-binomial` flag
+
 Pipeline structure:
 
-- categorical: impute most frequent + one-hot encoding
+- categorical: impute most frequent + one-hot encoding  
 - numeric: median imputation + standard scaling
-- estimator: Poisson regression with L2-style regularization (`alpha`)
+- estimator: Poisson or Tweedie regression with L2-style regularization (`alpha`)
 
 ### 5.2 Time-Based Split
 
@@ -213,7 +230,23 @@ Enabled with `--fit-dc`.
 
 When decay tuning uses `--tune-metric dc_nll` and `--dc-optimize-oot`, the selected `rho` can be chosen from out-of-time validation and compared against `rho=0` using a paired significance-style criterion (`--dc-significance-z`).
 
-### 6.3 Scoreline Temperature Calibration
+### 6.3 Isotonic Regression Calibration (NEW)
+
+Enabled with `--use-isotonic-calibration`.
+
+- Fits `IsotonicRegression` from scikit-learn on validation set
+- Non-parametric, threshold-sensitive probability adjustment
+- Applied **after** temperature scaling for fine-tuning
+- Improves NLL (negative log-likelihood) on calibration data
+- Mechanism:
+  1. Build probability matrix for each match in validation set
+  2. Flatten to binary targets (one-hot per scoreline outcome)
+  3. Fit isotonic regressor: `isotonic_reg.predict(flat_probs)`
+  4. Store regressor in artifact for inference-time application
+- At inference: applies isotonic transformation to calibrated probabilities
+- Recommendation: Start with isotonic-only, then test with other enhancements
+
+### 6.4 Scoreline Temperature Calibration
 
 Enabled by default (`--fit-score-calibration`, disable with `--no-fit-score-calibration`).
 
@@ -222,11 +255,11 @@ Enabled by default (`--fit-score-calibration`, disable with `--no-fit-score-cali
   - `--score-calibration-by-league`
   - `--calibration-min-league-rows`
 
-### 6.4 Strict Scientific Mode Flag
+### 6.5 Strict Scientific Mode Flag
 
 Artifact field `scientific_mode.strict_scientific_mode` becomes true under a strict combination of settings (DC + decay tuning + OOT optimization + calibration + no concentration cap heuristic).
 
-### 6.5 Model Selection Policy (Current)
+### 6.6 Model Selection Policy (Current)
 
 Current project policy for low-score handling:
 
@@ -266,7 +299,20 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 - `--alpha` (float, default `1e-4`)
 - `--max-iter` (int, default 500)
 
-### 7.2 Recency / Decay Arguments
+### 7.2 Model Selection Arguments (NEW)
+
+- `--use-negative-binomial` / `--no-use-negative-binomial` (default False)
+  - Use `TweedieRegressor(power=1.5)` instead of `PoissonRegressor`
+  - Handles overdispersion in goal count data
+  - Experimental; compare against baseline before production
+
+- `--use-isotonic-calibration` / `--no-use-isotonic-calibration` (default False)
+  - Fit isotonic regression for post-temperature probability calibration
+  - Applied after temperature scaling
+  - Improves NLL on validation data
+  - Recommended for accuracy improvement
+
+### 7.3 Recency / Decay Arguments
 
 - `--decay-half-life-days` (float, default 0)
 - `--tune-decay`
@@ -274,12 +320,12 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 - `--val-days` (int)
 - `--tune-metric` (`ind_nll` or `dc_nll`)
 
-### 7.3 Feature Ablation Arguments
+### 7.4 Feature Ablation Arguments
 
 - `--use-ewm-features` / `--no-use-ewm-features`
 - `--use-adjusted-features` / `--no-use-adjusted-features`
 
-### 7.4 Dixon-Coles Arguments
+### 7.5 Dixon-Coles Arguments
 
 - `--fit-dc`
 - `--dc-rho-min`, `--dc-rho-max`
@@ -289,7 +335,7 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 - `--dc-significance-z`
 - `--dc-max-top-share`
 
-### 7.5 Scoreline Calibration Arguments
+### 7.6 Scoreline Calibration Arguments
 
 - `--fit-score-calibration` / `--no-fit-score-calibration`
 - `--calibration-val-days`
@@ -297,11 +343,11 @@ python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinat
 - `--calibration-min-league-rows`
 - `--fit-low-score-mixture` / `--no-fit-low-score-mixture` (minimal low-score mixture fitted on calibration split)
 
-### 7.6 Diagnostics Arguments
+### 7.7 Diagnostics Arguments
 
 - `--backtest-folds` (rolling-origin stability diagnostics)
 
-### 7.7 Reinforcement Learning Policy \(Optional\)
+### 7.8 Reinforcement Learning Policy \(Optional\)
 
 An optional RL module trains a lightweight policy to place (or skip) bets based on model outputs and live odds.  It is **separate** from the core scoreline predictor; the policy takes the same features plus a single low-score probability and log-bankroll.
 
@@ -405,7 +451,7 @@ Run summaries are appended to:
 Top-level keys include:
 
 - `model_home`, `model_away`
-- `config`
+- `config` (includes `use_isotonic_calibration` and `use_negative_binomial` flags)
 - `cat_cols`, `num_cols`
 - split metadata (`train_rows`, `test_rows`, `cutoff_date`, `max_date`)
 - backward-compatible `dixon_coles_rho`
@@ -413,7 +459,10 @@ Top-level keys include:
 - `time_decay` block
 - `decay_tuning` block
 - `scientific_mode` block
-- `scoreline_calibration` block
+- `scoreline_calibration` block:
+  - `temperature` and `temperature_by_league` (if enabled)
+  - `isotonic_regressor` (if `--use-isotonic-calibration` enabled, sklearn object)
+  - `low_score_alpha` and low-score mixture weights
 - `diagnostics` block
 
 This artifact is consumed by both `predict.py` and `app.py`.
@@ -433,9 +482,14 @@ This artifact is consumed by both `predict.py` and `app.py`.
 
 ### 10.2 Probability Logic
 
-- Base matrix uses independent Poisson assumptions.
+- Base matrix uses independent Poisson (or Tweedie if enabled) assumptions.
 - Optional Dixon-Coles modifies low-score cells then renormalizes.
 - Optional temperature scaling is applied to flattened matrix probabilities then reshaped and renormalized.
+- Optional isotonic regression (NEW): applied post-temperature-scaling to fine-tune probabilities:
+  1. Flatten calibrated probability matrix
+  2. Apply isotonic regressor (if available)
+  3. Reshape and renormalize
+  4. Improves reliability without changing rank order significantly
 
 ### 10.3 Tail Bucket
 
@@ -487,7 +541,29 @@ streamlit run app.py
 python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features --max-goals 9
 ```
 
-### 12.3 Calibration Trend Inspection
+### 12.3 Model Enhancements (v2.0)
+
+**Quick comparison runs to test new improvements:**
+
+```bash
+# Recommended: Isotonic calibration only (safest, fastest)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --max-iter 500
+
+# All three enhancements (maximum potential)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --use-negative-binomial --max-iter 500
+
+# Negative binomial only
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-negative-binomial --max-iter 500
+
+# Baseline (for comparison)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --max-iter 500
+```
+
+### 12.4 Calibration Trend Inspection
 
 ```bash
 python -m calibration_trends --last-n 10
@@ -573,8 +649,19 @@ pip install -r requirements.txt
 # Train baseline
 python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models
 
-# Train enhanced configuration
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features
+# Train with new enhancements (recommended)
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --max-iter 500
+
+# Train with all three model improvements
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --use-isotonic-calibration --use-negative-binomial --max-iter 500
+
+# Train full enhanced configuration
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models \
+  --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 \
+  --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features \
+  --use-isotonic-calibration --use-negative-binomial
 
 # Launch app
 streamlit run app.py
@@ -592,10 +679,16 @@ python -m unittest discover -s tests -p "test_*.py"
 
 When behavior changes in any of these files, update this document in the same pull request:
 
-- `train.py` (CLI, diagnostics, artifact schema)
-- `predict.py` (inference and probability logic)
-- `features.py` (feature contracts)
+- `train.py` (CLI, model selection, diagnostics, artifact schema, enhancements)
+- `predict.py` (inference and probability logic, calibration pipeline)
+- `features.py` (feature contracts, interaction features)
+- `metrics.py` (scoring metrics, calibration functions)
 - `app.py` (UI behavior and controls)
 - `requirements.txt` (dependency constraints)
+
+**v2.0 enhancements (added March 2026):**
+- Isotonic regression calibration (NEW)
+- Rest/travel interaction features (NEW)
+- Negative binomial regressor option (NEW)
 
 This keeps operational documentation aligned with implementation.
