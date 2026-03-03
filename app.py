@@ -521,7 +521,13 @@ with st.sidebar:
         
 with st.sidebar:
     st.subheader("RL policy (optional)")
-    with st.expander("Policy suggestions", expanded=False):
+    with st.expander("Policy suggestions (⚠️ Diagnostic-only)", expanded=False):
+        st.warning(
+            "**Disclaimer:** The RL betting policy is for diagnostic/educational use only. "
+            "Backtests show negative ROI across all configurations. "
+            "**Do not use for real money betting.** "
+            "See README for details."
+        )
         enable_rl = st.checkbox("Enable RL policy suggestions", value=False)
         rl_policy_path = st.text_input("RL policy path", value="models/rl_policy.joblib")
 

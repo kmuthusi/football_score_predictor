@@ -144,7 +144,36 @@ python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_model
   --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv
 ```
 
-Add `--low-score-penalty` and `--bet-penalty` to training to discourage betting on low-scoring games and over-trading.  Run `scripts/check_rl_policy_safety.py` on any policy before deploying it.
+### ⚠️ Important: RL Policy is Diagnostic-Only
+
+The RL betting policy is provided **for learning and diagnostic purposes only**. Do **not** use it for real money betting.
+
+**Key findings from policy evaluation:**
+- All tested policy configurations (bet_penalty=0.0–0.01, ev_threshold=0.0–0.05) have **negative ROI** on backtests
+- Typical performance: **-5% to -9% ROI** due to professional market efficiency
+- Win rates insufficient to overcome commission and edge loss
+
+**Why this happens:**
+1. The scoreline model is well-calibrated on W/D/L (49.92% accuracy) but lacks consistent market edge
+2. Professional bookmakers use advanced ML and sharp consensus; free odds reflect consensus probability
+3. A well-calibrated model ≠ profitable trading signal against market odds
+4. This is expected and normal — beating efficient markets is extremely difficult
+
+**Recommended use:**
+- ✅ Educational: learn how REINFORCE policy gradient training works
+- ✅ Diagnostics: identify which matches the model considers high EV
+- ✅ Simulation: test bankroll management without real stakes
+- ✅ Dashboard: Streamlit app shows predicted W/D/L probabilities (valuable for analysis)
+- ❌ Production: **do not deploy for real betting**
+
+For safe policy validation before any use, run:
+```bash
+python check_policy_safety.py
+```
+
+---
+
+Add `--low-score-penalty` and `--bet-penalty` to training to adjust policy reward structure. To explore policy configurations, see `scripts/rl_sweep.py`.
 
 ---
 

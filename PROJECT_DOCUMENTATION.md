@@ -342,7 +342,36 @@ Evaluation:
 python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_models.joblib \
     --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv
 ```
+#### ⚠️ Diagnostic-Only: RL Policy is Not Profitable
 
+**Critical limitation:** The RL betting policy is provided for **educational and diagnostic purposes only**. **Do not use it for real money betting.**
+
+Testing shows that all policy configurations (across multiple bet_penalty and ev_threshold combinations) achieve **negative ROI** on backtests:
+
+| Configuration | EV Threshold | Bet Penalty | ROI (Staked) | Bets |
+|---|---|---|---|---|
+| Default (main) | 0.01 | 0.01 | -5.35% | 5,654 |
+| Strict (ev=0.05) | 0.05 | 0.001 | -9.16% | 3,652 |
+| Loose (ev=0.00) | 0.00 | 0.001 | -6.61% | 6,348 |
+
+**Why this happens:**
+1. The scoreline model is well-calibrated (49.92% W/D/L accuracy, good NLL) but lacks persistent market edge
+2. Professional bookmakers set odds using advanced ML and sharp consensus
+3. Free public odds data reflects consensus probability, not exploitable edge
+4. Beating efficient markets is extremely difficult and rare
+
+**Appropriate uses:**
+- **Learning:** understand policy-gradient REINFORCE training
+- **Diagnostics:** identify high-EV matches according to the model
+- **Simulation:** test bankroll management strategies without real stakes
+- **Dashboard:** Streamlit app displays predicted W/D/L probabilities (valuable for analysis)
+
+**Do not use for:**
+- Real-money betting
+- Production automated trading
+- Any deployment expecting positive returns
+
+The Streamlit prediction dashboard is still valuable for analytical purposes (W/D/L predictions, calibration diagnostics, bet-finding via manual review).
 CI also runs a lightweight “smoke” train+eval job to ensure RL code remains functional.
 
 ---
