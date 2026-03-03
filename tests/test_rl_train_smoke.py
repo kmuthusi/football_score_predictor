@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 import unittest
 import joblib
 
@@ -15,14 +16,14 @@ class TestRLTrainSmoke(unittest.TestCase):
 
     def test_rl_train_creates_policy(self):
         subprocess.run([
-            "python",
+            sys.executable,
             "rl_train.py",
             "--artifact",
             self.artifact_path,
             "--matches",
             "data/spi_matches.csv",
             "--stadiums",
-            "data/stadium_coordinates.csv",
+            "data/stadium_coordinates_completed_full.csv",
             "--epochs",
             "1",
             "--save",

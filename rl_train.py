@@ -9,7 +9,7 @@ the existing scoreline model artifact.
 - Reward: log bankroll growth (default) or per-step profit
 
 Example:
-  python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 30
+  python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --epochs 30
 
 Notes:
 - This script precomputes model W/D/L probabilities ONCE (expensive part),
@@ -36,6 +36,7 @@ from predict import (
     scoreline_probability_matrix,
     calibrate_scoreline_matrix,
 )
+from probability_utils import wdl_from_scoreline_matrix
 
 
 # ----------------------------
@@ -49,14 +50,6 @@ def _softmax(logits: np.ndarray) -> np.ndarray:
     if s <= 0.0 or not np.isfinite(s):
         return np.full_like(logits, 1.0 / max(len(logits), 1), dtype=float)
     return e / s
-
-
-def _wdl_from_scoreline_matrix(mat: pd.DataFrame) -> Tuple[float, float, float]:
-    arr = mat.to_numpy(dtype=float)
-    p_home = float(np.tril(arr, k=-1).sum())
-    p_draw = float(np.trace(arr))
-    p_away = float(np.triu(arr, k=1).sum())
-    return p_home, p_draw, p_away
 
 
 def _discounted_cumsum(rewards: np.ndarray, gamma: float) -> np.ndarray:
@@ -221,7 +214,7 @@ def build_precomputed_arrays(
         )
         mat = calibrate_scoreline_matrix(mat, cal_cfg, div=div_i)
         arr = mat.to_numpy(dtype=float)
-        ph, pd_, pa = _wdl_from_scoreline_matrix(mat)
+        ph, pd_, pa = wdl_from_scoreline_matrix(mat)
         pH[i], pD[i], pA[i] = ph, pd_, pa
         # compute low1 probability
         low1[i] = float(arr[0,0] + arr[0,1] + arr[1,0]) if arr.shape[0] > 1 else float(arr[0,0])

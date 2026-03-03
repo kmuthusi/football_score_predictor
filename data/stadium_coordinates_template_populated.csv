@@ -1,0 +1,968 @@
+team,league,latitude,longitude,altitude,country,city,stadium
+Anderlecht,B1,50.8340203,4.2978547,0.0,Belgium,Brussels,Unknown
+Antwerp,B1,51.1856589,4.387084,0.0,Belgium,Antwerp,Unknown
+Beerschot VA,B1,51.1856589,4.387084,0.0,Belgium,Antwerp,Unknown
+Bergen,B1,50.4542,3.9567,0.0,Belgium,Mons,Unknown
+Cercle Brugge,B1,51.193269,3.181311,0.0,Belgium,Brugge,Unknown
+Charleroi,B1,50.4146057,4.4537327,0.0,Belgium,Charleroi,Unknown
+Club Brugge,B1,51.3269145,3.189557,0.0,Belgium,Brugge,Unknown
+Dender,B1,50.885,4.083,0.0,Belgium,Denderleeuw,Unknown
+Eupen,B1,50.631,6.0386,0.0,Belgium,Eupen,Unknown
+Genk,B1,50.9886405,5.520155,0.0,Belgium,Genk,Unknown
+Gent,B1,51.0510954,3.7089472,0.0,Belgium,Gent,Unknown
+Germinal,B1,51.1856589,4.387084,0.0,Belgium,Antwerp,Unknown
+Kortrijk,B1,50.7867444,3.1673421,0.0,Belgium,Kortrijk,Unknown
+Lierse,B1,51.0667698,4.4837031,0.0,Belgium,Lierse,Unknown
+Lokeren,B1,51.1044488,3.9898689,0.0,Belgium,Lokeren,Unknown
+Mechelen,B1,51.0686012,4.4400457,0.0,Belgium,Mechelen,Unknown
+Mouscron,B1,50.7436672,3.2142729,0.0,Belgium,Mouscron,Unknown
+Mouscron-Peruwelz,B1,50.5060666,3.5988573,0.0,Belgium,Mouscron-Peruwelz,Unknown
+Oostende,B1,51.2258565,2.919496,0.0,Belgium,Oostende,Unknown
+Oud-Heverlee Leuven,B1,50.8263952,4.6604643,0.0,Belgium,Leuven,Unknown
+RAAL La Louviere,B1,50.4676645,4.1147271,0.0,Belgium,La Louviere,Unknown
+RWD Molenbeek,B1,50.855066,4.310618,0.0,Belgium,Molenbeek,Unknown
+Seraing,B1,50.5951984,5.5385355,0.0,Belgium,Seraing,Unknown
+St Truiden,B1,50.8134975,5.1661364,0.0,Belgium,St Truiden,Unknown
+St. Gilloise,B1,50.8056154,4.3296712,0.0,Belgium,St Gilloise,Unknown
+Standard,B1,50.6326,5.5797,0.0,Belgium,Liege,Unknown
+Waasland-Beveren,B1,51.2437278,4.1959734,0.0,Belgium,Waasland-Beveren,Unknown
+Waregem,B1,50.8868222,3.4323622,0.0,Belgium,Waregem,Unknown
+Westerlo,B1,51.086694,4.9168675,0.0,Belgium,Westerlo,Unknown
+Augsburg,D1,48.3231179,10.885879,0.0,Germany,Augsburg,Unknown
+Bayern Munich,D1,48.1731314,11.5464786,0.0,Germany,Munich,Unknown
+Bielefeld,D1,52.0191005,8.531007,0.0,Germany,Bielefeld,Unknown
+Bochum,D1,51.4695221,7.2417465,0.0,Germany,Bochum,Unknown
+Braunschweig,D1,52.3327757,10.5165744,0.0,Germany,Braunschweig,Unknown
+Darmstadt,D1,49.8510637,8.64124,0.0,Germany,Darmstadt,Unknown
+Dortmund,D1,51.4924922,7.4518549,0.0,Germany,Dortmund,Unknown
+Ein Frankfurt,D1,50.1363551,8.6682317,0.0,Germany,Frankfurt,Unknown
+FC Koln,D1,50.9069197,6.9040912,0.0,Germany,Koln,Unknown
+Fortuna Dusseldorf,D1,51.2268801,6.8133931,0.0,Germany,Dusseldorf,Unknown
+Freiburg,D1,47.999,7.8421,0.0,Germany,Freiburg,Unknown
+Greuther Furth,D1,49.5003763,10.996705,0.0,Germany,Furth,Unknown
+Hamburg,D1,53.5503968,9.9952523,0.0,Germany,Hamburg,Unknown
+Hannover,D1,52.3766391,9.77273,0.0,Germany,Hannover,Unknown
+Heidenheim,D1,48.6685245,10.1392963,0.0,Germany,Heidenheim,Unknown
+Hertha,D1,52.5145846,13.2398144,0.0,Germany,Hertha,Unknown
+Hoffenheim,D1,49.2380604,8.8876414,0.0,Germany,Hoffenheim,Unknown
+Holstein Kiel,D1,54.3190039,10.1014959,0.0,Germany,Kiel,Unknown
+Ingolstadt,D1,48.7322804,11.4361318,0.0,Germany,Ingolstadt,Unknown
+Kaiserslautern,D1,49.4808719,7.7765038,0.0,Germany,Kaiserslautern,Unknown
+Leverkusen,D1,51.0324743,6.9881194,0.0,Germany,Leverkusen,Unknown
+M'gladbach,D1,50.4541589,7.5410377,0.0,Germany,Mgladbach,Unknown
+Mainz,D1,50.0008704,8.245563,0.0,Germany,Mainz,Unknown
+Nurnberg,D1,49.4276033,11.1229023,0.0,Germany,Nurnberg,Unknown
+Paderborn,D1,51.7177044,8.752653,0.0,Germany,Paderborn,Unknown
+RB Leipzig,D1,51.3457079,12.3482361,0.0,Germany,Leipzig,Unknown
+Schalke 04,D1,51.5580634,7.0634587,0.0,Germany,Gelsenkirchen,Unknown
+St Pauli,D1,53.5546486,9.9690494,0.0,Germany,St Pauli,Unknown
+Stuttgart,D1,48.7922487,9.2320857,0.0,Germany,Stuttgart,Unknown
+Union Berlin,D1,52.52,13.405,0.0,Germany,Berlin,Unknown
+Werder Bremen,D1,53.057718,8.8523703,0.0,Germany,Bremen,Unknown
+Wolfsburg,D1,52.4344908,10.8068574,0.0,Germany,Wolfsburg,Unknown
+Aachen,D2,50.7955364,6.0942621,0.0,Germany,Aachen,Unknown
+Aalen,D2,48.8375607,10.0929593,0.0,Germany,Aalen,Unknown
+Augsburg,D2,48.3231179,10.885879,0.0,Germany,Augsburg,Unknown
+Bielefeld,D2,52.0191005,8.531007,0.0,Germany,Bielefeld,Unknown
+Bochum,D2,51.4695221,7.2417465,0.0,Germany,Bochum,Unknown
+Braunschweig,D2,52.3327757,10.5165744,0.0,Germany,Braunschweig,Unknown
+Cottbus,D2,51.7345332,14.3223664,0.0,Germany,Cottbus,Unknown
+Darmstadt,D2,49.8510637,8.64124,0.0,Germany,Darmstadt,Unknown
+Dresden,D2,51.0504,13.7373,0.0,Germany,Dresden,Unknown
+Duisburg,D2,51.4049404,6.7797033,0.0,Germany,Duisburg,Unknown
+Ein Frankfurt,D2,50.1363551,8.6682317,0.0,Germany,Frankfurt,Unknown
+Elversberg,D2,49.31539,7.1268184,0.0,Germany,Elversberg,Unknown
+Erzgebirge Aue,D2,50.5979205,12.7087091,0.0,Germany,Aue,Unknown
+FC Koln,D2,50.9069197,6.9040912,0.0,Germany,Koln,Unknown
+Fortuna Dusseldorf,D2,51.2268801,6.8133931,0.0,Germany,Dusseldorf,Unknown
+Frankfurt FSV,D2,50.128031,8.7231876,0.0,Germany,FSV,Unknown
+Freiburg,D2,47.999,7.8421,0.0,Germany,Freiburg,Unknown
+Greuther Furth,D2,49.5003763,10.996705,0.0,Germany,Furth,Unknown
+Hamburg,D2,53.5503968,9.9952523,0.0,Germany,Hamburg,Unknown
+Hannover,D2,52.3766391,9.77273,0.0,Germany,Hannover,Unknown
+Hansa Rostock,D2,54.116005,12.0527635,0.0,Germany,Rostock,Unknown
+Heidenheim,D2,48.6685245,10.1392963,0.0,Germany,Heidenheim,Unknown
+Hertha,D2,52.5145846,13.2398144,0.0,Germany,Hertha,Unknown
+Holstein Kiel,D2,54.3190039,10.1014959,0.0,Germany,Kiel,Unknown
+Ingolstadt,D2,48.7322804,11.4361318,0.0,Germany,Ingolstadt,Unknown
+Kaiserslautern,D2,49.4808719,7.7765038,0.0,Germany,Kaiserslautern,Unknown
+Karlsruhe,D2,49.0179109,8.4653798,0.0,Germany,Karlsruhe,Unknown
+Magdeburg,D2,52.1525895,11.6836564,0.0,Germany,Magdeburg,Unknown
+Munich 1860,D2,48.1371079,11.5753822,0.0,Germany,1860,Unknown
+Nurnberg,D2,49.4276033,11.1229023,0.0,Germany,Nurnberg,Unknown
+Oberhausen,D2,51.5206794,6.8409006,0.0,Germany,Oberhausen,Unknown
+Osnabruck,D2,52.2765532,8.0219645,0.0,Germany,Osnabruck,Unknown
+Paderborn,D2,51.7177044,8.752653,0.0,Germany,Paderborn,Unknown
+Preußen Münster,D2,51.9310428,7.6254232,0.0,Germany,Münster,Unknown
+RB Leipzig,D2,51.3457079,12.3482361,0.0,Germany,Leipzig,Unknown
+Regensburg,D2,48.9908566,12.1073501,0.0,Germany,Regensburg,Unknown
+Sandhausen,D2,49.3341259,8.6469914,0.0,Germany,Sandhausen,Unknown
+Schalke 04,D2,51.5580634,7.0634587,0.0,Germany,Gelsenkirchen,Unknown
+St Pauli,D2,53.5546486,9.9690494,0.0,Germany,St Pauli,Unknown
+Stuttgart,D2,48.7922487,9.2320857,0.0,Germany,Stuttgart,Unknown
+Ulm,D2,48.4011,9.9876,0.0,Germany,Ulm,Unknown
+Union Berlin,D2,52.52,13.405,0.0,Germany,Berlin,Unknown
+Wehen,D2,50.152338,8.1836014,0.0,Germany,Wehen,Unknown
+Werder Bremen,D2,53.057718,8.8523703,0.0,Germany,Bremen,Unknown
+Wurzburger Kickers,D2,49.7790965,9.9621004,0.0,Germany,Kickers,Unknown
+Arsenal,E0,51.5074,-0.1278,0.0,England,London,Unknown
+Aston Villa,E0,52.5091264,-1.8850354,0.0,England,Villa,Unknown
+Blackburn,E0,53.7486,-2.4875,0.0,England,Blackburn,Unknown
+Bolton,E0,53.5805396,-2.5356648,0.0,England,Bolton,Unknown
+Bournemouth,E0,50.7351814,-1.8383279,0.0,England,Bournemouth,Unknown
+Brentford,E0,51.490713,-0.2889802,0.0,England,Brentford,Unknown
+Brighton,E0,50.8615471,-0.0836931,0.0,England,Brighton,Unknown
+Burnley,E0,53.8054523,-2.2952421,0.0,England,Burnley,Unknown
+Cardiff,E0,51.4782485,-3.1826256,0.0,England,Cardiff,Unknown
+Chelsea,E0,51.4792191,-0.1808217,0.0,England,Chelsea,Unknown
+Crystal Palace,E0,51.4191635,-0.0687969,0.0,England,Palace,Unknown
+Everton,E0,53.4084,-2.9916,0.0,England,Liverpool,Unknown
+Fulham,E0,51.482781,-0.1912833,0.0,England,Fulham,Unknown
+Huddersfield,E0,53.6543494,-1.7682999,0.0,England,Huddersfield,Unknown
+Hull,E0,53.7462258,-0.3678239,0.0,England,Hull,Unknown
+Ipswich,E0,52.0549518,1.1452848,0.0,England,Ipswich,Unknown
+Leeds,E0,53.7778612,-1.5721775,0.0,England,Leeds,Unknown
+Leicester,E0,52.620397,-1.1423352,0.0,England,Leicester,Unknown
+Liverpool,E0,53.4084,-2.9916,0.0,England,Liverpool,Unknown
+Luton,E0,51.8841259,-0.4316701,0.0,England,Luton,Unknown
+Man City,E0,53.4808,-2.2426,0.0,England,Manchester,Unknown
+Man United,E0,53.4808,-2.2426,0.0,England,Manchester,Unknown
+Middlesbrough,E0,54.5783134,-1.2169153,0.0,England,Middlesbrough,Unknown
+Newcastle,E0,54.9783,-1.6178,0.0,England,Newcastle,Unknown
+Norwich,E0,52.6220315,1.3093222,0.0,England,Norwich,Unknown
+Nott'm Forest,E0,52.94,-1.132778,0.0,England,Forest,Unknown
+QPR,E0,51.5074,-0.1278,0.0,England,London,Unknown
+Reading,E0,51.4223346,-0.9831238,0.0,England,Reading,Unknown
+Sheffield United,E0,53.4286674,-1.370864,0.0,England,Sheffield,Unknown
+Southampton,E0,50.9058615,-1.3908774,0.0,England,Southampton,Unknown
+Stoke,E0,52.0549518,1.1452848,0.0,England,Stoke,Unknown
+Sunderland,E0,54.9143953,-1.3882579,0.0,England,Sunderland,Unknown
+Swansea,E0,51.6428065,-3.934739,0.0,England,Swansea,Unknown
+Tottenham,E0,51.604157,-0.0662604,0.0,England,Tottenham,Unknown
+Watford,E0,51.6497589,-0.4013489,0.0,England,Watford,Unknown
+West Brom,E0,52.5181,-1.9945,0.0,England,West Bromwich,Unknown
+West Ham,E0,51.5074,-0.1278,0.0,England,London,Unknown
+Wigan,E0,53.5477333,-2.6540131,0.0,England,Wigan,Unknown
+Wolves,E0,52.6076564,-2.1494975,0.0,England,Wolves,Unknown
+Aston Villa,E1,52.5091264,-1.8850354,0.0,England,Villa,Unknown
+Barnsley,E1,53.5521491,-1.4677429,0.0,England,Barnsley,Unknown
+Birmingham,E1,52.4797407,-1.9150322,0.0,England,Birmingham,Unknown
+Blackburn,E1,53.7486,-2.4875,0.0,England,Blackburn,Unknown
+Blackpool,E1,53.8047874,-3.0482513,0.0,England,Blackpool,Unknown
+Bolton,E1,53.5805396,-2.5356648,0.0,England,Bolton,Unknown
+Bournemouth,E1,50.7351814,-1.8383279,0.0,England,Bournemouth,Unknown
+Brentford,E1,51.490713,-0.2889802,0.0,England,Brentford,Unknown
+Brighton,E1,50.8615471,-0.0836931,0.0,England,Brighton,Unknown
+Bristol City,E1,51.4398694,-2.6203405,0.0,England,Bristol,Unknown
+Burnley,E1,53.8054523,-2.2952421,0.0,England,Burnley,Unknown
+Burton,E1,52.8218506,-1.6269256,0.0,England,Burton,Unknown
+Cardiff,E1,51.4782485,-3.1826256,0.0,England,Cardiff,Unknown
+Charlton,E1,51.4794928,0.0527221,0.0,England,Charlton,Unknown
+Coventry,E1,52.4481581,-1.4970174,0.0,England,Coventry,Unknown
+Crystal Palace,E1,51.4191635,-0.0687969,0.0,England,Palace,Unknown
+Derby,E1,52.9149454,-1.4473191,0.0,England,Derby,Unknown
+Doncaster,E1,53.5890159,-1.0298081,0.0,England,Doncaster,Unknown
+Fulham,E1,51.482781,-0.1912833,0.0,England,Fulham,Unknown
+Huddersfield,E1,53.6543494,-1.7682999,0.0,England,Huddersfield,Unknown
+Hull,E1,53.7462258,-0.3678239,0.0,England,Hull,Unknown
+Ipswich,E1,52.0549518,1.1452848,0.0,England,Ipswich,Unknown
+Leeds,E1,53.7778612,-1.5721775,0.0,England,Leeds,Unknown
+Leicester,E1,52.620397,-1.1423352,0.0,England,Leicester,Unknown
+Luton,E1,51.8841259,-0.4316701,0.0,England,Luton,Unknown
+Middlesbrough,E1,54.5783134,-1.2169153,0.0,England,Middlesbrough,Unknown
+Millwall,E1,51.4855805,-0.0513983,0.0,England,Millwall,Unknown
+Milton Keynes Dons,E1,52.0460472,-0.7466835,0.0,England,Dons,Unknown
+Newcastle,E1,54.9783,-1.6178,0.0,England,Newcastle,Unknown
+Norwich,E1,52.6220315,1.3093222,0.0,England,Norwich,Unknown
+Nott'm Forest,E1,52.94,-1.132778,0.0,England,Forest,Unknown
+Oxford,E1,51.7265293,-1.1998903,0.0,England,Oxford,Unknown
+Peterboro,E1,52.5695,-0.2405,0.0,England,Peterborough,Unknown
+Plymouth,E1,50.3755,-4.1427,0.0,England,Plymouth,Unknown
+Portsmouth,E1,50.8198,-1.088,0.0,England,Portsmouth,Unknown
+Preston,E1,53.7722148,-2.6885609,0.0,England,Preston,Unknown
+QPR,E1,51.5074,-0.1278,0.0,England,London,Unknown
+Reading,E1,51.4223346,-0.9831238,0.0,England,Reading,Unknown
+Rotherham,E1,53.4267854,-1.362678,0.0,England,Rotherham,Unknown
+Scunthorpe,E1,53.5825219,-0.6783354,0.0,England,Scunthorpe,Unknown
+Sheffield United,E1,53.4286674,-1.370864,0.0,England,Sheffield,Unknown
+Sheffield Weds,E1,53.41138889,-1.500555556,0.0,England,Weds,Unknown
+Southampton,E1,50.9058615,-1.3908774,0.0,England,Southampton,Unknown
+Stoke,E1,52.0549518,1.1452848,0.0,England,Stoke,Unknown
+Sunderland,E1,54.9143953,-1.3882579,0.0,England,Sunderland,Unknown
+Swansea,E1,51.6428065,-3.934739,0.0,England,Swansea,Unknown
+Watford,E1,51.6497589,-0.4013489,0.0,England,Watford,Unknown
+West Brom,E1,52.5181,-1.9945,0.0,England,West Bromwich,Unknown
+West Ham,E1,51.5074,-0.1278,0.0,England,London,Unknown
+Wigan,E1,53.5477333,-2.6540131,0.0,England,Wigan,Unknown
+Wolves,E1,52.6076564,-2.1494975,0.0,England,Wolves,Unknown
+Wrexham,E1,53.0443125,-2.9766849,0.0,England,Wrexham,Unknown
+Wycombe,E1,51.6304108,-0.8002826,0.0,England,Wycombe,Unknown
+Yeovil,E1,50.9420451,-2.6318629,0.0,England,Yeovil,Unknown
+AFC Wimbledon,E2,51.4315282,-0.1867047,0.0,England,Wimbledon,Unknown
+Accrington,E2,53.7654011,-2.370969,0.0,England,Accrington,Unknown
+Barnsley,E2,53.5521491,-1.4677429,0.0,England,Barnsley,Unknown
+Birmingham,E2,52.4797407,-1.9150322,0.0,England,Birmingham,Unknown
+Blackburn,E2,53.7486,-2.4875,0.0,England,Blackburn,Unknown
+Blackpool,E2,53.8047874,-3.0482513,0.0,England,Blackpool,Unknown
+Bolton,E2,53.5805396,-2.5356648,0.0,England,Bolton,Unknown
+Bournemouth,E2,50.7351814,-1.8383279,0.0,England,Bournemouth,Unknown
+Bradford,E2,53.795,-1.7594,0.0,England,Bradford,Unknown
+Brentford,E2,51.490713,-0.2889802,0.0,England,Brentford,Unknown
+Brighton,E2,50.8615471,-0.0836931,0.0,England,Brighton,Unknown
+Bristol City,E2,51.4398694,-2.6203405,0.0,England,Bristol,Unknown
+Bristol Rvs,E2,51.486111,-2.583611,0.0,England,Bristol,Unknown
+Burton,E2,52.8218506,-1.6269256,0.0,England,Burton,Unknown
+Bury,E2,53.5805538,-2.2949212,0.0,England,Bury,Unknown
+Cambridge,E2,52.2120297,0.1541831,0.0,England,Cambridge,Unknown
+Cardiff,E2,51.4782485,-3.1826256,0.0,England,Cardiff,Unknown
+Carlisle,E2,54.8925,-2.9329,0.0,England,Carlisle,Unknown
+Charlton,E2,51.4794928,0.0527221,0.0,England,Charlton,Unknown
+Cheltenham,E2,51.9061781,-2.0602145,0.0,England,Cheltenham,Unknown
+Chesterfield,E2,53.2535581,-1.4258193,0.0,England,Chesterfield,Unknown
+Colchester,E2,51.923439,0.8976478,0.0,England,Colchester,Unknown
+Coventry,E2,52.4481581,-1.4970174,0.0,England,Coventry,Unknown
+Crawley Town,E2,51.1191344,-0.191615,0.0,England,Crawley,Unknown
+Crewe,E2,53.087402,-2.4357333,0.0,England,Crewe,Unknown
+Dag and Red,E2,51.5478,0.159867,0.0,England,Red,Unknown
+Derby,E2,52.9149454,-1.4473191,0.0,England,Derby,Unknown
+Doncaster,E2,53.5890159,-1.0298081,0.0,England,Doncaster,Unknown
+Exeter,E2,50.7093752,-3.4675489,0.0,England,Exeter,Unknown
+Fleetwood Town,E2,53.885312,-3.0084092,0.0,England,Fleetwood,Unknown
+Forest Green,E2,51.6989868,-2.2377653,0.0,England,Green,Unknown
+Gillingham,E2,51.3842253,0.5609658,0.0,England,Gillingham,Unknown
+Hartlepool,E2,54.6890602,-1.2126565,0.0,England,Hartlepool,Unknown
+Huddersfield,E2,53.6543494,-1.7682999,0.0,England,Huddersfield,Unknown
+Hull,E2,53.7462258,-0.3678239,0.0,England,Hull,Unknown
+Ipswich,E2,52.0549518,1.1452848,0.0,England,Ipswich,Unknown
+Leyton Orient,E2,51.5599794,-0.013533,0.0,England,Orient,Unknown
+Lincoln,E2,53.2307,-0.5406,0.0,England,Lincoln,Unknown
+Luton,E2,51.8841259,-0.4316701,0.0,England,Luton,Unknown
+Mansfield,E2,53.1431,-1.1985,0.0,England,Mansfield,Unknown
+Millwall,E2,51.4855805,-0.0513983,0.0,England,Millwall,Unknown
+Milton Keynes Dons,E2,52.0460472,-0.7466835,0.0,England,Dons,Unknown
+Morecambe,E2,54.0614689,-2.8672646,0.0,England,Morecambe,Unknown
+Northampton,E2,52.2352633,-0.9335741,0.0,England,Northampton,Unknown
+Notts County,E2,52.9536232,-1.144662,0.0,England,Notts,Unknown
+Oldham,E2,53.5475003,-2.1438254,0.0,England,Oldham,Unknown
+Oxford,E2,51.7265293,-1.1998903,0.0,England,Oxford,Unknown
+Peterboro,E2,52.5695,-0.2405,0.0,England,Peterborough,Unknown
+Plymouth,E2,50.3755,-4.1427,0.0,England,Plymouth,Unknown
+Port Vale,E2,53.0500906,-2.1926292,0.0,England,Vale,Unknown
+Portsmouth,E2,50.8198,-1.088,0.0,England,Portsmouth,Unknown
+Preston,E2,53.7722148,-2.6885609,0.0,England,Preston,Unknown
+Reading,E2,51.4223346,-0.9831238,0.0,England,Reading,Unknown
+Rochdale,E2,53.6207953,-2.1799129,0.0,England,Rochdale,Unknown
+Rotherham,E2,53.4267854,-1.362678,0.0,England,Rotherham,Unknown
+Scunthorpe,E2,53.5825219,-0.6783354,0.0,England,Scunthorpe,Unknown
+Sheffield United,E2,53.4286674,-1.370864,0.0,England,Sheffield,Unknown
+Sheffield Weds,E2,53.41138889,-1.500555556,0.0,England,Weds,Unknown
+Shrewsbury,E2,52.6865188,-2.7485853,0.0,England,Shrewsbury,Unknown
+Southampton,E2,50.9058615,-1.3908774,0.0,England,Southampton,Unknown
+Southend,E2,51.5490442,0.7015486,0.0,England,Southend,Unknown
+Stevenage,E2,51.8896479,-0.1937405,0.0,England,Stevenage,Unknown
+Stockport,E2,53.3996433,-2.1664844,0.0,England,Stockport,Unknown
+Sunderland,E2,54.9143953,-1.3882579,0.0,England,Sunderland,Unknown
+Swindon,E2,51.607755,-1.7924329,0.0,England,Swindon,Unknown
+Tranmere,E2,53.3738916,-3.0317875,0.0,England,Tranmere,Unknown
+Walsall,E2,52.5655014,-1.9904976,0.0,England,Walsall,Unknown
+Wigan,E2,53.5477333,-2.6540131,0.0,England,Wigan,Unknown
+Wolves,E2,52.6076564,-2.1494975,0.0,England,Wolves,Unknown
+Wrexham,E2,53.0443125,-2.9766849,0.0,England,Wrexham,Unknown
+Wycombe,E2,51.6304108,-0.8002826,0.0,England,Wycombe,Unknown
+Yeovil,E2,50.9420451,-2.6318629,0.0,England,Yeovil,Unknown
+AFC Wimbledon,E3,51.4315282,-0.1867047,0.0,England,Wimbledon,Unknown
+Accrington,E3,53.7654011,-2.370969,0.0,England,Accrington,Unknown
+Aldershot,E3,51.2646793,-0.754589,0.0,England,Aldershot,Unknown
+Barnet,E3,51.6033587,-0.2242463,0.0,England,Barnet,Unknown
+Barrow,E3,54.1109,-3.2261,0.0,England,Barrow,Unknown
+Blackpool,E3,53.8047874,-3.0482513,0.0,England,Blackpool,Unknown
+Bolton,E3,53.5805396,-2.5356648,0.0,England,Bolton,Unknown
+Bradford,E3,53.795,-1.7594,0.0,England,Bradford,Unknown
+Bristol Rvs,E3,51.486111,-2.583611,0.0,England,Bristol,Unknown
+Bromley,E3,51.4191635,-0.0687969,0.0,England,Bromley,Unknown
+Burton,E3,52.8218506,-1.6269256,0.0,England,Burton,Unknown
+Bury,E3,53.5805538,-2.2949212,0.0,England,Bury,Unknown
+Cambridge,E3,52.2120297,0.1541831,0.0,England,Cambridge,Unknown
+Carlisle,E3,54.8925,-2.9329,0.0,England,Carlisle,Unknown
+Cheltenham,E3,51.9061781,-2.0602145,0.0,England,Cheltenham,Unknown
+Chesterfield,E3,53.2535581,-1.4258193,0.0,England,Chesterfield,Unknown
+Colchester,E3,51.923439,0.8976478,0.0,England,Colchester,Unknown
+Coventry,E3,52.4481581,-1.4970174,0.0,England,Coventry,Unknown
+Crawley Town,E3,51.1191344,-0.191615,0.0,England,Crawley,Unknown
+Crewe,E3,53.087402,-2.4357333,0.0,England,Crewe,Unknown
+Dag and Red,E3,51.5478,0.159867,0.0,England,Red,Unknown
+Doncaster,E3,53.5890159,-1.0298081,0.0,England,Doncaster,Unknown
+Exeter,E3,50.7093752,-3.4675489,0.0,England,Exeter,Unknown
+Fleetwood Town,E3,53.885312,-3.0084092,0.0,England,Fleetwood,Unknown
+Forest Green,E3,51.6989868,-2.2377653,0.0,England,Green,Unknown
+Gillingham,E3,51.3842253,0.5609658,0.0,England,Gillingham,Unknown
+Grimsby,E3,53.5702297,-0.0465117,0.0,England,Grimsby,Unknown
+Harrogate,E3,53.9662795,-1.4991883,0.0,England,Harrogate,Unknown
+Hartlepool,E3,54.6890602,-1.2126565,0.0,England,Hartlepool,Unknown
+Hereford,E3,52.0567,-2.716,0.0,England,Hereford,Unknown
+Leyton Orient,E3,51.5599794,-0.013533,0.0,England,Orient,Unknown
+Lincoln,E3,53.2307,-0.5406,0.0,England,Lincoln,Unknown
+Luton,E3,51.8841259,-0.4316701,0.0,England,Luton,Unknown
+Macclesfield,E3,53.2726576,-2.1597453,0.0,England,Macclesfield,Unknown
+Mansfield,E3,53.1431,-1.1985,0.0,England,Mansfield,Unknown
+Milton Keynes Dons,E3,52.0460472,-0.7466835,0.0,England,Dons,Unknown
+Morecambe,E3,54.0614689,-2.8672646,0.0,England,Morecambe,Unknown
+Newport County,E3,51.5842,-2.9977,0.0,England,Newport,Unknown
+Northampton,E3,52.2352633,-0.9335741,0.0,England,Northampton,Unknown
+Notts County,E3,52.9536232,-1.144662,0.0,England,Notts,Unknown
+Oldham,E3,53.5475003,-2.1438254,0.0,England,Oldham,Unknown
+Oxford,E3,51.7265293,-1.1998903,0.0,England,Oxford,Unknown
+Plymouth,E3,50.3755,-4.1427,0.0,England,Plymouth,Unknown
+Port Vale,E3,53.0500906,-2.1926292,0.0,England,Vale,Unknown
+Portsmouth,E3,50.8198,-1.088,0.0,England,Portsmouth,Unknown
+Rochdale,E3,53.6207953,-2.1799129,0.0,England,Rochdale,Unknown
+Rotherham,E3,53.4267854,-1.362678,0.0,England,Rotherham,Unknown
+Salford,E3,53.4693387,-2.3751921,0.0,England,Salford,Unknown
+Scunthorpe,E3,53.5825219,-0.6783354,0.0,England,Scunthorpe,Unknown
+Shrewsbury,E3,52.6865188,-2.7485853,0.0,England,Shrewsbury,Unknown
+Southend,E3,51.5490442,0.7015486,0.0,England,Southend,Unknown
+Stevenage,E3,51.8896479,-0.1937405,0.0,England,Stevenage,Unknown
+Stockport,E3,53.3996433,-2.1664844,0.0,England,Stockport,Unknown
+Sutton,E3,51.3618,-0.1945,0.0,England,Sutton,Unknown
+Swindon,E3,51.607755,-1.7924329,0.0,England,Swindon,Unknown
+Torquay,E3,50.4619,-3.5253,0.0,England,Torquay,Unknown
+Tranmere,E3,53.3738916,-3.0317875,0.0,England,Tranmere,Unknown
+Walsall,E3,52.5655014,-1.9904976,0.0,England,Walsall,Unknown
+Wrexham,E3,53.0443125,-2.9766849,0.0,England,Wrexham,Unknown
+Wycombe,E3,51.6304108,-0.8002826,0.0,England,Wycombe,Unknown
+Yeovil,E3,50.9420451,-2.6318629,0.0,England,Yeovil,Unknown
+York,E3,53.959,-1.0815,0.0,England,York,Unknown
+AFC Telford United,EC,52.6973792,-2.5014353,0.0,England,Telford,Unknown
+AFC Wimbledon,EC,51.4315282,-0.1867047,0.0,England,Wimbledon,Unknown
+Aldershot,EC,51.2646793,-0.754589,0.0,England,Aldershot,Unknown
+Alfreton Town,EC,53.094456,-1.3811612,0.0,England,Alfreton,Unknown
+Altrincham,EC,53.3833838,-2.3352283,0.0,England,Altrincham,Unknown
+Barnet,EC,51.6033587,-0.2242463,0.0,England,Barnet,Unknown
+Barrow,EC,54.1109,-3.2261,0.0,England,Barrow,Unknown
+Bath City,EC,51.378837,-2.3950494,0.0,England,Bath,Unknown
+Boreham Wood,EC,51.6620316,-0.2724395,0.0,England,Wood,Unknown
+Boston Utd,EC,52.9767861,-0.0191167,0.0,England,Boston,Unknown
+Brackley Town,EC,52.0316579,-1.1385272,0.0,England,Brackley,Unknown
+Braintree Town,EC,51.9464939,0.6326725,0.0,England,Braintree,Unknown
+Bristol Rvs,EC,51.486111,-2.583611,0.0,England,Bristol,Unknown
+Bromley,EC,51.4191635,-0.0687969,0.0,England,Bromley,Unknown
+Cambridge,EC,52.2120297,0.1541831,0.0,England,Cambridge,Unknown
+Carlisle,EC,54.8925,-2.9329,0.0,England,Carlisle,Unknown
+Cheltenham,EC,51.9061781,-2.0602145,0.0,England,Cheltenham,Unknown
+Chester,EC,53.1892245,-2.923472,0.0,England,Chester,Unknown
+Chesterfield,EC,53.2535581,-1.4258193,0.0,England,Chesterfield,Unknown
+Chorley,EC,53.6460264,-2.6294423,0.0,England,Chorley,Unknown
+Crawley Town,EC,51.1191344,-0.191615,0.0,England,Crawley,Unknown
+Dag and Red,EC,51.5478,0.159867,0.0,England,Red,Unknown
+Darlington,EC,54.5084255,-1.5344062,0.0,England,Darlington,Unknown
+Dartford,EC,51.4371824,0.2316846,0.0,England,Dartford,Unknown
+Dorking,EC,51.2344704,-0.3333497,0.0,England,Dorking,Unknown
+Dover Athletic,EC,51.1378031,1.284886,0.0,England,Dover,Unknown
+Eastbourne Borough,EC,50.8041757,0.32079,0.0,England,Borough,Unknown
+Eastleigh,EC,50.9524511,-1.3719149,0.0,England,Eastleigh,Unknown
+Ebbsfleet,EC,51.4494932,0.3223573,0.0,England,Ebbsfleet,Unknown
+Fleetwood Town,EC,53.885312,-3.0084092,0.0,England,Fleetwood,Unknown
+Forest Green,EC,51.6989868,-2.2377653,0.0,England,Green,Unknown
+Fylde,EC,53.7674552,-3.0238185,0.0,England,Fylde,Unknown
+Gateshead,EC,54.9576691,-1.5881587,0.0,England,Gateshead,Unknown
+Grimsby,EC,53.5702297,-0.0465117,0.0,England,Grimsby,Unknown
+Guiseley,EC,53.8767122,-1.7199209,0.0,England,Guiseley,Unknown
+Halifax,EC,53.724,-1.86,0.0,England,Halifax,Unknown
+Harrogate,EC,53.9662795,-1.4991883,0.0,England,Harrogate,Unknown
+Hartlepool,EC,54.6890602,-1.2126565,0.0,England,Hartlepool,Unknown
+Havant & Waterlooville,EC,50.8673622,-0.9740793,0.0,England,Waterlooville,Unknown
+Hayes & Yeading,EC,51.5081537,-0.3956712,0.0,England,Yeading,Unknown
+Hereford,EC,52.0567,-2.716,0.0,England,Hereford,Unknown
+Histon,EC,52.2424218,0.1136269,0.0,England,Histon,Unknown
+Hyde United,EC,53.451,-2.079,0.0,England,Hyde,Unknown
+Kettering Town,EC,52.3667178,-0.6901143,0.0,England,Kettering,Unknown
+Kidderminster,EC,52.3804787,-2.2427359,0.0,England,Kidderminster,Unknown
+King’s Lynn,EC,52.7502176,0.4074534,0.0,England,Lynn,Unknown
+Leyton Orient,EC,51.5599794,-0.013533,0.0,England,Orient,Unknown
+Lincoln,EC,53.2307,-0.5406,0.0,England,Lincoln,Unknown
+Luton,EC,51.8841259,-0.4316701,0.0,England,Luton,Unknown
+Macclesfield,EC,53.2726576,-2.1597453,0.0,England,Macclesfield,Unknown
+Maidenhead,EC,51.4641206,-0.6515445,0.0,England,Maidenhead,Unknown
+Maidstone,EC,51.2797591,0.5162681,0.0,England,Maidstone,Unknown
+Mansfield,EC,53.1431,-1.1985,0.0,England,Mansfield,Unknown
+Morecambe,EC,54.0614689,-2.8672646,0.0,England,Morecambe,Unknown
+Newport County,EC,51.5842,-2.9977,0.0,England,Newport,Unknown
+North Ferriby,EC,53.7172985,-0.5001876,0.0,England,Ferriby,Unknown
+Notts County,EC,52.9536232,-1.144662,0.0,England,Notts,Unknown
+Nuneaton Town,EC,52.5227973,-1.4679663,0.0,England,Nuneaton,Unknown
+Oldham,EC,53.5475003,-2.1438254,0.0,England,Oldham,Unknown
+Oxford City,EC,51.7265293,-1.1998903,0.0,England,Oxford,Unknown
+Rochdale,EC,53.6207953,-2.1799129,0.0,England,Rochdale,Unknown
+Rushden & D,EC,52.289,-0.598,0.0,England,Rushden,Unknown
+Salford,EC,53.4693387,-2.3751921,0.0,England,Salford,Unknown
+Salisbury,EC,51.0688,-1.7945,0.0,England,Salisbury,Unknown
+Scunthorpe,EC,53.5825219,-0.6783354,0.0,England,Scunthorpe,Unknown
+Solihull,EC,52.4318492,-1.7319529,0.0,England,Solihull,Unknown
+Southend,EC,51.5490442,0.7015486,0.0,England,Southend,Unknown
+Southport,EC,53.6381176,-2.978788,0.0,England,Southport,Unknown
+Stockport,EC,53.3996433,-2.1664844,0.0,England,Stockport,Unknown
+Sutton,EC,51.3618,-0.1945,0.0,England,Sutton,Unknown
+Tamworth,EC,52.6286125,-1.6890311,0.0,England,Tamworth,Unknown
+Telford United,EC,52.6973792,-2.5014353,0.0,England,Telford,Unknown
+Torquay,EC,50.4619,-3.5253,0.0,England,Torquay,Unknown
+Tranmere,EC,53.3738916,-3.0317875,0.0,England,Tranmere,Unknown
+Truro,EC,50.2632,-5.051,0.0,England,Truro,Unknown
+Wealdstone,EC,51.5886665,-0.3161194,0.0,England,Wealdstone,Unknown
+Welling United,EC,51.4639,0.1075,0.0,England,Welling,Unknown
+Weymouth,EC,50.6203705,-2.4856837,0.0,England,Weymouth,Unknown
+Woking,EC,51.3063222,-0.5588831,0.0,England,Woking,Unknown
+Wrexham,EC,53.0443125,-2.9766849,0.0,England,Wrexham,Unknown
+Yeovil,EC,50.9420451,-2.6318629,0.0,England,Yeovil,Unknown
+York,EC,53.959,-1.0815,0.0,England,York,Unknown
+Ajaccio,F1,41.9192,8.7386,0.0,France,Ajaccio,Unknown
+Ajaccio GFCO,F1,41.9513,8.772,0.0,France,GFCO,Unknown
+Amiens,F1,49.8941708,2.2956951,0.0,France,Amiens,Unknown
+Angers,F1,47.4544659,-0.5425734,0.0,France,Angers,Unknown
+Arles,F1,43.6776223,4.6309653,0.0,France,Arles,Unknown
+Auxerre,F1,47.7961287,3.570579,0.0,France,Auxerre,Unknown
+Bastia,F1,42.7029,9.4509,0.0,France,Bastia,Unknown
+Bordeaux,F1,44.8992249,-0.5658288,0.0,France,Bordeaux,Unknown
+Brest,F1,48.4049761,-4.508511,0.0,France,Brest,Unknown
+Caen,F1,49.1945475,-0.3637361,0.0,France,Caen,Unknown
+Clermont,F1,45.7772,3.087,0.0,France,Clermont,Unknown
+Dijon,F1,47.3037236,5.0615686,0.0,France,Dijon,Unknown
+Evian Thonon Gaillard,F1,46.364874,6.467805,0.0,France,Gaillard,Unknown
+Guingamp,F1,48.5618483,-3.1502007,0.0,France,Guingamp,Unknown
+Le Havre,F1,49.4995445,0.1707735,0.0,France,Havre,Unknown
+Lens,F1,50.432,2.833,0.0,France,Lens,Unknown
+Lille,F1,50.6119044,3.130508,0.0,France,Lille,Unknown
+Lorient,F1,47.7477336,-3.3660907,0.0,France,Lorient,Unknown
+Lyon,F1,45.7653624,4.9820543,0.0,France,Lyon,Unknown
+Marseille,F1,43.269835,5.3959117,0.0,France,Marseille,Unknown
+Metz,F1,49.1193,6.1757,0.0,France,Metz,Unknown
+Monaco,F1,43.7275713,7.4154577,0.0,France,Monaco,Unknown
+Montpellier,F1,43.6495904,3.9293198,0.0,France,Montpellier,Unknown
+Nancy,F1,48.7089174,6.1697685,0.0,France,Nancy,Unknown
+Nantes,F1,47.2487475,-1.5556413,0.0,France,Nantes,Unknown
+Nice,F1,43.7009358,7.2683912,0.0,France,Nice,Unknown
+Nimes,F1,43.8348854,4.3596245,0.0,France,Nimes,Unknown
+Paris FC,F1,48.8607331,2.3644336,0.0,France,Paris,Unknown
+Paris SG,F1,48.8768502,2.3324723,0.0,France,Paris,Unknown
+Reims,F1,49.2577886,4.031926,0.0,France,Reims,Unknown
+Rennes,F1,48.1055585,-1.718678,0.0,France,Rennes,Unknown
+Sochaux,F1,47.4640453,6.8469032,0.0,France,Sochaux,Unknown
+St Etienne,F1,43.5934385,1.4441164,0.0,France,St Etienne,Unknown
+Strasbourg,F1,48.8455793,2.489442,0.0,France,Strasbourg,Unknown
+Toulouse,F1,43.5832262,1.4340638,0.0,France,Toulouse,Unknown
+Troyes,F1,48.2971626,4.0746257,0.0,France,Troyes,Unknown
+Valenciennes,F1,50.3218132,3.5112505,0.0,France,Valenciennes,Unknown
+Ajaccio,F2,41.9192,8.7386,0.0,France,Ajaccio,Unknown
+Ajaccio GFCO,F2,41.9513,8.772,0.0,France,GFCO,Unknown
+Amiens,F2,49.8941708,2.2956951,0.0,France,Amiens,Unknown
+Angers,F2,47.4544659,-0.5425734,0.0,France,Angers,Unknown
+Annecy,F2,45.8606841,6.0840922,0.0,France,Annecy,Unknown
+Arles,F2,43.6776223,4.6309653,0.0,France,Arles,Unknown
+Auxerre,F2,47.7961287,3.570579,0.0,France,Auxerre,Unknown
+Bastia,F2,42.7029,9.4509,0.0,France,Bastia,Unknown
+Beziers,F2,43.2753893,3.1602074,0.0,France,Beziers,Unknown
+Bordeaux,F2,44.8992249,-0.5658288,0.0,France,Bordeaux,Unknown
+Boulogne,F2,48.836915,2.2264631,0.0,France,Boulogne,Unknown
+Bourg Peronnas,F2,46.1798475,5.203589,0.0,France,Peronnas,Unknown
+Brest,F2,48.4049761,-4.508511,0.0,France,Brest,Unknown
+CA Bastia,F2,42.7029,9.4509,0.0,France,Bastia,Unknown
+Caen,F2,49.1945475,-0.3637361,0.0,France,Caen,Unknown
+Chambly,F2,49.1662774,2.2444986,0.0,France,Chambly,Unknown
+Chateauroux,F2,46.806523,1.8636384,0.0,France,Chateauroux,Unknown
+Clermont,F2,45.7772,3.087,0.0,France,Clermont,Unknown
+Concarneau,F2,47.8757017,-3.9223889,0.0,France,Concarneau,Unknown
+Creteil,F2,48.7771486,2.4530731,0.0,France,Creteil,Unknown
+Dijon,F2,47.3037236,5.0615686,0.0,France,Dijon,Unknown
+Dunkerque,F2,51.0125722,2.320123,0.0,France,Dunkerque,Unknown
+Evian Thonon Gaillard,F2,46.364874,6.467805,0.0,France,Gaillard,Unknown
+Grenoble,F2,51.7164667,-1.2076599,0.0,France,Grenoble,Unknown
+Guingamp,F2,48.5618483,-3.1502007,0.0,France,Guingamp,Unknown
+Istres,F2,43.4426949,5.2983277,0.0,France,Istres,Unknown
+Laval,F2,48.07,-0.772,0.0,France,Laval,Unknown
+Le Havre,F2,49.4995445,0.1707735,0.0,France,Havre,Unknown
+Le Mans,F2,49.2797885,-1.5381145,0.0,France,Mans,Unknown
+Lens,F2,50.432,2.833,0.0,France,Lens,Unknown
+Lorient,F2,47.7477336,-3.3660907,0.0,France,Lorient,Unknown
+Martigues,F2,43.4140873,5.0454723,0.0,France,Martigues,Unknown
+Metz,F2,49.1193,6.1757,0.0,France,Metz,Unknown
+Monaco,F2,43.7275713,7.4154577,0.0,France,Monaco,Unknown
+Montpellier,F2,43.6495904,3.9293198,0.0,France,Montpellier,Unknown
+Nancy,F2,48.7089174,6.1697685,0.0,France,Nancy,Unknown
+Nantes,F2,47.2487475,-1.5556413,0.0,France,Nantes,Unknown
+Nimes,F2,43.8348854,4.3596245,0.0,France,Nimes,Unknown
+Niort,F2,46.3389499,-0.4020988,0.0,France,Niort,Unknown
+Orleans,F2,47.9029,1.9093,0.0,France,Orleans,Unknown
+Paris FC,F2,48.8607331,2.3644336,0.0,France,Paris,Unknown
+Pau FC,F2,43.3231397,-0.5695793,0.0,France,Pau,Unknown
+Quevilly Rouen,F2,49.4280853,1.0504878,0.0,France,Rouen,Unknown
+Red Star,F2,48.911,2.333,0.0,France,Saint-Ouen,Unknown
+Reims,F2,49.2577886,4.031926,0.0,France,Reims,Unknown
+Rodez,F2,44.3705665,2.5148867,0.0,France,Rodez,Unknown
+Sedan,F2,49.7033759,4.9433409,0.0,France,Sedan,Unknown
+Sochaux,F2,47.4640453,6.8469032,0.0,France,Sochaux,Unknown
+St Etienne,F2,43.5934385,1.4441164,0.0,France,St Etienne,Unknown
+Strasbourg,F2,48.8455793,2.489442,0.0,France,Strasbourg,Unknown
+Toulouse,F2,43.5832262,1.4340638,0.0,France,Toulouse,Unknown
+Tours,F2,47.3783683,0.7354595,0.0,France,Tours,Unknown
+Troyes,F2,48.2971626,4.0746257,0.0,France,Troyes,Unknown
+Valenciennes,F2,50.3218132,3.5112505,0.0,France,Valenciennes,Unknown
+Vannes,F2,48.9178072,2.3227124,0.0,France,Vannes,Unknown
+AEK,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Apollon,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Apollon Apollon,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Aris,G1,40.6401,22.9444,0.0,Greece,Thessaloniki,Unknown
+Asteras Tripolis,G1,37.508,22.379,0.0,Greece,Tripolis,Unknown
+Athens Kallithea,G1,37.95,23.7,0.0,Greece,Kallithea,Unknown
+Atromitos,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Doxa Dramas,G1,41.151,24.147,0.0,Greece,Drama,Unknown
+Ergotelis,G1,35.3387,25.1442,0.0,Greece,Heraklion,Unknown
+Giannina,G1,39.665,20.8537,0.0,Greece,Ioannina,Unknown
+Ionikos,G1,37.965,23.65,0.0,Greece,Nikaia,Unknown
+Iraklis,G1,40.6401,22.9444,0.0,Greece,Thessaloniki,Unknown
+Kallonis,G1,39.105,26.557,0.0,Greece,Mytilene,Unknown
+Kavala,G1,40.939,24.401,0.0,Greece,Kavala,Unknown
+Kerkyra,G1,39.6243,19.9217,0.0,Greece,Corfu,Unknown
+Kifisia,G1,38.073,23.811,0.0,Greece,Kifisia,Unknown
+Lamia,G1,38.9,22.433,0.0,Greece,Lamia,Unknown
+Larisa,G1,39.639,22.419,0.0,Greece,Larissa,Unknown
+Levadeiakos,G1,38.436,22.873,0.0,Greece,Levadeiakos,Unknown
+Niki Volos,G1,39.361,22.942,0.0,Greece,Volos,Unknown
+OFI,G1,35.3387,25.1442,0.0,Greece,Heraklion,Unknown
+OFI Crete,G1,35.3387,25.1442,0.0,Greece,Heraklion,Unknown
+Olympiakos,G1,37.942,23.6465,0.0,Greece,Piraeus,Unknown
+Olympiakos Volou,G1,39.361,22.942,0.0,Greece,Volos,Unknown
+PAOK,G1,40.6401,22.9444,0.0,Greece,Thessaloniki,Unknown
+Panathinaikos,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Panetolikos,G1,38.621,21.407,0.0,Greece,Agrinio,Unknown
+Panionios,G1,37.9838,23.7275,0.0,Greece,Athens,Unknown
+Panserraikos,G1,41.086,23.548,0.0,Greece,Serres,Unknown
+Panthrakikos,G1,41.118,25.405,0.0,Greece,Komotini,Unknown
+Platanias,G1,35.5138,24.018,0.0,Greece,Chania,Unknown
+Veria,G1,40.524,22.202,0.0,Greece,Veria,Unknown
+Volos NFC,G1,39.361,22.942,0.0,Greece,Volos,Unknown
+Xanthi,G1,41.141,24.883,0.0,Greece,Xanthi,Unknown
+Atalanta,I1,45.6983,9.6773,0.0,Italy,Bergamo,Unknown
+Bari,I1,41.1171,16.8719,0.0,Italy,Bari,Unknown
+Benevento,I1,41.1610474,14.6710769,0.0,Italy,Benevento,Unknown
+Bologna,I1,44.5166727,11.4166826,0.0,Italy,Bologna,Unknown
+Brescia,I1,45.5707175,10.2369776,0.0,Italy,Brescia,Unknown
+Cagliari,I1,39.2171994,9.113311,0.0,Italy,Cagliari,Unknown
+Carpi,I1,44.7835699,10.8854523,0.0,Italy,Carpi,Unknown
+Catania,I1,37.5152798,15.0721339,0.0,Italy,Catania,Unknown
+Cesena,I1,44.1403668,12.261877,0.0,Italy,Cesena,Unknown
+Chievo,I1,45.4575984,10.9464024,0.0,Italy,Chievo,Unknown
+Como,I1,45.8081,9.0852,0.0,Italy,Como,Unknown
+Cremonese,I1,45.1683868,9.8900934,0.0,Italy,Cremonese,Unknown
+Crotone,I1,39.0806223,17.127196,0.0,Italy,Crotone,Unknown
+Empoli,I1,44.1321712,12.2258614,0.0,Italy,Empoli,Unknown
+Fiorentina,I1,44.1724202,12.4047015,0.0,Italy,Fiorentina,Unknown
+Frosinone,I1,41.6419807,13.3469287,0.0,Italy,Frosinone,Unknown
+Genoa,I1,44.4164753,8.9525341,0.0,Italy,Genoa,Unknown
+Inter,I1,45.4642,9.19,0.0,Italy,Milan,Unknown
+Juventus,I1,45.1095759,7.6421338,0.0,Italy,Juventus,Unknown
+Lazio,I1,41.9339424,12.4547705,0.0,Italy,Lazio,Unknown
+Lecce,I1,40.3651144,18.2089177,0.0,Italy,Lecce,Unknown
+Livorno,I1,43.5721674,10.3347675,0.0,Italy,Livorno,Unknown
+Milan,I1,45.4642,9.19,0.0,Italy,Milan,Unknown
+Monza,I1,45.583112,9.3079276,0.0,Italy,Monza,Unknown
+Napoli,I1,40.8982807,14.1739374,0.0,Italy,Napoli,Unknown
+Novara,I1,45.6269886,8.5418444,0.0,Italy,Novara,Unknown
+Palermo,I1,38.1157,13.3615,0.0,Italy,Palermo,Unknown
+Parma,I1,44.8015,10.3279,0.0,Italy,Parma,Unknown
+Pescara,I1,44.1196234,12.2439128,0.0,Italy,Pescara,Unknown
+Pisa,I1,43.7228,10.4017,0.0,Italy,Pisa,Unknown
+Roma,I1,41.9339424,12.4547705,0.0,Italy,Roma,Unknown
+Salernitana,I1,40.6813304,14.7546939,0.0,Italy,Salernitana,Unknown
+Sampdoria,I1,44.4164753,8.9525341,0.0,Italy,Sampdoria,Unknown
+Sassuolo,I1,44.5409769,10.7829023,0.0,Italy,Sassuolo,Unknown
+Siena,I1,43.3188,11.3308,0.0,Italy,Siena,Unknown
+Spal,I1,44.8409312,11.6072586,0.0,Italy,Spal,Unknown
+Spezia,I1,44.1457278,12.2032796,0.0,Italy,Spezia,Unknown
+Torino,I1,45.1095759,7.6421338,0.0,Italy,Torino,Unknown
+Udinese,I1,46.4097027,13.1951425,0.0,Italy,Udinese,Unknown
+Venezia,I1,46.081402,13.1997411,0.0,Italy,Venezia,Unknown
+Verona,I1,45.4353328,10.9674348,0.0,Italy,Verona,Unknown
+Albinoleffe,I2,45.6321365,9.6701128,0.0,Italy,Albinoleffe,Unknown
+Alessandria,I2,44.9123,8.618,0.0,Italy,Alessandria,Unknown
+Ascoli,I2,42.8537246,13.580707,0.0,Italy,Ascoli,Unknown
+Atalanta,I2,45.6983,9.6773,0.0,Italy,Bergamo,Unknown
+Avellino,I2,40.9141958,14.7888764,0.0,Italy,Avellino,Unknown
+Bari,I2,41.1171,16.8719,0.0,Italy,Bari,Unknown
+Benevento,I2,41.1610474,14.6710769,0.0,Italy,Benevento,Unknown
+Bologna,I2,44.5166727,11.4166826,0.0,Italy,Bologna,Unknown
+Brescia,I2,45.5707175,10.2369776,0.0,Italy,Brescia,Unknown
+Cagliari,I2,39.2171994,9.113311,0.0,Italy,Cagliari,Unknown
+Carpi,I2,44.7835699,10.8854523,0.0,Italy,Carpi,Unknown
+Carrarese,I2,45.2316493,11.4674787,0.0,Italy,Carrarese,Unknown
+Catania,I2,37.5152798,15.0721339,0.0,Italy,Catania,Unknown
+Catanzaro,I2,39.0332743,16.434292,0.0,Italy,Catanzaro,Unknown
+Cesena,I2,44.1403668,12.261877,0.0,Italy,Cesena,Unknown
+Chievo,I2,45.4575984,10.9464024,0.0,Italy,Chievo,Unknown
+Cittadella,I2,45.648,11.783,0.0,Italy,Cittadella,Unknown
+Como,I2,45.8081,9.0852,0.0,Italy,Como,Unknown
+Cosenza,I2,39.1613374,16.0689268,0.0,Italy,Cosenza,Unknown
+Cremonese,I2,45.1683868,9.8900934,0.0,Italy,Cremonese,Unknown
+Crotone,I2,39.0806223,17.127196,0.0,Italy,Crotone,Unknown
+Empoli,I2,44.1321712,12.2258614,0.0,Italy,Empoli,Unknown
+FeralpiSalo,I2,45.60393,10.5128,0.0,Italy,FeralpiSalo,Unknown
+Foggia,I2,41.4620482,15.5432595,0.0,Italy,Foggia,Unknown
+Frosinone,I2,41.6419807,13.3469287,0.0,Italy,Frosinone,Unknown
+Genoa,I2,44.4164753,8.9525341,0.0,Italy,Genoa,Unknown
+Grosseto,I2,42.7597261,11.1137389,0.0,Italy,Grosseto,Unknown
+Gubbio,I2,44.1073649,12.196018,0.0,Italy,Gubbio,Unknown
+Juve Stabia,I2,40.706667,14.494444,0.0,Italy,Stabia,Unknown
+Latina,I2,41.467299,12.9037518,0.0,Italy,Latina,Unknown
+Lecce,I2,40.3651144,18.2089177,0.0,Italy,Lecce,Unknown
+Lecco,I2,45.7840111,9.4159312,0.0,Italy,Lecco,Unknown
+Livorno,I2,43.5721674,10.3347675,0.0,Italy,Livorno,Unknown
+Mantova,I2,45.2279167,10.7488286,0.0,Italy,Mantova,Unknown
+Modena,I2,44.3093525,10.813321,0.0,Italy,Modena,Unknown
+Monza,I2,45.583112,9.3079276,0.0,Italy,Monza,Unknown
+Nocerina,I2,40.7526044,14.6502307,0.0,Italy,Nocerina,Unknown
+Novara,I2,45.6269886,8.5418444,0.0,Italy,Novara,Unknown
+Padova,I2,45.3948658,11.8754315,0.0,Italy,Padova,Unknown
+Palermo,I2,38.1157,13.3615,0.0,Italy,Palermo,Unknown
+Parma,I2,44.8015,10.3279,0.0,Italy,Parma,Unknown
+Perugia,I2,43.0926004,12.3992997,0.0,Italy,Perugia,Unknown
+Pescara,I2,44.1196234,12.2439128,0.0,Italy,Pescara,Unknown
+Piacenza,I2,45.0534751,9.6947461,0.0,Italy,Piacenza,Unknown
+Pisa,I2,43.7228,10.4017,0.0,Italy,Pisa,Unknown
+Pordenone,I2,45.9538953,12.6846712,0.0,Italy,Pordenone,Unknown
+Portogruaro,I2,45.775598,12.8374571,0.0,Italy,Portogruaro,Unknown
+Pro Vercelli,I2,45.8575103,8.236397,0.0,Italy,Vercelli,Unknown
+Reggiana,I2,43.8745265,11.0705127,0.0,Italy,Reggiana,Unknown
+Reggina,I2,43.593764,10.6691766,0.0,Italy,Reggina,Unknown
+Salernitana,I2,40.6813304,14.7546939,0.0,Italy,Salernitana,Unknown
+Sampdoria,I2,44.4164753,8.9525341,0.0,Italy,Sampdoria,Unknown
+Sassuolo,I2,44.5409769,10.7829023,0.0,Italy,Sassuolo,Unknown
+Siena,I2,43.3188,11.3308,0.0,Italy,Siena,Unknown
+Spal,I2,44.8409312,11.6072586,0.0,Italy,Spal,Unknown
+Spezia,I2,44.1457278,12.2032796,0.0,Italy,Spezia,Unknown
+Sudtirol,I2,46.4929138,11.3150559,0.0,Italy,Sudtirol,Unknown
+Ternana,I2,42.563,12.6443,0.0,Italy,Ternana,Unknown
+Torino,I2,45.1095759,7.6421338,0.0,Italy,Torino,Unknown
+Trapani,I2,38.028211,12.545885,0.0,Italy,Trapani,Unknown
+Triestina,I2,44.7984146,10.2554077,0.0,Italy,Triestina,Unknown
+Varese,I2,44.1435788,12.2904555,0.0,Italy,Varese,Unknown
+Venezia,I2,46.081402,13.1997411,0.0,Italy,Venezia,Unknown
+Verona,I2,45.4353328,10.9674348,0.0,Italy,Verona,Unknown
+Vicenza,I2,45.5339648,11.478811,0.0,Italy,Vicenza,Unknown
+Virtus Entella,I2,44.3156,9.33725,0.0,Italy,Entella,Unknown
+Virtus Lanciano,I2,42.2182,14.3884,0.0,Italy,Lanciano,Unknown
+AZ Alkmaar,N1,52.6324,4.7534,0.0,Netherlands,Alkmaar,Unknown
+Ajax,N1,52.3676,4.9041,0.0,Netherlands,Amsterdam,Unknown
+Almere City,N1,52.3508,5.2647,0.0,Netherlands,Almere,Unknown
+Cambuur,N1,53.2012,5.7999,0.0,Netherlands,Leeuwarden,Unknown
+Den Haag,N1,52.0705,4.3007,0.0,Netherlands,The Hague,Unknown
+Dordrecht,N1,51.8133,4.6901,0.0,Netherlands,Dordrecht,Unknown
+Excelsior,N1,51.9244,4.4777,0.0,Netherlands,Rotterdam,Unknown
+FC Emmen,N1,52.7858,6.8976,0.0,Netherlands,Emmen,Unknown
+Feyenoord,N1,51.9244,4.4777,0.0,Netherlands,Rotterdam,Unknown
+For Sittard,N1,50.9983,5.8697,0.0,Netherlands,Sittard,Unknown
+Go Ahead Eagles,N1,52.2661,6.1552,0.0,Netherlands,Deventer,Unknown
+Graafschap,N1,51.965,6.288,0.0,Netherlands,Doetinchem,Unknown
+Groningen,N1,53.2194,6.5665,0.0,Netherlands,Groningen,Unknown
+Heerenveen,N1,52.959,5.918,0.0,Netherlands,Heerenveen,Unknown
+Heracles,N1,52.356,6.662,0.0,Netherlands,Almelo,Unknown
+NAC Breda,N1,51.5719,4.7683,0.0,Netherlands,Breda,Unknown
+Nijmegen,N1,51.8126,5.8372,0.0,Netherlands,Nijmegen,Unknown
+PSV Eindhoven,N1,51.4416,5.4697,0.0,Netherlands,Eindhoven,Unknown
+Roda,N1,50.865,6.062,0.0,Netherlands,Kerkrade,Unknown
+Sparta Rotterdam,N1,51.9244,4.4777,0.0,Netherlands,Rotterdam,Unknown
+Telstar,N1,52.458,4.62,0.0,Netherlands,Velsen,Unknown
+Twente,N1,52.2215,6.8937,0.0,Netherlands,Enschede,Unknown
+Utrecht,N1,52.0907,5.1214,0.0,Netherlands,Utrecht,Unknown
+VVV Venlo,N1,51.3704,6.1724,0.0,Netherlands,Venlo,Unknown
+Vitesse,N1,51.9851,5.8987,0.0,Netherlands,Arnhem,Unknown
+Volendam,N1,52.495,5.0708,0.0,Netherlands,Volendam,Unknown
+Waalwijk,N1,51.6829,5.0706,0.0,Netherlands,Waalwijk,Unknown
+Willem II,N1,51.5555,5.0913,0.0,Netherlands,Tilburg,Unknown
+Zwolle,N1,52.5168,6.083,0.0,Netherlands,Zwolle,Unknown
+AVS,P1,41.37,-8.412,0.0,Portugal,Vila das Aves,Unknown
+Academica,P1,40.2033,-8.4103,0.0,Portugal,Coimbra,Unknown
+Alverca,P1,38.898,-9.039,0.0,Portugal,Alverca,Unknown
+Arouca,P1,40.932,-8.245,0.0,Portugal,Arouca,Unknown
+Aves,P1,41.37,-8.412,0.0,Portugal,Vila das Aves,Unknown
+Beira Mar,P1,40.6405,-8.6538,0.0,Portugal,Aveiro,Unknown
+Belenenses,P1,38.7223,-9.1393,0.0,Portugal,Lisbon,Unknown
+Benfica,P1,38.7223,-9.1393,0.0,Portugal,Lisbon,Unknown
+Boavista,P1,41.1579,-8.6291,0.0,Portugal,Porto,Unknown
+Casa Pia,P1,38.7223,-9.1393,0.0,Portugal,Lisbon,Unknown
+Chaves,P1,41.7402,-7.4688,0.0,Portugal,Chaves,Unknown
+Estoril,P1,38.7057,-9.3977,0.0,Portugal,Estoril,Unknown
+Estrela,P1,38.7597,-9.239,0.0,Portugal,Amadora,Unknown
+Famalicao,P1,41.4078,-8.5198,0.0,Portugal,Famalicao,Unknown
+Farense,P1,37.0194,-7.9304,0.0,Portugal,Farense,Unknown
+Feirense,P1,40.925,-8.542,0.0,Portugal,Feirense,Unknown
+Gil Vicente,P1,41.5388,-8.6151,0.0,Portugal,Barcelos,Unknown
+Guimaraes,P1,41.4444,-8.2962,0.0,Portugal,Guimaraes,Unknown
+Leiria,P1,39.7436,-8.8071,0.0,Portugal,Leiria,Unknown
+Maritimo,P1,32.6669,-16.9241,0.0,Portugal,Funchal,Unknown
+Moreirense,P1,41.382,-8.339,0.0,Portugal,Moreirense,Unknown
+Nacional,P1,32.6669,-16.9241,0.0,Portugal,Funchal,Unknown
+Naval,P1,40.15,-8.8667,0.0,Portugal,Figueira da Foz,Unknown
+Olhanense,P1,37.0286,-7.8411,0.0,Portugal,Olhanense,Unknown
+Pacos Ferreira,P1,41.276,-8.376,0.0,Portugal,Pacos de Ferreira,Unknown
+Penafiel,P1,41.2084,-8.2829,0.0,Portugal,Penafiel,Unknown
+Portimonense,P1,37.1366,-8.5377,0.0,Portugal,Portimonense,Unknown
+Porto,P1,41.1579,-8.6291,0.0,Portugal,Porto,Unknown
+Rio Ave,P1,41.3547,-8.7447,0.0,Portugal,Vila do Conde,Unknown
+Santa Clara,P1,37.7412,-25.6756,0.0,Portugal,Ponta Delgada,Unknown
+Setubal,P1,38.5244,-8.8882,0.0,Portugal,Setubal,Unknown
+Sp Braga,P1,41.5454,-8.4265,0.0,Portugal,Braga,Unknown
+Sp Lisbon,P1,38.7223,-9.1393,0.0,Portugal,Lisbon,Unknown
+Tondela,P1,40.516,-8.08,0.0,Portugal,Tondela,Unknown
+Uniao Madeira,P1,32.6669,-16.9241,0.0,Portugal,Funchal,Unknown
+Vizela,P1,41.3824,-8.2481,0.0,Portugal,Vizela,Unknown
+Aberdeen,SC0,57.1497,-2.0943,0.0,Scotland,Aberdeen,Unknown
+Celtic,SC0,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Dundee,SC0,56.462,-2.9707,0.0,Scotland,Dundee,Unknown
+Dundee United,SC0,56.462,-2.9707,0.0,Scotland,Dundee,Unknown
+Dunfermline,SC0,56.0717,-3.4393,0.0,Scotland,Dunfermline,Unknown
+Falkirk,SC0,56.0019,-3.7839,0.0,Scotland,Falkirk,Unknown
+Hamilton,SC0,55.7774,-4.0547,0.0,Scotland,Hamilton,Unknown
+Hearts,SC0,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Hibernian,SC0,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Inverness C,SC0,57.4778,-4.2247,0.0,Scotland,Inverness,Unknown
+Kilmarnock,SC0,55.611,-4.4952,0.0,Scotland,Kilmarnock,Unknown
+Livingston,SC0,55.8864,-3.5226,0.0,Scotland,Livingston,Unknown
+Motherwell,SC0,55.789,-3.9919,0.0,Scotland,Motherwell,Unknown
+Partick,SC0,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Rangers,SC0,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Ross County,SC0,57.595,-4.427,0.0,Scotland,Dingwall,Unknown
+St Johnstone,SC0,56.3969,-3.437,0.0,Scotland,Perth,Unknown
+St Mirren,SC0,55.8473,-4.4277,0.0,Scotland,Paisley,Unknown
+Airdrie Utd,SC1,55.865,-3.98,0.0,Scotland,Airdrie,Unknown
+Alloa,SC1,56.115,-3.792,0.0,Scotland,Alloa,Unknown
+Arbroath,SC1,56.5591,-2.587,0.0,Scotland,Arbroath,Unknown
+Ayr,SC1,55.458,-4.629,0.0,Scotland,Ayr,Unknown
+Brechin,SC1,56.6438,-2.8903,0.0,Scotland,Brechin,Unknown
+Cove Rangers,SC1,57.1497,-2.0943,0.0,Scotland,Aberdeen,Unknown
+Cowdenbeath,SC1,56.111,-3.343,0.0,Scotland,Cowdenbeath,Unknown
+Dumbarton,SC1,55.9469,-4.5706,0.0,Scotland,Dumbarton,Unknown
+Dundee,SC1,56.462,-2.9707,0.0,Scotland,Dundee,Unknown
+Dundee United,SC1,56.462,-2.9707,0.0,Scotland,Dundee,Unknown
+Dunfermline,SC1,56.0717,-3.4393,0.0,Scotland,Dunfermline,Unknown
+Falkirk,SC1,56.0019,-3.7839,0.0,Scotland,Falkirk,Unknown
+Hamilton,SC1,55.7774,-4.0547,0.0,Scotland,Hamilton,Unknown
+Hearts,SC1,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Hibernian,SC1,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Inverness C,SC1,57.4778,-4.2247,0.0,Scotland,Inverness,Unknown
+Kilmarnock,SC1,55.611,-4.4952,0.0,Scotland,Kilmarnock,Unknown
+Livingston,SC1,55.8864,-3.5226,0.0,Scotland,Livingston,Unknown
+Morton,SC1,55.9477,-4.763,0.0,Scotland,Greenock,Unknown
+Partick,SC1,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Queen of Sth,SC1,55.07,-3.605,0.0,Scotland,Dumfries,Unknown
+Queens Park,SC1,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Raith Rvs,SC1,56.1114,-3.159,0.0,Scotland,Kirkcaldy,Unknown
+Rangers,SC1,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Ross County,SC1,57.595,-4.427,0.0,Scotland,Dingwall,Unknown
+St Johnstone,SC1,56.3969,-3.437,0.0,Scotland,Perth,Unknown
+St Mirren,SC1,55.8473,-4.4277,0.0,Scotland,Paisley,Unknown
+Stirling,SC1,56.1165,-3.9369,0.0,Scotland,Stirling,Unknown
+Airdrie Utd,SC2,55.865,-3.98,0.0,Scotland,Airdrie,Unknown
+Albion Rvs,SC2,55.862,-4.038,0.0,Scotland,Coatbridge,Unknown
+Alloa,SC2,56.115,-3.792,0.0,Scotland,Alloa,Unknown
+Annan Athletic,SC2,54.989,-3.258,0.0,Scotland,Annan,Unknown
+Arbroath,SC2,56.5591,-2.587,0.0,Scotland,Arbroath,Unknown
+Ayr,SC2,55.458,-4.629,0.0,Scotland,Ayr,Unknown
+Brechin,SC2,56.6438,-2.8903,0.0,Scotland,Brechin,Unknown
+Clyde,SC2,55.946,-3.99,0.0,Scotland,Cumbernauld,Unknown
+Cove Rangers,SC2,57.1497,-2.0943,0.0,Scotland,Aberdeen,Unknown
+Cowdenbeath,SC2,56.111,-3.343,0.0,Scotland,Cowdenbeath,Unknown
+Dumbarton,SC2,55.9469,-4.5706,0.0,Scotland,Dumbarton,Unknown
+Dunfermline,SC2,56.0717,-3.4393,0.0,Scotland,Dunfermline,Unknown
+East Fife,SC2,56.185,-3.022,0.0,Scotland,Methil,Unknown
+Edinburgh City,SC2,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+FC Edinburgh,SC2,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Falkirk,SC2,56.0019,-3.7839,0.0,Scotland,Falkirk,Unknown
+Forfar,SC2,56.6438,-2.8903,0.0,Scotland,Forfar,Unknown
+Hamilton,SC2,55.7774,-4.0547,0.0,Scotland,Hamilton,Unknown
+Inverness C,SC2,57.4778,-4.2247,0.0,Scotland,Inverness,Unknown
+Kelty Hearts,SC2,56.133,-3.387,0.0,Scotland,Kelty,Unknown
+Livingston,SC2,55.8864,-3.5226,0.0,Scotland,Livingston,Unknown
+Montrose,SC2,56.712,-2.466,0.0,Scotland,Montrose,Unknown
+Morton,SC2,55.9477,-4.763,0.0,Scotland,Greenock,Unknown
+Partick,SC2,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Peterhead,SC2,57.505,-1.784,0.0,Scotland,Peterhead,Unknown
+Queen of Sth,SC2,55.07,-3.605,0.0,Scotland,Dumfries,Unknown
+Queens Park,SC2,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Raith Rvs,SC2,56.1114,-3.159,0.0,Scotland,Kirkcaldy,Unknown
+Rangers,SC2,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Stenhousemuir,SC2,56.026,-3.814,0.0,Scotland,Stenhousemuir,Unknown
+Stirling,SC2,56.1165,-3.9369,0.0,Scotland,Stirling,Unknown
+Stranraer,SC2,54.9039,-5.026,0.0,Scotland,Stranraer,Unknown
+Albion Rvs,SC3,55.862,-4.038,0.0,Scotland,Coatbridge,Unknown
+Alloa,SC3,56.115,-3.792,0.0,Scotland,Alloa,Unknown
+Annan Athletic,SC3,54.989,-3.258,0.0,Scotland,Annan,Unknown
+Arbroath,SC3,56.5591,-2.587,0.0,Scotland,Arbroath,Unknown
+Berwick,SC3,55.769,-2.002,0.0,Scotland,Berwick-upon-Tweed,Unknown
+Bonnyrigg Rose,SC3,55.874,-3.105,0.0,Scotland,Bonnyrigg,Unknown
+Brechin,SC3,56.6438,-2.8903,0.0,Scotland,Brechin,Unknown
+Clyde,SC3,55.946,-3.99,0.0,Scotland,Cumbernauld,Unknown
+Cove Rangers,SC3,57.1497,-2.0943,0.0,Scotland,Aberdeen,Unknown
+Cowdenbeath,SC3,56.111,-3.343,0.0,Scotland,Cowdenbeath,Unknown
+Dumbarton,SC3,55.9469,-4.5706,0.0,Scotland,Dumbarton,Unknown
+East Fife,SC3,56.185,-3.022,0.0,Scotland,Methil,Unknown
+East Kilbride,SC3,55.764,-4.176,0.0,Scotland,East Kilbride,Unknown
+East Stirling,SC3,56.1165,-3.9369,0.0,Scotland,Stirling,Unknown
+Edinburgh City,SC3,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Elgin,SC3,57.649,-3.318,0.0,Scotland,Elgin,Unknown
+Forfar,SC3,56.6438,-2.8903,0.0,Scotland,Forfar,Unknown
+Kelty Hearts,SC3,56.133,-3.387,0.0,Scotland,Kelty,Unknown
+Montrose,SC3,56.712,-2.466,0.0,Scotland,Montrose,Unknown
+Peterhead,SC3,57.505,-1.784,0.0,Scotland,Peterhead,Unknown
+Queens Park,SC3,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Rangers,SC3,55.8642,-4.2518,0.0,Scotland,Glasgow,Unknown
+Spartans,SC3,55.9533,-3.1883,0.0,Scotland,Edinburgh,Unknown
+Stenhousemuir,SC3,56.026,-3.814,0.0,Scotland,Stenhousemuir,Unknown
+Stirling,SC3,56.1165,-3.9369,0.0,Scotland,Stirling,Unknown
+Stranraer,SC3,54.9039,-5.026,0.0,Scotland,Stranraer,Unknown
+Alaves,SP1,42.8467,-2.6716,0.0,Spain,Vitoria-Gasteiz,Unknown
+Almeria,SP1,36.840067,-2.4354672,0.0,Spain,Almeria,Unknown
+Ath Bilbao,SP1,43.264205,-2.949369,0.0,Spain,Bilbao,Unknown
+Ath Madrid,SP1,40.401667,-3.720556,0.0,Spain,Madrid,Unknown
+Barcelona,SP1,41.3851,2.1734,0.0,Spain,Barcelona,Unknown
+Betis,SP1,37.3891,-5.9845,0.0,Spain,Seville,Unknown
+Cadiz,SP1,36.1630337,-5.4651325,0.0,Spain,Cadiz,Unknown
+Celta,SP1,42.2406,-8.7207,0.0,Spain,Vigo,Unknown
+Cordoba,SP1,37.8721206,-4.7635163,0.0,Spain,Cordoba,Unknown
+Eibar,SP1,43.1849,-2.4733,0.0,Spain,Eibar,Unknown
+Elche,SP1,38.2653307,-0.6988391,0.0,Spain,Elche,Unknown
+Espanol,SP1,41.3851,2.1734,0.0,Spain,Barcelona,Unknown
+Getafe,SP1,40.3070639,-3.7331808,0.0,Spain,Getafe,Unknown
+Girona,SP1,41.9794,2.8214,0.0,Spain,Girona,Unknown
+Granada,SP1,37.1773,-3.5986,0.0,Spain,Granada,Unknown
+Hercules,SP1,38.3452,-0.481,0.0,Spain,Alicante,Unknown
+Huesca,SP1,42.1318,-0.4089,0.0,Spain,Huesca,Unknown
+La Coruna,SP1,43.3623,-8.4115,0.0,Spain,A Coruna,Unknown
+Las Palmas,SP1,28.1235,-15.4363,0.0,Spain,Las Palmas,Unknown
+Leganes,SP1,40.3259427,-3.7586217,0.0,Spain,Leganes,Unknown
+Levante,SP1,39.4699,-0.3763,0.0,Spain,Valencia,Unknown
+Malaga,SP1,37.0171996,-4.5571607,0.0,Spain,Malaga,Unknown
+Mallorca,SP1,39.5696,2.6502,0.0,Spain,Palma,Unknown
+Osasuna,SP1,42.8125,-1.6458,0.0,Spain,Pamplona,Unknown
+Oviedo,SP1,43.3619,-5.8494,0.0,Spain,Oviedo,Unknown
+Real Madrid,SP1,40.401667,-3.720556,0.0,Spain,Madrid,Unknown
+Santander,SP1,43.4623,-3.80998,0.0,Spain,Santander,Unknown
+Sevilla,SP1,37.4172353,-6.0046134,0.0,Spain,Sevilla,Unknown
+Sociedad,SP1,43.3183,-1.9812,0.0,Spain,San Sebastian,Unknown
+Sp Gijon,SP1,43.536111,-5.637222,0.0,Spain,Gijon,Unknown
+Valencia,SP1,39.4699,-0.3763,0.0,Spain,Valencia,Unknown
+Valladolid,SP1,41.6445801,-4.7612576,0.0,Spain,Valladolid,Unknown
+Vallecano,SP1,40.377486,-3.6107685,0.0,Spain,Vallecano,Unknown
+Villarreal,SP1,39.9383,-0.1009,0.0,Spain,Villarreal,Unknown
+Zaragoza,SP1,41.6488,-0.8891,0.0,Spain,Zaragoza,Unknown
+Alaves,SP2,42.8467,-2.6716,0.0,Spain,Vitoria-Gasteiz,Unknown
+Albacete,SP2,38.997579,-1.8637986,0.0,Spain,Albacete,Unknown
+Alcorcon,SP2,40.3492998,-3.8284295,0.0,Spain,Alcorcon,Unknown
+Alcoyano,SP2,38.697,-0.4747,0.0,Spain,Alcoyano,Unknown
+Almeria,SP2,36.840067,-2.4354672,0.0,Spain,Almeria,Unknown
+Amorebieta,SP2,43.222,-2.733,0.0,Spain,Amorebieta,Unknown
+Andorra,SP2,42.5063,1.5218,0.0,Spain,Andorra,Unknown
+Ath Bilbao B,SP2,43.27833,-2.83861,0.0,Spain,Bilbao,Unknown
+Barcelona B,SP2,41.3851,2.1734,0.0,Spain,Barcelona,Unknown
+Betis,SP2,37.3891,-5.9845,0.0,Spain,Seville,Unknown
+Burgos,SP2,42.6808132,-2.9353975,0.0,Spain,Burgos,Unknown
+Cadiz,SP2,36.1630337,-5.4651325,0.0,Spain,Cadiz,Unknown
+Cartagena,SP2,37.6257,-0.9966,0.0,Spain,Cartagena,Unknown
+Castellon,SP2,39.9864,-0.0513,0.0,Spain,Castellon,Unknown
+Celta,SP2,42.2406,-8.7207,0.0,Spain,Vigo,Unknown
+Ceuta,SP2,35.8894,-5.3213,0.0,Spain,Ceuta,Unknown
+Cordoba,SP2,37.8721206,-4.7635163,0.0,Spain,Cordoba,Unknown
+Cultural Leonesa,SP2,42.5987,-5.5671,0.0,Spain,Leon,Unknown
+Eibar,SP2,43.1849,-2.4733,0.0,Spain,Eibar,Unknown
+Elche,SP2,38.2653307,-0.6988391,0.0,Spain,Elche,Unknown
+Eldense,SP2,38.478,-0.793,0.0,Spain,Eldense,Unknown
+Espanol,SP2,41.3851,2.1734,0.0,Spain,Barcelona,Unknown
+Extremadura UD,SP2,38.8741557,-6.9683022,0.0,Spain,Almendralejo,Unknown
+Ferrol,SP2,43.4833,-8.236,0.0,Spain,Ferrol,Unknown
+Fuenlabrada,SP2,40.282476,-3.7923422,0.0,Spain,Fuenlabrada,Unknown
+Getafe,SP2,40.3070639,-3.7331808,0.0,Spain,Getafe,Unknown
+Gimnastic,SP2,41.1189,1.2445,0.0,Spain,Tarragona,Unknown
+Girona,SP2,41.9794,2.8214,0.0,Spain,Girona,Unknown
+Granada,SP2,37.1773,-3.5986,0.0,Spain,Granada,Unknown
+Guadalajara,SP2,40.6288126,-3.1674493,0.0,Spain,Guadalajara,Unknown
+Hercules,SP2,38.3452,-0.481,0.0,Spain,Alicante,Unknown
+Huesca,SP2,42.1318,-0.4089,0.0,Spain,Huesca,Unknown
+Ibiza,SP2,38.9067,1.4206,0.0,Spain,Ibiza,Unknown
+Jaen,SP2,37.7741964,-3.7865262,0.0,Spain,Jaen,Unknown
+La Coruna,SP2,43.3623,-8.4115,0.0,Spain,A Coruna,Unknown
+Las Palmas,SP2,28.1235,-15.4363,0.0,Spain,Las Palmas,Unknown
+Leganes,SP2,40.3259427,-3.7586217,0.0,Spain,Leganes,Unknown
+Leonesa,SP2,42.5987,-5.5671,0.0,Spain,Leon,Unknown
+Levante,SP2,39.4699,-0.3763,0.0,Spain,Valencia,Unknown
+Llagostera,SP2,41.8333,2.9,0.0,Spain,Llagostera,Unknown
+Logrones,SP2,42.4627,-2.444,0.0,Spain,Logrones,Unknown
+Lorca,SP2,37.9698392,-3.815181,0.0,Spain,Lorca,Unknown
+Lugo,SP2,43.0121,-7.555,0.0,Spain,Lugo,Unknown
+Malaga,SP2,37.0171996,-4.5571607,0.0,Spain,Malaga,Unknown
+Mallorca,SP2,39.5696,2.6502,0.0,Spain,Palma,Unknown
+Mirandes,SP2,42.6865,-2.947,0.0,Spain,Mirandes,Unknown
+Murcia,SP2,38.0422241,-1.1447324,0.0,Spain,Murcia,Unknown
+Numancia,SP2,40.3995283,-3.6596765,0.0,Spain,Numancia,Unknown
+Osasuna,SP2,42.8125,-1.6458,0.0,Spain,Pamplona,Unknown
+Oviedo,SP2,43.3619,-5.8494,0.0,Spain,Oviedo,Unknown
+Ponferradina,SP2,42.5567728,-6.6002877,0.0,Spain,Ponferradina,Unknown
+Rayo Majadahonda,SP2,40.4556465,-3.8642787,0.0,Spain,Majadahonda,Unknown
+Real Madrid B,SP2,40.401667,-3.720556,0.0,Spain,Madrid,Unknown
+Recreativo,SP2,37.2614,-6.9447,0.0,Spain,Huelva,Unknown
+Reus Deportiu,SP2,41.1548,1.1087,0.0,Spain,Reus,Unknown
+Sabadell,SP2,41.5463,2.1086,0.0,Spain,Sabadell,Unknown
+Salamanca,SP2,40.9772747,-5.661251,0.0,Spain,Salamanca,Unknown
+Santander,SP2,43.4623,-3.80998,0.0,Spain,Santander,Unknown
+Sevilla B,SP2,37.3891,-5.9845,0.0,Spain,Seville,Unknown
+Sociedad B,SP2,43.3183,-1.9812,0.0,Spain,San Sebastian,Unknown
+Sp Gijon,SP2,43.536111,-5.637222,0.0,Spain,Gijon,Unknown
+Tenerife,SP2,28.4636,-16.2518,0.0,Spain,Tenerife,Unknown
+UCAM Murcia,SP2,37.9923235,-1.1863075,0.0,Spain,Murcia,Unknown
+Valladolid,SP2,41.6445801,-4.7612576,0.0,Spain,Valladolid,Unknown
+Vallecano,SP2,40.377486,-3.6107685,0.0,Spain,Vallecano,Unknown
+Villarreal,SP2,39.9383,-0.1009,0.0,Spain,Villarreal,Unknown
+Villarreal B,SP2,39.9383,-0.1009,0.0,Spain,Villarreal,Unknown
+Xerez,SP2,36.6817,-6.1377,0.0,Spain,Xerez,Unknown
+Zaragoza,SP2,41.6488,-0.8891,0.0,Spain,Zaragoza,Unknown
+Ad. Demirspor,T1,36.998889,35.329722,0.0,Turkey,Demirspor,Unknown
+Adanaspor,T1,36.998889,35.329722,0.0,Turkey,Adanaspor,Unknown
+Akhisar Belediyespor,T1,38.623006,27.439933,0.0,Turkey,Belediyespor,Unknown
+Alanyaspor,T1,36.562614,32.079143,0.0,Turkey,Alanyaspor,Unknown
+Altay,T1,38.4237,27.1428,0.0,Turkey,Izmir,Unknown
+Ankaragucu,T1,39.9815285,32.6132533,0.0,Turkey,Ankaragucu,Unknown
+Antalyaspor,T1,36.8969,30.7133,0.0,Turkey,Antalya,Unknown
+Balikesirspor,T1,39.64151944,27.88785,0.0,Turkey,Balikesirspor,Unknown
+Besiktas,T1,41.0428465,29.0075283,0.0,Turkey,Besiktas,Unknown
+Bodrumspor,T1,37.040556,27.431667,0.0,Turkey,Bodrumspor,Unknown
+Bucaspor,T1,38.397585,27.195379,0.0,Turkey,Bucaspor,Unknown
+Bursaspor,T1,40.5191774,28.8264255,0.0,Turkey,Bursaspor,Unknown
+Buyuksehyr,T1,41.07447222,28.76570278,0.0,Turkey,Buyuksehyr,Unknown
+Denizlispor,T1,37.8157177,29.0579691,0.0,Turkey,Denizlispor,Unknown
+Elazigspor,T1,38.6240127,39.107531,0.0,Turkey,Elazigspor,Unknown
+Erciyesspor,T1,38.7135388,35.4533518,0.0,Turkey,Erciyesspor,Unknown
+Erzurum BB,T1,39.90632,41.2727715,0.0,Turkey,Erzurum,Unknown
+Eskisehirspor,T1,39.798069,30.5207231,0.0,Turkey,Eskisehirspor,Unknown
+Eyupspor,T1,41.04746,28.92974,0.0,Turkey,Eyupspor,Unknown
+Fenerbahce,T1,40.9875807,29.0369773,0.0,Turkey,Fenerbahce,Unknown
+Galatasaray,T1,41.1025976,28.9922753,0.0,Turkey,Galatasaray,Unknown
+Gaziantep,T1,37.0628317,37.3792617,0.0,Turkey,Gaziantep,Unknown
+Gaziantepspor,T1,37.067572,37.377592,0.0,Turkey,Gaziantepspor,Unknown
+Genclerbirligi,T1,39.9334,32.8597,0.0,Turkey,Ankara,Unknown
+Giresunspor,T1,40.90972222,38.37194444,0.0,Turkey,Giresunspor,Unknown
+Goztep,T1,38.434861,27.178261,0.0,Turkey,Goztep,Unknown
+Hatayspor,T1,36.25806,36.20778,0.0,Turkey,Hatayspor,Unknown
+Istanbulspor,T1,41.02444,28.69778,0.0,Turkey,Istanbulspor,Unknown
+Karabukspor,T1,41.2090545,32.6168834,0.0,Turkey,Karabukspor,Unknown
+Karagumruk,T1,41.0268821,28.9373882,0.0,Turkey,Karagumruk,Unknown
+Kasimpasa,T1,39.9733957,41.6691899,0.0,Turkey,Kasimpasa,Unknown
+Kayserispor,T1,38.7656367,35.4592488,0.0,Turkey,Kayserispor,Unknown
+Kocaelispor,T1,40.7556968,30.0130024,0.0,Turkey,Kocaelispor,Unknown
+Konyaspor,T1,37.9461978,32.4867282,0.0,Turkey,Konyaspor,Unknown
+Manisaspor,T1,38.623006,27.439933,0.0,Turkey,Manisaspor,Unknown
+Mersin Idman Yurdu,T1,36.7802711,34.6022692,0.0,Turkey,Yurdu,Unknown
+Orduspor,T1,40.982222,37.878333,0.0,Turkey,Orduspor,Unknown
+Osmanlispor,T1,39.9519599,32.7323364,0.0,Turkey,Osmanlispor,Unknown
+Pendikspor,T1,40.887636,29.2276524,0.0,Turkey,Pendikspor,Unknown
+Rizespor,T1,41.0466289,40.5874538,0.0,Turkey,Rizespor,Unknown
+Samsunspor,T1,41.276854,36.3558754,0.0,Turkey,Samsunspor,Unknown
+Sivasspor,T1,39.7303685,36.9859944,0.0,Turkey,Sivasspor,Unknown
+Trabzonspor,T1,40.895672,29.166289,0.0,Turkey,Trabzonspor,Unknown
+Umraniyespor,T1,41.05889,29.10944,0.0,Turkey,Umraniyespor,Unknown
+Yeni Malatyaspor,T1,38.352178,38.330494,0.0,Turkey,Malatyaspor,Unknown

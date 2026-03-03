@@ -18,7 +18,7 @@ def main():
     matches = load_matches_csv('data/spi_matches.csv')
     print('loading artifact...')
     artifact = load_artifact('models/score_models.joblib')
-    stadiums = load_stadiums_csv('data/stadium_coordinates.csv')
+    stadiums = load_stadiums_csv('data/stadium_coordinates_completed_full.csv')
     print('building frame...')
     cfg = FeatureConfig(**artifact.get('config', {}))
     frame = build_training_frame(matches, stadiums, cfg)

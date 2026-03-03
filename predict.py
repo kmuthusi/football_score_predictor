@@ -15,6 +15,7 @@ Then we convert expected goals into a correct-score probability distribution
 from __future__ import annotations
 
 import math
+from importlib.metadata import PackageNotFoundError, version as package_version
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
@@ -189,7 +190,52 @@ def load_artifact(path: str | Path) -> Dict[str, Any]:
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(f"Model artifact not found: {path}")
-    return joblib.load(path)
+    try:
+        artifact = joblib.load(path)
+    except Exception as exc:
+        runtime_sklearn = _get_runtime_sklearn_version()
+        details = (
+            f"Failed to load model artifact: {path}\n"
+            f"Root error: {type(exc).__name__}: {exc}\n"
+            f"Detected runtime scikit-learn: {runtime_sklearn or 'unknown'}\n"
+            "This is commonly caused by loading an artifact created with a different "
+            "scikit-learn version.\n"
+            "Fix options:\n"
+            "  1) Install the artifact-compatible version (recommended for this project: scikit-learn==1.6.1)\n"
+            "  2) Retrain the model artifact in your current environment"
+        )
+        raise RuntimeError(details) from exc
+
+    expected_sklearn = (
+        artifact.get("training_environment", {}) if isinstance(artifact, dict) else {}
+    ).get("scikit_learn_version")
+    runtime_sklearn = _get_runtime_sklearn_version()
+    if expected_sklearn and runtime_sklearn:
+        if _major_minor(str(expected_sklearn)) != _major_minor(str(runtime_sklearn)):
+            raise RuntimeError(
+                "Artifact/runtime scikit-learn mismatch detected. "
+                f"artifact={expected_sklearn}, runtime={runtime_sklearn}. "
+                "Use the same major.minor version as the training environment or retrain the artifact."
+            )
+
+    return artifact
+
+
+def _get_runtime_sklearn_version() -> str | None:
+    try:
+        return package_version("scikit-learn")
+    except PackageNotFoundError:
+        return None
+
+
+def _major_minor(v: str) -> tuple[int, int] | None:
+    parts = str(v).split(".")
+    if len(parts) < 2:
+        return None
+    try:
+        return int(parts[0]), int(parts[1])
+    except ValueError:
+        return None
 
 
 def predict_expected_goals(artifact: Dict[str, Any], X: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:

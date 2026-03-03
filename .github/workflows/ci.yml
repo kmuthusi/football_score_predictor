@@ -47,7 +47,7 @@ jobs:
       - name: Ensure model artifact exists
         run: |
           if [ ! -f models/score_models.joblib ]; then
-            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-goals 4 --max-iter 500
+            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --max-goals 4 --max-iter 500
           fi
 
       - name: Reproducible JSON evaluation
@@ -55,7 +55,7 @@ jobs:
           python evaluate_reproducible.py \
             --artifact models/score_models.joblib \
             --matches data/spi_matches.csv \
-            --stadiums data/stadium_coordinates.csv \
+            --stadiums data/stadium_coordinates_completed_full.csv \
             --json > evaluation_metrics.json
 
       - name: Imputation monitoring (generate report)
@@ -63,7 +63,7 @@ jobs:
           python monitor_imputation.py \
             --artifact models/score_models.joblib \
             --matches data/spi_matches.csv \
-            --stadiums data/stadium_coordinates.csv \
+            --stadiums data/stadium_coordinates_completed_full.csv \
             --recent-days 365 \
             --out imputation_report.json || true
 
@@ -233,12 +233,12 @@ jobs:
       - name: Ensure model artifact exists
         run: |
           if [ ! -f models/score_models.joblib ]; then
-            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-goals 4 --max-iter 500
+            python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --max-goals 4 --max-iter 500
           fi
 
       - name: RL train (smoke)
         run: |
-          python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --epochs 1 --save models/rl_policy_test.joblib --no-test-eval
+          python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --epochs 1 --save models/rl_policy_test.joblib --no-test-eval
 
       - name: Validate RL policy safety
         run: |
@@ -247,7 +247,7 @@ jobs:
 
       - name: RL eval (smoke)
         run: |
-          python rl_eval.py --policy models/rl_policy_test.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+          python rl_eval.py --policy models/rl_policy_test.joblib --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv
 
       - name: Run RL unit tests
         run: |

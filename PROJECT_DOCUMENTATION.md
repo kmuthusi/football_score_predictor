@@ -39,18 +39,30 @@ predict.py                  # Inference utilities and probability transformation
 features.py                 # Data preprocessing + leakage-safe feature engineering
 metrics.py                  # Scoring metrics and Dixon-Coles fitting helpers
 calibration_trends.py       # Trend helper for run-to-run calibration logs
+evaluate_reproducible.py    # Reproducible held-out evaluation CLI
+monitor_imputation.py       # Imputation monitoring + CI report generation
+rl_env.py / rl_train.py / rl_eval.py  # Optional RL betting policy stack
+probability_utils.py        # Shared probability helper functions (W/D/L, implied probs)
 config.py                   # Paths and default constants
 requirements.txt            # Python dependencies
 README.md                   # Quickstart-focused documentation
 data/
   spi_matches.csv
-  stadium_coordinates.csv
+  stadium_coordinates_completed_full.csv
 models/
   score_models.joblib
   low_score_calibration_log.csv
 tests/
-  test_features_contract.py
-  test_predict_probs.py
+   test_predict_preprocessing.py
+   test_monitor_imputation.py
+   test_check_imputation_thresholds.py
+   test_low_score_features.py
+   test_concentration_shrinker.py
+   test_rl_env.py
+   test_rl_train_smoke.py
+   test_rl_eval_smoke.py
+   test_rl_policy_safety.py
+   test_scientific_checks.py
 ```
 
 ---
@@ -61,11 +73,12 @@ tests/
 
 - Python 3.10+ recommended
 - Dependencies (from `requirements.txt`):
-  - `pandas>=2.0`
-  - `numpy>=1.23`
-  - `scikit-learn>=1.2`
-  - `joblib>=1.2`
-  - `streamlit>=1.30`
+   - `numpy>=1.26,<3.0`
+   - `pandas>=2.1,<3.0`
+   - `scipy>=1.11,<2.0`
+   - `scikit-learn==1.6.1`
+   - `joblib>=1.3,<2.0`
+   - `streamlit>=1.35,<2.0`
 
 ### 2.2 Installation
 
@@ -78,7 +91,7 @@ pip install -r requirements.txt
 Defined in `config.py`:
 
 - Matches CSV: `data/spi_matches.csv`
-- Stadium coordinates CSV: `data/stadium_coordinates.csv`
+- Stadium coordinates CSV: `data/stadium_coordinates_completed_full.csv`
 - Models directory: `models`
 - Artifact filename: `score_models.joblib`
 
@@ -98,7 +111,7 @@ Expected fields used by the pipeline:
 
 Additional fields (e.g., `play_id`, `season`, `country`) can exist but are not mandatory for modeling.
 
-### 3.2 Stadium Coordinates Input (`stadium_coordinates.csv`)
+### 3.2 Stadium Coordinates Input (`stadium_coordinates_completed_full.csv`)
 
 Expected fields:
 
@@ -144,7 +157,7 @@ For a match at date **T**, historical form features are computed only from match
 
 - Categorical columns are provided by `model_categorical_columns()`.
 - Numeric columns are provided by `model_numeric_columns(config)`.
-- `tests/test_features_contract.py` enforces that single-match feature generation returns all required model columns.
+- `tests/test_predict_preprocessing.py` enforces single-match feature generation column parity with artifact expectations.
 
 ---
 
@@ -239,7 +252,7 @@ A companion analysis script [`scripts/low_score_analysis.py`] computes empirical
 Run training:
 
 ```bash
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models
 ```
 
 ### 7.1 Core Arguments
@@ -319,7 +332,7 @@ Training example:
 
 ```bash
 python rl_train.py --artifact models/score_models.joblib --matches data/spi_matches.csv \
-    --stadiums data/stadium_coordinates.csv --epochs 30 \
+    --stadiums data/stadium_coordinates_completed_full.csv --epochs 30 \
     --low-score-penalty 0.05 --bet-penalty 0.01
 ```
 
@@ -327,7 +340,7 @@ Evaluation:
 
 ```bash
 python rl_eval.py --policy models/rl_policy.joblib --artifact models/score_models.joblib \
-    --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv
+    --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv
 ```
 
 CI also runs a lightweight “smoke” train+eval job to ensure RL code remains functional.
@@ -435,14 +448,14 @@ streamlit run app.py
 ### 12.1 End-to-End Baseline
 
 ```bash
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --max-iter 1000
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --max-iter 1000
 streamlit run app.py
 ```
 
 ### 12.2 Full Recommended Enhanced Run
 
 ```bash
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features --max-goals 9
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features --max-goals 9
 ```
 
 ### 12.3 Calibration Trend Inspection
@@ -457,8 +470,11 @@ python -m calibration_trends --last-n 10
 
 Current tests verify:
 
-- feature contract for single-match prediction row (`tests/test_features_contract.py`)
-- probability matrix normalization with and without Dixon-Coles (`tests/test_predict_probs.py`)
+- prediction preprocessing column parity (`tests/test_predict_preprocessing.py`)
+- imputation monitoring and threshold guard behavior (`tests/test_monitor_imputation.py`, `tests/test_check_imputation_thresholds.py`)
+- low-score feature engineering and concentration shrink guard (`tests/test_low_score_features.py`, `tests/test_concentration_shrinker.py`)
+- RL environment/train/eval/safety smoke checks (`tests/test_rl_env.py`, `tests/test_rl_train_smoke.py`, `tests/test_rl_eval_smoke.py`, `tests/test_rl_policy_safety.py`)
+- statistical/scientific diagnostics sanity checks (`tests/test_scientific_checks.py`)
 
 Run tests:
 
@@ -526,10 +542,10 @@ Potential future extensions can be added without redesigning the current archite
 pip install -r requirements.txt
 
 # Train baseline
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models
 
 # Train enhanced configuration
-python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features
+python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models --fit-dc --tune-decay --tune-metric dc_nll --dc-optimize-oot --decay-candidates 0 365 730 --val-days 180 --max-iter 1000 --use-ewm-features --use-adjusted-features
 
 # Launch app
 streamlit run app.py

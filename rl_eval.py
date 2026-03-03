@@ -7,7 +7,7 @@ Loads:
   - policy: models/rl_policy.joblib (joblib payload with W, b, obs_dim, train_cfg, optional obs_norm)
   - artifact: models/score_models.joblib
   - matches: data/spi_matches.csv
-  - stadiums: data/stadium_coordinates.csv
+  - stadiums: data/stadium_coordinates_completed_full.csv
 
 Runs:
   - builds leakage-safe historical feature frame
@@ -35,6 +35,7 @@ from predict import (
     scoreline_probability_matrix,
     calibrate_scoreline_matrix,
 )
+from probability_utils import wdl_from_scoreline_matrix
 
 
 def _softmax(logits: np.ndarray) -> np.ndarray:
@@ -46,17 +47,7 @@ def _softmax(logits: np.ndarray) -> np.ndarray:
     return e / s
 
 
-def _wdl_from_scoreline_matrix(mat: pd.DataFrame) -> Tuple[float, float, float]:
-    # Same logic as the Streamlit app: sum below-diagonal / diagonal / above-diagonal. :contentReference[oaicite:3]{index=3}
-    arr = mat.to_numpy(dtype=float)
-    p_home = float(np.tril(arr, k=-1).sum())
-    p_draw = float(np.trace(arr))
-    p_away = float(np.triu(arr, k=1).sum())
-    return p_home, p_draw, p_away
-
-
 def _resolve_test_split(frame: pd.DataFrame, artifact: Dict[str, Any], test_days_fallback: int) -> pd.DataFrame:
-    # Same split convention used across your pipeline: artifact cutoff_date if present, else last N days fallback. :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
     if artifact.get("cutoff_date"):
         cutoff = pd.Timestamp(str(artifact["cutoff_date"]))
         return frame[frame["date"] >= cutoff].copy()
@@ -197,7 +188,7 @@ def main() -> None:
         )
         mat = calibrate_scoreline_matrix(mat, cal_cfg, div=div)
         arr = mat.to_numpy(dtype=float)
-        pH, pD, pA = _wdl_from_scoreline_matrix(mat)
+        pH, pD, pA = wdl_from_scoreline_matrix(mat)
 
         edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 

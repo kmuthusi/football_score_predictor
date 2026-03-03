@@ -6,7 +6,7 @@ Train two Poisson models:
   - model_away: predicts expected away goals
 
 Usage:
-  python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models
+  python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models
 
 This script:
   1) builds leakage-safe rolling features for each historical match
@@ -20,7 +20,9 @@ from __future__ import annotations
 
 import argparse
 import math
+import sys
 from datetime import datetime, timezone
+from importlib.metadata import PackageNotFoundError, version as package_version
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -50,6 +52,13 @@ from metrics import (
     per_match_neg_log_likelihood_dixon_coles,
 )
 from predict import scoreline_probability_matrix, calibrate_scoreline_matrix
+
+
+def _installed_version(dist_name: str) -> str | None:
+    try:
+        return package_version(dist_name)
+    except PackageNotFoundError:
+        return None
 
 
 def build_time_decay_weights(
@@ -1095,6 +1104,8 @@ def main() -> None:
                         help="Fit league-specific temperatures where enough calibration data exists.")
     parser.add_argument("--calibration-min-league-rows", type=int, default=1200,
                         help="Minimum validation rows to fit league-specific temperature.")
+    parser.add_argument("--calibration-temperature-floor", type=float, default=1.0,
+                        help="Minimum temperature after calibration (>=1.0 flattens).")
     parser.add_argument("--fit-low-score-mixture", action=argparse.BooleanOptionalAction, default=False,
                         help="Fit a minimal low-score mixture calibration on validation split (after temperature calibration).")
     parser.add_argument("--backtest-folds", type=int, default=0,
@@ -1103,6 +1114,12 @@ def main() -> None:
 
     if args.tune_metric == "dc_nll" and not args.fit_dc:
         raise ValueError("--tune-metric dc_nll requires --fit-dc")
+
+    if float(args.dc_max_top_share) > 0.0 and not bool(args.fit_dc):
+        print(
+            "[warning] --dc-max-top-share is set but --fit-dc is disabled; "
+            "the concentration guardrail only applies when Dixon-Coles is enabled."
+        )
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1305,40 +1322,51 @@ def main() -> None:
         "enabled": False,
         "method": "temperature",
         "temperature": 1.0,
+        "nll_uncal": float("nan"),
+        "nll_cal": float("nan"),
     }
 
+    train_sorted = train_df.sort_values("date").copy()
+    calib_cutoff = pd.Timestamp(train_sorted["date"].max()) - pd.Timedelta(days=int(args.calibration_val_days))
+    fit_cal_df = train_sorted[train_sorted["date"] < calib_cutoff].copy()
+    val_cal_df = train_sorted[train_sorted["date"] >= calib_cutoff].copy()
+
+    have_calibration_rows = len(fit_cal_df) >= 5000 and len(val_cal_df) >= 1000
+
+    y_home_val_cal = np.array([], dtype=int)
+    y_away_val_cal = np.array([], dtype=int)
+    lam_home_val_cal = np.array([], dtype=float)
+    lam_away_val_cal = np.array([], dtype=float)
+    div_val_cal = np.array([], dtype=str)
+    rho_cal = float(rho_global) if rho_global is not None else None
+
+    if have_calibration_rows:
+        X_fit_cal = fit_cal_df[list(cat_cols) + list(num_cols)]
+        X_val_cal = val_cal_df[list(cat_cols) + list(num_cols)]
+        y_home_fit_cal = fit_cal_df["home_goals"].astype(int).to_numpy()
+        y_away_fit_cal = fit_cal_df["away_goals"].astype(int).to_numpy()
+        y_home_val_cal = val_cal_df["home_goals"].astype(int).to_numpy()
+        y_away_val_cal = val_cal_df["away_goals"].astype(int).to_numpy()
+        div_val_cal = val_cal_df["div"].astype(str).to_numpy()
+
+        ref_date_fit_cal = pd.Timestamp(fit_cal_df["date"].max())
+        w_fit_cal = build_time_decay_weights(
+            fit_cal_df["date"],
+            ref_date=ref_date_fit_cal,
+            half_life_days=selected_half_life_days,
+            min_weight=min_weight,
+        )
+
+        model_home_cal = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
+        model_away_cal = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
+        model_home_cal.fit(X_fit_cal, y_home_fit_cal, model__sample_weight=w_fit_cal)
+        model_away_cal.fit(X_fit_cal, y_away_fit_cal, model__sample_weight=w_fit_cal)
+
+        lam_home_val_cal = np.clip(model_home_cal.predict(X_val_cal), 1e-6, None)
+        lam_away_val_cal = np.clip(model_away_cal.predict(X_val_cal), 1e-6, None)
+
     if bool(args.fit_score_calibration):
-        train_sorted = train_df.sort_values("date").copy()
-        calib_cutoff = pd.Timestamp(train_sorted["date"].max()) - pd.Timedelta(days=int(args.calibration_val_days))
-        fit_cal_df = train_sorted[train_sorted["date"] < calib_cutoff].copy()
-        val_cal_df = train_sorted[train_sorted["date"] >= calib_cutoff].copy()
-
-        if len(fit_cal_df) >= 5000 and len(val_cal_df) >= 1000:
-            X_fit_cal = fit_cal_df[list(cat_cols) + list(num_cols)]
-            X_val_cal = val_cal_df[list(cat_cols) + list(num_cols)]
-            y_home_fit_cal = fit_cal_df["home_goals"].astype(int).to_numpy()
-            y_away_fit_cal = fit_cal_df["away_goals"].astype(int).to_numpy()
-            y_home_val_cal = val_cal_df["home_goals"].astype(int).to_numpy()
-            y_away_val_cal = val_cal_df["away_goals"].astype(int).to_numpy()
-            div_val_cal = val_cal_df["div"].astype(str).to_numpy()
-
-            ref_date_fit_cal = pd.Timestamp(fit_cal_df["date"].max())
-            w_fit_cal = build_time_decay_weights(
-                fit_cal_df["date"],
-                ref_date=ref_date_fit_cal,
-                half_life_days=selected_half_life_days,
-                min_weight=min_weight,
-            )
-
-            model_home_cal = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
-            model_away_cal = build_pipeline(cat_cols, num_cols, alpha=float(args.alpha), max_iter=int(args.max_iter))
-            model_home_cal.fit(X_fit_cal, y_home_fit_cal, model__sample_weight=w_fit_cal)
-            model_away_cal.fit(X_fit_cal, y_away_fit_cal, model__sample_weight=w_fit_cal)
-
-            lam_home_val_cal = np.clip(model_home_cal.predict(X_val_cal), 1e-6, None)
-            lam_away_val_cal = np.clip(model_away_cal.predict(X_val_cal), 1e-6, None)
-
-            rho_cal = float(rho_global) if rho_global is not None else None
+        if have_calibration_rows:
             scoreline_calibration = fit_temperature_calibration(
                 y_home=y_home_val_cal,
                 y_away=y_away_val_cal,
@@ -1347,6 +1375,10 @@ def main() -> None:
                 max_goals=int(config.max_goals),
                 rho=rho_cal,
             )
+            # enforce a minimum (floor) on the fitted temperature if requested
+            t_floor = float(args.calibration_temperature_floor)
+            if t_floor > 1.0 and scoreline_calibration.get("temperature", 1.0) < t_floor:
+                scoreline_calibration["temperature"] = t_floor
 
             if bool(args.score_calibration_by_league):
                 temps_by_div: Dict[str, float] = {}
@@ -1369,80 +1401,77 @@ def main() -> None:
     # incorporate low-score mixture if configured earlier
     if low_score_cfg:
         scoreline_calibration["low_score_mixture"] = low_score_cfg
-                        lam_away=lam_away_val_cal[idx_arr],
-                        max_goals=int(config.max_goals),
-                        rho=rho_cal,
-                    )
-                    temps_by_div[str(div_name)] = float(fit_div.get("temperature", 1.0))
-                if temps_by_div:
-                    scoreline_calibration["temperatures_by_div"] = temps_by_div
 
-            scoreline_calibration["split_cutoff"] = str(calib_cutoff.date())
-            scoreline_calibration["val_rows"] = int(len(val_cal_df))
+    scoreline_calibration["split_cutoff"] = str(calib_cutoff.date())
+    scoreline_calibration["val_rows"] = int(len(val_cal_df))
 
-            reliability = top1_reliability_report(
-                y_home=y_home_val_cal,
-                y_away=y_away_val_cal,
-                lam_home=lam_home_val_cal,
-                lam_away=lam_away_val_cal,
-                max_goals=int(config.max_goals),
-                rho=rho_cal,
-                calibration_cfg=scoreline_calibration,
-                n_bins=10,
-                divs=div_val_cal,
-            )
-            scoreline_calibration["top1_reliability"] = reliability
+    reliability = {"ece": float("nan"), "enabled": False, "reason": "not_enough_calibration_rows"}
+    event_reliability = {"events": {}, "enabled": False, "reason": "not_enough_calibration_rows"}
 
-            event_reliability = event_level_reliability_report(
-                y_home=y_home_val_cal,
-                y_away=y_away_val_cal,
-                lam_home=lam_home_val_cal,
-                lam_away=lam_away_val_cal,
-                max_goals=int(config.max_goals),
-                rho=rho_cal,
-                calibration_cfg=scoreline_calibration,
-                events=("1-1", "1-0", "0-1", "0-0"),
-                n_bins=10,
-                divs=div_val_cal,
-            )
-            scoreline_calibration["event_reliability"] = event_reliability
+    if have_calibration_rows:
+        reliability = top1_reliability_report(
+            y_home=y_home_val_cal,
+            y_away=y_away_val_cal,
+            lam_home=lam_home_val_cal,
+            lam_away=lam_away_val_cal,
+            max_goals=int(config.max_goals),
+            rho=rho_cal,
+            calibration_cfg=scoreline_calibration,
+            n_bins=10,
+            divs=div_val_cal,
+        )
+        event_reliability = event_level_reliability_report(
+            y_home=y_home_val_cal,
+            y_away=y_away_val_cal,
+            lam_home=lam_home_val_cal,
+            lam_away=lam_away_val_cal,
+            max_goals=int(config.max_goals),
+            rho=rho_cal,
+            calibration_cfg=scoreline_calibration,
+            events=("1-1", "1-0", "0-1", "0-0"),
+            n_bins=10,
+            divs=div_val_cal,
+        )
 
-            if bool(args.fit_low_score_mixture):
-                low_mix = fit_low_score_mixture_calibration(
-                    y_home=y_home_val_cal,
-                    y_away=y_away_val_cal,
-                    lam_home=lam_home_val_cal,
-                    lam_away=lam_away_val_cal,
-                    max_goals=int(config.max_goals),
-                    rho=rho_cal,
-                    calibration_cfg=scoreline_calibration,
-                )
-                scoreline_calibration["low_score_mixture"] = low_mix
-                print(
-                    "Low-score mixture calibration: "
-                    f"enabled={low_mix.get('enabled', False)}, "
-                    f"alpha={float(low_mix.get('alpha', 0.0)):.3f}, "
-                    f"NLL {float(low_mix.get('nll_base', np.nan)):.4f} -> {float(low_mix.get('nll_mix', np.nan)):.4f}"
-                )
+    scoreline_calibration["top1_reliability"] = reliability
+    scoreline_calibration["event_reliability"] = event_reliability
 
+    if bool(args.fit_low_score_mixture) and have_calibration_rows:
+        low_mix = fit_low_score_mixture_calibration(
+            y_home=y_home_val_cal,
+            y_away=y_away_val_cal,
+            lam_home=lam_home_val_cal,
+            lam_away=lam_away_val_cal,
+            max_goals=int(config.max_goals),
+            rho=rho_cal,
+            calibration_cfg=scoreline_calibration,
+        )
+        scoreline_calibration["low_score_mixture"] = low_mix
+        print(
+            "Low-score mixture calibration: "
+            f"enabled={low_mix.get('enabled', False)}, "
+            f"alpha={float(low_mix.get('alpha', 0.0)):.3f}, "
+            f"NLL {float(low_mix.get('nll_base', np.nan)):.4f} -> {float(low_mix.get('nll_mix', np.nan)):.4f}"
+        )
+
+    print(
+        f"Scoreline calibration (temperature): T={scoreline_calibration['temperature']:.3f}, "
+        f"NLL {float(scoreline_calibration.get('nll_uncal', float('nan'))):.4f} -> {float(scoreline_calibration.get('nll_cal', float('nan'))):.4f}, "
+        f"ECE={reliability['ece']:.4f}"
+    )
+    ev = event_reliability.get("events", {})
+    if ev:
+        print("Event reliability (ECE / mean_pred vs prevalence):")
+        for event in ("1-1", "1-0", "0-1", "0-0"):
+            if event not in ev:
+                continue
+            row = ev[event]
             print(
-                f"Scoreline calibration (temperature): T={scoreline_calibration['temperature']:.3f}, "
-                f"NLL {scoreline_calibration['nll_uncal']:.4f} -> {scoreline_calibration['nll_cal']:.4f}, "
-                f"ECE={reliability['ece']:.4f}"
+                f"  {event}: ECE={row['ece']:.4f}, "
+                f"pred={row['mean_pred']:.2%}, emp={row['prevalence']:.2%}"
             )
-            ev = event_reliability.get("events", {})
-            if ev:
-                print("Event reliability (ECE / mean_pred vs prevalence):")
-                for event in ("1-1", "1-0", "0-1", "0-0"):
-                    if event not in ev:
-                        continue
-                    row = ev[event]
-                    print(
-                        f"  {event}: ECE={row['ece']:.4f}, "
-                        f"pred={row['mean_pred']:.2%}, emp={row['prevalence']:.2%}"
-                    )
-        else:
-            print("Scoreline calibration: skipped (not enough calibration rows)")
+    else:
+        print("Scoreline calibration: skipped (not enough calibration rows)")
 
     rho_guardrail = None
     if rho_global is not None and float(args.dc_max_top_share) > 0:
@@ -1704,6 +1733,12 @@ def main() -> None:
                 "dc_max_top_share": float(args.dc_max_top_share),
                 "fit_score_calibration": bool(args.fit_score_calibration),
             },
+        },
+        "training_environment": {
+            "python_version": sys.version.split()[0],
+            "numpy_version": _installed_version("numpy"),
+            "pandas_version": _installed_version("pandas"),
+            "scikit_learn_version": _installed_version("scikit-learn"),
         },
         "scoreline_calibration": scoreline_calibration,
         "diagnostics": {

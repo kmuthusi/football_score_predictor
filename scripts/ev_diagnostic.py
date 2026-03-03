@@ -4,7 +4,7 @@ Compute model EV distribution across historical matches and report
 recommendations for sensible defaults (ev_threshold, min_bankroll, min_stake).
 
 Usage:
-  python scripts/ev_diagnostic.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --recent-days 365
+  python scripts/ev_diagnostic.py --artifact models/score_models.joblib --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --recent-days 365
 
 Outputs a short JSON summary to stdout.
 """

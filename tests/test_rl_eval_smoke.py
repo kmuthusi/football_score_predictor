@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 import unittest
 
 
@@ -11,7 +12,7 @@ class TestRLEvalSmoke(unittest.TestCase):
 
     def test_rl_eval_runs(self):
         subprocess.run([
-            "python",
+            sys.executable,
             "rl_eval.py",
             "--policy",
             self.policy_path,
@@ -20,7 +21,7 @@ class TestRLEvalSmoke(unittest.TestCase):
             "--matches",
             "data/spi_matches.csv",
             "--stadiums",
-            "data/stadium_coordinates.csv",
+            "data/stadium_coordinates_completed_full.csv",
         ], check=True)
 
 

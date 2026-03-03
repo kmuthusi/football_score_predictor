@@ -22,7 +22,7 @@ def rank(values: list[float], reverse: bool = False) -> list[int]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Sweep max_goals and select best held-out setting.")
     parser.add_argument("--matches", type=str, default="data/spi_matches.csv")
-    parser.add_argument("--stadiums", type=str, default="data/stadium_coordinates.csv")
+    parser.add_argument("--stadiums", type=str, default="data/stadium_coordinates_completed_full.csv")
     parser.add_argument("--base-out", type=str, default="models/sweeps/max_goals")
     parser.add_argument("--candidates", type=int, nargs="+", default=[4, 5, 6, 7, 8])
     parser.add_argument("--max-iter", type=int, default=500)

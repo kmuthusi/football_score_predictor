@@ -11,7 +11,7 @@ class TestPredictPreprocessing(unittest.TestCase):
     def test_prepare_row_matches_artifact_columns(self):
         artifact = load_artifact("models/score_models.joblib")
         matches = load_matches_csv("data/spi_matches.csv")
-        stadiums = load_stadiums_csv("data/stadium_coordinates.csv")
+        stadiums = load_stadiums_csv("data/stadium_coordinates_completed_full.csv")
 
         # Pick a realistic row with odds present
         row = matches.dropna(subset=["home_odds", "draw_odds", "away_odds"]).iloc[0]

@@ -126,11 +126,13 @@ def add_rolling_form_features(long_df: pd.DataFrame, windows: Iterable[int], ewm
     long_df["team_loc_matches_played"] = g_loc.cumcount()
     long_df["rest_days"] = g["date"].diff().dt.days
 
-    # compute rolling means for goals-for, goals-against, points, and low-score indicator
+    # derive additional basic stats
+    long_df["gd"] = long_df["goals_for"] - long_df["goals_against"]
+    # compute rolling means for goals-for, goals-against, points, goal-diff and low-score indicator
     long_df["low_score"] = ((long_df["goals_for"] + long_df["goals_against"]) <= 2).astype(int)
 
     for w in windows:
-        for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("low_score", "low_score")]:
+        for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("gd", "gd"), ("low_score", "low_score")]:
             roll = g[col].rolling(window=int(w), min_periods=1).mean()
             long_df[f"{prefix}_mean_{w}"] = roll.groupby(level=[0, 1]).shift(1).reset_index(level=[0, 1], drop=True)
 
@@ -138,14 +140,14 @@ def add_rolling_form_features(long_df: pd.DataFrame, windows: Iterable[int], ewm
             long_df[f"{prefix}_loc_mean_{w}"] = roll_loc.groupby(level=[0, 1, 2]).shift(1).reset_index(level=[0, 1, 2], drop=True)
 
     span = max(int(ewm_span), 2)
-    for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("low_score", "low_score")]:
+    for col, prefix in [("goals_for", "gf"), ("goals_against", "ga"), ("points", "pts"), ("gd", "gd"), ("low_score", "low_score")]:
         long_df[f"{prefix}_ewm"] = g[col].transform(lambda s: s.ewm(span=span, adjust=False, min_periods=1).mean().shift(1))
         long_df[f"{prefix}_loc_ewm"] = g_loc[col].transform(lambda s: s.ewm(span=span, adjust=False, min_periods=1).mean().shift(1))
 
     opp_base_cols = []
     for w in windows:
-        opp_base_cols.extend([f"gf_mean_{w}", f"ga_mean_{w}", f"gf_loc_mean_{w}", f"ga_loc_mean_{w}", f"low_score_mean_{w}", f"low_score_loc_mean_{w}"])
-    opp_base_cols.extend(["gf_ewm", "ga_ewm", "gf_loc_ewm", "ga_loc_ewm", "low_score_ewm", "low_score_loc_ewm"])
+        opp_base_cols.extend([f"gf_mean_{w}", f"ga_mean_{w}", f"gd_mean_{w}", f"gf_loc_mean_{w}", f"ga_loc_mean_{w}", f"gd_loc_mean_{w}", f"low_score_mean_{w}", f"low_score_loc_mean_{w}"])
+    opp_base_cols.extend(["gf_ewm", "ga_ewm", "gd_ewm", "gf_loc_ewm", "ga_loc_ewm", "gd_loc_ewm", "low_score_ewm", "low_score_loc_ewm"])
     opp_view = long_df[["match_id", "team"] + opp_base_cols].rename(
         columns={"team": "opponent", **{c: f"opp_{c}" for c in opp_base_cols}}
     )
@@ -154,13 +156,17 @@ def add_rolling_form_features(long_df: pd.DataFrame, windows: Iterable[int], ewm
     for w in windows:
         long_df[f"adj_gf_mean_{w}"] = long_df[f"gf_mean_{w}"] - long_df[f"opp_ga_mean_{w}"]
         long_df[f"adj_ga_mean_{w}"] = long_df[f"ga_mean_{w}"] - long_df[f"opp_gf_mean_{w}"]
+        long_df[f"adj_gd_mean_{w}"] = long_df[f"gd_mean_{w}"] - long_df[f"opp_gd_mean_{w}"]
         long_df[f"adj_gf_loc_mean_{w}"] = long_df[f"gf_loc_mean_{w}"] - long_df[f"opp_ga_loc_mean_{w}"]
         long_df[f"adj_ga_loc_mean_{w}"] = long_df[f"ga_loc_mean_{w}"] - long_df[f"opp_gf_loc_mean_{w}"]
+        long_df[f"adj_gd_loc_mean_{w}"] = long_df[f"gd_loc_mean_{w}"] - long_df[f"opp_gd_loc_mean_{w}"]
 
     long_df["adj_gf_ewm"] = long_df["gf_ewm"] - long_df["opp_ga_ewm"]
     long_df["adj_ga_ewm"] = long_df["ga_ewm"] - long_df["opp_gf_ewm"]
+    long_df["adj_gd_ewm"] = long_df["gd_ewm"] - long_df["opp_gd_ewm"]
     long_df["adj_gf_loc_ewm"] = long_df["gf_loc_ewm"] - long_df["opp_ga_loc_ewm"]
     long_df["adj_ga_loc_ewm"] = long_df["ga_loc_ewm"] - long_df["opp_gf_loc_ewm"]
+    long_df["adj_gd_loc_ewm"] = long_df["gd_loc_ewm"] - long_df["opp_gd_loc_ewm"]
 
     long_df = long_df.drop(columns=[f"opp_{c}" for c in opp_base_cols], errors="ignore")
     return long_df
@@ -203,24 +209,28 @@ def add_travel_distance_feature(matches: pd.DataFrame, stadiums: pd.DataFrame) -
     st = stadiums.copy()
     if "status" in st.columns:
         st = st[st["status"].astype(str).str.lower().eq("success")]
-    keep_cols = [c for c in ["league", "team_name", "latitude", "longitude"] if c in st.columns]
+    # keep every column except status so additional stadium features are retained
+    keep_cols = [c for c in st.columns if c != "status"]
     st = st[keep_cols].dropna(subset=[c for c in ["latitude", "longitude", "team_name"] if c in keep_cols]).copy()
     st = st.rename(columns={"league": "div"})
 
-    h = st.rename(columns={
-        "team_name": "home_team",
-        "latitude": "home_lat",
-        "longitude": "home_lon",
-    })
-    a = st.rename(columns={
-        "team_name": "away_team",
-        "latitude": "away_lat",
-        "longitude": "away_lon",
-    })
+    # we want to carry through any extra columns beyond the basic ones
+    extras = [c for c in st.columns if c not in {"div", "team_name", "latitude", "longitude", "status"}]
+    # build rename maps for home/away prefixes
+    h_rename = {"team_name": "home_team", "latitude": "home_lat", "longitude": "home_lon"}
+    a_rename = {"team_name": "away_team", "latitude": "away_lat", "longitude": "away_lon"}
+    for col in extras:
+        if col not in h_rename:
+            h_rename[col] = f"home_{col}"
+            a_rename[col] = f"away_{col}"
+
+    h = st.rename(columns=h_rename)
+    a = st.rename(columns=a_rename)
 
     on_cols = [c for c in ["div"] if c in h.columns and c in matches.columns]
-    m = matches.merge(h[[*(on_cols), "home_team", "home_lat", "home_lon"]], on=[*(on_cols), "home_team"], how="left")
-    m = m.merge(a[[*(on_cols), "away_team", "away_lat", "away_lon"]], on=[*(on_cols), "away_team"], how="left")
+    # merge full h/a tables so that any extra home_* / away_* columns come along for the ride
+    m = matches.merge(h, on=[*(on_cols), "home_team"], how="left")
+    m = m.merge(a, on=[*(on_cols), "away_team"], how="left")
 
     ok = m[["home_lat", "home_lon", "away_lat", "away_lon"]].notna().all(axis=1)
     m["away_travel_km"] = np.nan
@@ -286,20 +296,20 @@ def model_numeric_columns(config: FeatureConfig) -> Tuple[str, ...]:
     for side in ("home", "away"):
         cols.extend([f"{side}_team_matches_played", f"{side}_team_loc_matches_played", f"{side}_rest_days"])
         for w in config.windows:
-            for prefix in ("gf", "ga", "pts", "low_score"):
+            for prefix in ("gf", "ga", "gd", "pts", "low_score"):
                 cols.append(f"{side}_{prefix}_mean_{w}")
                 cols.append(f"{side}_{prefix}_loc_mean_{w}")
         if config.use_ewm_features:
-            for prefix in ("gf", "ga", "pts", "low_score"):
+            for prefix in ("gf", "ga", "gd", "pts", "low_score"):
                 cols.append(f"{side}_{prefix}_ewm")
                 cols.append(f"{side}_{prefix}_loc_ewm")
         if config.use_adjusted_features:
             for w in config.windows:
-                for prefix in ("adj_gf", "adj_ga"):
+                for prefix in ("adj_gf", "adj_ga", "adj_gd"):
                     cols.append(f"{side}_{prefix}_mean_{w}")
                     cols.append(f"{side}_{prefix}_loc_mean_{w}")
             if config.use_ewm_features:
-                for prefix in ("adj_gf", "adj_ga"):
+                for prefix in ("adj_gf", "adj_ga", "adj_gd"):
                     cols.append(f"{side}_{prefix}_ewm")
                     cols.append(f"{side}_{prefix}_loc_ewm")
 
@@ -352,6 +362,15 @@ def _team_form_asof(
         (long_df["team"] == team) &
         (long_df["date"] < asof_date)
     ].sort_values("date")
+    # ensure a low_score indicator is available even if long_df was built
+    # directly from matches (app case) rather than via training frame
+    if "low_score" not in hist_all.columns:
+        hist_all = hist_all.copy()
+        hist_all["low_score"] = ((hist_all["goals_for"] + hist_all["goals_against"]) <= 2).astype(int)
+    # same for goal difference
+    if "gd" not in hist_all.columns:
+        hist_all = hist_all.copy()
+        hist_all["gd"] = hist_all["goals_for"] - hist_all["goals_against"]
     hist_loc = hist_all[hist_all["is_home"] == int(is_home_context)]
 
     feats: Dict[str, float] = {}
@@ -368,16 +387,33 @@ def _team_form_asof(
         feats[f"gf_loc_mean_{w}"] = float(tl["goals_for"].mean()) if len(tl) else np.nan
         feats[f"ga_loc_mean_{w}"] = float(tl["goals_against"].mean()) if len(tl) else np.nan
         feats[f"pts_loc_mean_{w}"] = float(tl["points"].mean()) if len(tl) else np.nan
+        feats[f"gd_mean_{w}"] = float(ta["gd"].mean()) if len(ta) else np.nan
+        feats[f"gd_loc_mean_{w}"] = float(tl["gd"].mean()) if len(tl) else np.nan
+        # add low-score indicators
+        feats[f"low_score_mean_{w}"] = float(ta["low_score"].mean()) if len(ta) else np.nan
+        feats[f"low_score_loc_mean_{w}"] = float(tl["low_score"].mean()) if len(tl) else np.nan
 
     span = max(int(ewm_span), 2)
     if len(hist_all):
         feats["gf_ewm"] = float(hist_all["goals_for"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
         feats["ga_ewm"] = float(hist_all["goals_against"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
         feats["pts_ewm"] = float(hist_all["points"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
+        feats["gd_ewm"] = float(hist_all["gd"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
+        feats["low_score_ewm"] = float(hist_all["low_score"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
+        if len(hist_loc):
+            feats["gd_loc_ewm"] = float(hist_loc["gd"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
+            feats["low_score_loc_ewm"] = float(hist_loc["low_score"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
+        else:
+            feats["gd_loc_ewm"] = np.nan
+            feats["low_score_loc_ewm"] = np.nan
     else:
         feats["gf_ewm"] = np.nan
         feats["ga_ewm"] = np.nan
         feats["pts_ewm"] = np.nan
+        feats["gd_ewm"] = np.nan
+        feats["gd_loc_ewm"] = np.nan
+        feats["low_score_ewm"] = np.nan
+        feats["low_score_loc_ewm"] = np.nan
 
     if len(hist_loc):
         feats["gf_loc_ewm"] = float(hist_loc["goals_for"].ewm(span=span, adjust=False, min_periods=1).mean().iloc[-1])
@@ -433,27 +469,39 @@ def build_single_match_features(
     for w in config.windows:
         row[f"home_adj_gf_mean_{w}"] = row.get(f"home_gf_mean_{w}", np.nan) - row.get(f"away_ga_mean_{w}", np.nan)
         row[f"home_adj_ga_mean_{w}"] = row.get(f"home_ga_mean_{w}", np.nan) - row.get(f"away_gf_mean_{w}", np.nan)
+        row[f"home_adj_gd_mean_{w}"] = row.get(f"home_gd_mean_{w}", np.nan) - row.get(f"away_gd_mean_{w}", np.nan)
         row[f"away_adj_gf_mean_{w}"] = row.get(f"away_gf_mean_{w}", np.nan) - row.get(f"home_ga_mean_{w}", np.nan)
         row[f"away_adj_ga_mean_{w}"] = row.get(f"away_ga_mean_{w}", np.nan) - row.get(f"home_gf_mean_{w}", np.nan)
+        row[f"away_adj_gd_mean_{w}"] = row.get(f"away_gd_mean_{w}", np.nan) - row.get(f"home_gd_mean_{w}", np.nan)
         row[f"home_adj_gf_loc_mean_{w}"] = row.get(f"home_gf_loc_mean_{w}", np.nan) - row.get(f"away_ga_loc_mean_{w}", np.nan)
         row[f"home_adj_ga_loc_mean_{w}"] = row.get(f"home_ga_loc_mean_{w}", np.nan) - row.get(f"away_gf_loc_mean_{w}", np.nan)
+        row[f"home_adj_gd_loc_mean_{w}"] = row.get(f"home_gd_loc_mean_{w}", np.nan) - row.get(f"away_gd_loc_mean_{w}", np.nan)
         row[f"away_adj_gf_loc_mean_{w}"] = row.get(f"away_gf_loc_mean_{w}", np.nan) - row.get(f"home_ga_loc_mean_{w}", np.nan)
         row[f"away_adj_ga_loc_mean_{w}"] = row.get(f"away_ga_loc_mean_{w}", np.nan) - row.get(f"home_gf_loc_mean_{w}", np.nan)
+        row[f"away_adj_gd_loc_mean_{w}"] = row.get(f"away_gd_loc_mean_{w}", np.nan) - row.get(f"home_gd_loc_mean_{w}", np.nan)
 
     row["home_adj_gf_ewm"] = row.get("home_gf_ewm", np.nan) - row.get("away_ga_ewm", np.nan)
     row["home_adj_ga_ewm"] = row.get("home_ga_ewm", np.nan) - row.get("away_gf_ewm", np.nan)
+    row["home_adj_gd_ewm"] = row.get("home_gd_ewm", np.nan) - row.get("away_gd_ewm", np.nan)
     row["away_adj_gf_ewm"] = row.get("away_gf_ewm", np.nan) - row.get("home_ga_ewm", np.nan)
     row["away_adj_ga_ewm"] = row.get("away_ga_ewm", np.nan) - row.get("home_gf_ewm", np.nan)
+    row["away_adj_gd_ewm"] = row.get("away_gd_ewm", np.nan) - row.get("home_gd_ewm", np.nan)
     row["home_adj_gf_loc_ewm"] = row.get("home_gf_loc_ewm", np.nan) - row.get("away_ga_loc_ewm", np.nan)
     row["home_adj_ga_loc_ewm"] = row.get("home_ga_loc_ewm", np.nan) - row.get("away_gf_loc_ewm", np.nan)
+    row["home_adj_gd_loc_ewm"] = row.get("home_gd_loc_ewm", np.nan) - row.get("away_gd_loc_ewm", np.nan)
     row["away_adj_gf_loc_ewm"] = row.get("away_gf_loc_ewm", np.nan) - row.get("home_ga_loc_ewm", np.nan)
     row["away_adj_ga_loc_ewm"] = row.get("away_ga_loc_ewm", np.nan) - row.get("home_gf_loc_ewm", np.nan)
+    row["away_adj_gd_loc_ewm"] = row.get("away_gd_loc_ewm", np.nan) - row.get("home_gd_loc_ewm", np.nan)
 
     if config.use_travel_distance:
         try:
             tmp_match = pd.DataFrame([{"div": str(div), "home_team": str(home_team), "away_team": str(away_team)}])
             tmp_match = add_travel_distance_feature(tmp_match, stadiums if stadiums is not None else pd.DataFrame())
-            row["away_travel_km"] = float(tmp_match.loc[0, "away_travel_km"])
+            # copy any newly produced columns into the row dict; this will include
+            # away_travel_km plus any home_/away_* extras from the stadium table
+            for col in tmp_match.columns:
+                if col not in row:
+                    row[col] = tmp_match.loc[0, col]
         except Exception:
             row["away_travel_km"] = np.nan
 

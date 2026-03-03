@@ -14,25 +14,7 @@ from predict import (
     scoreline_probability_matrix,
     calibrate_scoreline_matrix,
 )
-
-# --- small utility copied from your Streamlit logic ---
-def wdl_from_scoreline_matrix(mat: pd.DataFrame) -> Tuple[float, float, float]:
-    arr = mat.to_numpy(dtype=float)
-    p_home = float(np.tril(arr, k=-1).sum())
-    p_draw = float(np.trace(arr))
-    p_away = float(np.triu(arr, k=1).sum())
-    return p_home, p_draw, p_away
-
-
-def implied_probs_from_odds(home_odds: float, draw_odds: float, away_odds: float) -> Tuple[float, float, float]:
-    # Matches features.add_implied_probability_features() logic
-    qh = 1.0 / max(home_odds, 1e-12)
-    qd = 1.0 / max(draw_odds, 1e-12)
-    qa = 1.0 / max(away_odds, 1e-12)
-    s = qh + qd + qa
-    if s <= 0:
-        return (1/3, 1/3, 1/3)
-    return qh / s, qd / s, qa / s
+from probability_utils import implied_probs_from_odds, wdl_from_scoreline_matrix
 
 
 @dataclass
@@ -143,7 +125,7 @@ class FootballBettingEnv:
         if not np.isfinite(ho) or not np.isfinite(do) or not np.isfinite(ao):
             impH, impD, impA = (1/3, 1/3, 1/3)
         else:
-            impH, impD, impA = implied_probs_from_odds(ho, do, ao)
+            impH, impD, impA = implied_probs_from_odds(ho, do, ao, invalid_fallback="uniform")
 
         edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 

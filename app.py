@@ -8,7 +8,7 @@ Run:
 
 Workflow:
   1) Train the model once:
-       python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models
+       python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models
   2) Start Streamlit:
        streamlit run app.py
 
@@ -49,6 +49,7 @@ from predict import (
     top_scorelines,
 )
 from predict_helpers import prepare_and_validate_row
+from probability_utils import implied_probs_from_odds, wdl_from_scoreline_matrix
 
 
 HAS_MATPLOTLIB = importlib.util.find_spec("matplotlib") is not None
@@ -260,28 +261,6 @@ def _softmax_np(logits: np.ndarray) -> np.ndarray:
     return e / s
 
 
-def _implied_probs_from_odds(home_odds: float, draw_odds: float, away_odds: float) -> tuple[float, float, float]:
-    # Same math as features.add_implied_probability_features(), but local and lightweight. :contentReference[oaicite:4]{index=4}
-    ho = float(home_odds)
-    do = float(draw_odds)
-    ao = float(away_odds)
-    qh = 1.0 / max(ho, 1e-12)
-    qd = 1.0 / max(do, 1e-12)
-    qa = 1.0 / max(ao, 1e-12)
-    s = qh + qd + qa
-    if s <= 0:
-        return 0.0, 0.0, 0.0
-    return qh / s, qd / s, qa / s
-
-
-def _wdl_from_scoreline_mat(mat: pd.DataFrame) -> tuple[float, float, float]:
-    arr = mat.to_numpy(dtype=float)
-    p_home = float(np.tril(arr, k=-1).sum())
-    p_draw = float(np.trace(arr))
-    p_away = float(np.triu(arr, k=1).sum())
-    return p_home, p_draw, p_away
-
-
 def rl_policy_recommendation(
     *,
     policy: dict,
@@ -302,9 +281,9 @@ def rl_policy_recommendation(
     W = np.asarray(policy["W"], dtype=float)
     b = np.asarray(policy["b"], dtype=float)
 
-    pH, pD, pA = _wdl_from_scoreline_mat(scoreline_mat)
+    pH, pD, pA = wdl_from_scoreline_matrix(scoreline_mat)
 
-    impH, impD, impA = _implied_probs_from_odds(home_odds, draw_odds, away_odds)
+    impH, impD, impA = implied_probs_from_odds(home_odds, draw_odds, away_odds)
     edgeH, edgeD, edgeA = (pH - impH), (pD - impD), (pA - impA)
 
     # low1 probability from scoreline matrix
@@ -401,7 +380,7 @@ with st.sidebar:
 
         st.info(
             "If you haven't trained yet, open a terminal in this folder and run:\n\n"
-            "`python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates.csv --out models`"
+            "`python train.py --matches data/spi_matches.csv --stadiums data/stadium_coordinates_completed_full.csv --out models`"
         )
 
     with st.expander("Quick guide", expanded=False):

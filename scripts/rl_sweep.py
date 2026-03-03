@@ -20,7 +20,7 @@ DEFAULT_EV_THRESHOLDS = [0.0, 0.005, 0.01, 0.02, 0.05]
 
 ARTIFACT = "models/score_models.joblib"
 MATCHES = "data/spi_matches.csv"
-STADIUMS = "data/stadium_coordinates.csv"
+STADIUMS = "data/stadium_coordinates_completed_full.csv"
 
 
 def run_cmd(cmd: List[str]) -> str:

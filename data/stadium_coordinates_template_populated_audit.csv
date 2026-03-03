@@ -1,0 +1,968 @@
+team,league,country,city,status,coord_source,latitude,longitude
+Anderlecht,B1,Belgium,Brussels,success,stadium_coordinates,50.8340203,4.2978547
+Antwerp,B1,Belgium,Antwerp,missing,city_avg_from_existing,51.1856589,4.387084
+Beerschot VA,B1,Belgium,Antwerp,success,stadium_coordinates,51.1856589,4.387084
+Bergen,B1,Belgium,Mons,missing,city_manual,50.4542,3.9567
+Cercle Brugge,B1,Belgium,Brugge,success,stadium_coordinates,51.193269,3.181311
+Charleroi,B1,Belgium,Charleroi,success,stadium_coordinates,50.4146057,4.4537327
+Club Brugge,B1,Belgium,Brugge,success,stadium_coordinates,51.3269145,3.189557
+Dender,B1,Belgium,Denderleeuw,missing,city_manual,50.885,4.083
+Eupen,B1,Belgium,Eupen,missing,city_manual,50.631,6.0386
+Genk,B1,Belgium,Genk,success,stadium_coordinates,50.9886405,5.520155
+Gent,B1,Belgium,Gent,success,stadium_coordinates,51.0510954,3.7089472
+Germinal,B1,Belgium,Antwerp,missing,city_avg_from_existing,51.1856589,4.387084
+Kortrijk,B1,Belgium,Kortrijk,success,stadium_coordinates,50.7867444,3.1673421
+Lierse,B1,Belgium,Lierse,success,stadium_coordinates,51.0667698,4.4837031
+Lokeren,B1,Belgium,Lokeren,success,stadium_coordinates,51.1044488,3.9898689
+Mechelen,B1,Belgium,Mechelen,success,stadium_coordinates,51.0686012,4.4400457
+Mouscron,B1,Belgium,Mouscron,success,stadium_coordinates,50.7436672,3.2142729
+Mouscron-Peruwelz,B1,Belgium,Mouscron-Peruwelz,success,stadium_coordinates,50.5060666,3.5988573
+Oostende,B1,Belgium,Oostende,success,stadium_coordinates,51.2258565,2.919496
+Oud-Heverlee Leuven,B1,Belgium,Leuven,success,stadium_coordinates,50.8263952,4.6604643
+RAAL La Louviere,B1,Belgium,La Louviere,success,stadium_coordinates,50.4676645,4.1147271
+RWD Molenbeek,B1,Belgium,Molenbeek,success,stadium_coordinates,50.855066,4.310618
+Seraing,B1,Belgium,Seraing,success,stadium_coordinates,50.5951984,5.5385355
+St Truiden,B1,Belgium,St Truiden,success,stadium_coordinates,50.8134975,5.1661364
+St. Gilloise,B1,Belgium,St Gilloise,success,stadium_coordinates,50.8056154,4.3296712
+Standard,B1,Belgium,Liege,missing,city_manual,50.6326,5.5797
+Waasland-Beveren,B1,Belgium,Waasland-Beveren,success,stadium_coordinates,51.2437278,4.1959734
+Waregem,B1,Belgium,Waregem,success,stadium_coordinates,50.8868222,3.4323622
+Westerlo,B1,Belgium,Westerlo,success,stadium_coordinates,51.086694,4.9168675
+Augsburg,D1,Germany,Augsburg,success,stadium_coordinates,48.3231179,10.885879
+Bayern Munich,D1,Germany,Munich,success,stadium_coordinates,48.1731314,11.5464786
+Bielefeld,D1,Germany,Bielefeld,success,stadium_coordinates,52.0191005,8.531007
+Bochum,D1,Germany,Bochum,success,stadium_coordinates,51.4695221,7.2417465
+Braunschweig,D1,Germany,Braunschweig,success,stadium_coordinates,52.3327757,10.5165744
+Darmstadt,D1,Germany,Darmstadt,success,stadium_coordinates,49.8510637,8.64124
+Dortmund,D1,Germany,Dortmund,success,stadium_coordinates,51.4924922,7.4518549
+Ein Frankfurt,D1,Germany,Frankfurt,success,stadium_coordinates,50.1363551,8.6682317
+FC Koln,D1,Germany,Koln,success,stadium_coordinates,50.9069197,6.9040912
+Fortuna Dusseldorf,D1,Germany,Dusseldorf,success,stadium_coordinates,51.2268801,6.8133931
+Freiburg,D1,Germany,Freiburg,missing,city_manual,47.999,7.8421
+Greuther Furth,D1,Germany,Furth,success,stadium_coordinates,49.5003763,10.996705
+Hamburg,D1,Germany,Hamburg,success,stadium_coordinates,53.5503968,9.9952523
+Hannover,D1,Germany,Hannover,success,stadium_coordinates,52.3766391,9.77273
+Heidenheim,D1,Germany,Heidenheim,success,stadium_coordinates,48.6685245,10.1392963
+Hertha,D1,Germany,Hertha,success,stadium_coordinates,52.5145846,13.2398144
+Hoffenheim,D1,Germany,Hoffenheim,success,stadium_coordinates,49.2380604,8.8876414
+Holstein Kiel,D1,Germany,Kiel,success,stadium_coordinates,54.3190039,10.1014959
+Ingolstadt,D1,Germany,Ingolstadt,success,stadium_coordinates,48.7322804,11.4361318
+Kaiserslautern,D1,Germany,Kaiserslautern,success,stadium_coordinates,49.4808719,7.7765038
+Leverkusen,D1,Germany,Leverkusen,success,stadium_coordinates,51.0324743,6.9881194
+M'gladbach,D1,Germany,Mgladbach,success,stadium_coordinates,50.4541589,7.5410377
+Mainz,D1,Germany,Mainz,success,stadium_coordinates,50.0008704,8.245563
+Nurnberg,D1,Germany,Nurnberg,success,stadium_coordinates,49.4276033,11.1229023
+Paderborn,D1,Germany,Paderborn,success,stadium_coordinates,51.7177044,8.752653
+RB Leipzig,D1,Germany,Leipzig,success,stadium_coordinates,51.3457079,12.3482361
+Schalke 04,D1,Germany,Gelsenkirchen,success,stadium_coordinates,51.5580634,7.0634587
+St Pauli,D1,Germany,St Pauli,success,stadium_coordinates,53.5546486,9.9690494
+Stuttgart,D1,Germany,Stuttgart,success,stadium_coordinates,48.7922487,9.2320857
+Union Berlin,D1,Germany,Berlin,missing,city_manual,52.52,13.405
+Werder Bremen,D1,Germany,Bremen,success,stadium_coordinates,53.057718,8.8523703
+Wolfsburg,D1,Germany,Wolfsburg,success,stadium_coordinates,52.4344908,10.8068574
+Aachen,D2,Germany,Aachen,success,stadium_coordinates,50.7955364,6.0942621
+Aalen,D2,Germany,Aalen,success,stadium_coordinates,48.8375607,10.0929593
+Augsburg,D2,Germany,Augsburg,success,stadium_coordinates,48.3231179,10.885879
+Bielefeld,D2,Germany,Bielefeld,success,stadium_coordinates,52.0191005,8.531007
+Bochum,D2,Germany,Bochum,success,stadium_coordinates,51.4695221,7.2417465
+Braunschweig,D2,Germany,Braunschweig,success,stadium_coordinates,52.3327757,10.5165744
+Cottbus,D2,Germany,Cottbus,success,stadium_coordinates,51.7345332,14.3223664
+Darmstadt,D2,Germany,Darmstadt,success,stadium_coordinates,49.8510637,8.64124
+Dresden,D2,Germany,Dresden,missing,city_manual,51.0504,13.7373
+Duisburg,D2,Germany,Duisburg,success,stadium_coordinates,51.4049404,6.7797033
+Ein Frankfurt,D2,Germany,Frankfurt,success,stadium_coordinates,50.1363551,8.6682317
+Elversberg,D2,Germany,Elversberg,success,stadium_coordinates,49.31539,7.1268184
+Erzgebirge Aue,D2,Germany,Aue,success,stadium_coordinates,50.5979205,12.7087091
+FC Koln,D2,Germany,Koln,success,stadium_coordinates,50.9069197,6.9040912
+Fortuna Dusseldorf,D2,Germany,Dusseldorf,success,stadium_coordinates,51.2268801,6.8133931
+Frankfurt FSV,D2,Germany,FSV,success,stadium_coordinates,50.128031,8.7231876
+Freiburg,D2,Germany,Freiburg,missing,city_manual,47.999,7.8421
+Greuther Furth,D2,Germany,Furth,success,stadium_coordinates,49.5003763,10.996705
+Hamburg,D2,Germany,Hamburg,success,stadium_coordinates,53.5503968,9.9952523
+Hannover,D2,Germany,Hannover,success,stadium_coordinates,52.3766391,9.77273
+Hansa Rostock,D2,Germany,Rostock,success,stadium_coordinates,54.116005,12.0527635
+Heidenheim,D2,Germany,Heidenheim,success,stadium_coordinates,48.6685245,10.1392963
+Hertha,D2,Germany,Hertha,success,stadium_coordinates,52.5145846,13.2398144
+Holstein Kiel,D2,Germany,Kiel,success,stadium_coordinates,54.3190039,10.1014959
+Ingolstadt,D2,Germany,Ingolstadt,success,stadium_coordinates,48.7322804,11.4361318
+Kaiserslautern,D2,Germany,Kaiserslautern,success,stadium_coordinates,49.4808719,7.7765038
+Karlsruhe,D2,Germany,Karlsruhe,success,stadium_coordinates,49.0179109,8.4653798
+Magdeburg,D2,Germany,Magdeburg,success,stadium_coordinates,52.1525895,11.6836564
+Munich 1860,D2,Germany,1860,success,stadium_coordinates,48.1371079,11.5753822
+Nurnberg,D2,Germany,Nurnberg,success,stadium_coordinates,49.4276033,11.1229023
+Oberhausen,D2,Germany,Oberhausen,success,stadium_coordinates,51.5206794,6.8409006
+Osnabruck,D2,Germany,Osnabruck,success,stadium_coordinates,52.2765532,8.0219645
+Paderborn,D2,Germany,Paderborn,success,stadium_coordinates,51.7177044,8.752653
+Preußen Münster,D2,Germany,Münster,success,stadium_coordinates,51.9310428,7.6254232
+RB Leipzig,D2,Germany,Leipzig,success,stadium_coordinates,51.3457079,12.3482361
+Regensburg,D2,Germany,Regensburg,success,stadium_coordinates,48.9908566,12.1073501
+Sandhausen,D2,Germany,Sandhausen,success,stadium_coordinates,49.3341259,8.6469914
+Schalke 04,D2,Germany,Gelsenkirchen,success,stadium_coordinates,51.5580634,7.0634587
+St Pauli,D2,Germany,St Pauli,success,stadium_coordinates,53.5546486,9.9690494
+Stuttgart,D2,Germany,Stuttgart,success,stadium_coordinates,48.7922487,9.2320857
+Ulm,D2,Germany,Ulm,missing,city_manual,48.4011,9.9876
+Union Berlin,D2,Germany,Berlin,missing,city_manual,52.52,13.405
+Wehen,D2,Germany,Wehen,success,stadium_coordinates,50.152338,8.1836014
+Werder Bremen,D2,Germany,Bremen,success,stadium_coordinates,53.057718,8.8523703
+Wurzburger Kickers,D2,Germany,Kickers,success,stadium_coordinates,49.7790965,9.9621004
+Arsenal,E0,England,London,missing,city_manual,51.5074,-0.1278
+Aston Villa,E0,England,Villa,success,stadium_coordinates,52.5091264,-1.8850354
+Blackburn,E0,England,Blackburn,missing,city_manual,53.7486,-2.4875
+Bolton,E0,England,Bolton,success,stadium_coordinates,53.5805396,-2.5356648
+Bournemouth,E0,England,Bournemouth,success,stadium_coordinates,50.7351814,-1.8383279
+Brentford,E0,England,Brentford,success,stadium_coordinates,51.490713,-0.2889802
+Brighton,E0,England,Brighton,success,stadium_coordinates,50.8615471,-0.0836931
+Burnley,E0,England,Burnley,success,stadium_coordinates,53.8054523,-2.2952421
+Cardiff,E0,England,Cardiff,success,stadium_coordinates,51.4782485,-3.1826256
+Chelsea,E0,England,Chelsea,success,stadium_coordinates,51.4792191,-0.1808217
+Crystal Palace,E0,England,Palace,success,stadium_coordinates,51.4191635,-0.0687969
+Everton,E0,England,Liverpool,missing,city_manual,53.4084,-2.9916
+Fulham,E0,England,Fulham,success,stadium_coordinates,51.482781,-0.1912833
+Huddersfield,E0,England,Huddersfield,success,stadium_coordinates,53.6543494,-1.7682999
+Hull,E0,England,Hull,success,stadium_coordinates,53.7462258,-0.3678239
+Ipswich,E0,England,Ipswich,success,stadium_coordinates,52.0549518,1.1452848
+Leeds,E0,England,Leeds,success,stadium_coordinates,53.7778612,-1.5721775
+Leicester,E0,England,Leicester,success,stadium_coordinates,52.620397,-1.1423352
+Liverpool,E0,England,Liverpool,missing,city_manual,53.4084,-2.9916
+Luton,E0,England,Luton,success,stadium_coordinates,51.8841259,-0.4316701
+Man City,E0,England,Manchester,missing,city_manual,53.4808,-2.2426
+Man United,E0,England,Manchester,missing,city_manual,53.4808,-2.2426
+Middlesbrough,E0,England,Middlesbrough,success,stadium_coordinates,54.5783134,-1.2169153
+Newcastle,E0,England,Newcastle,missing,city_manual,54.9783,-1.6178
+Norwich,E0,England,Norwich,success,stadium_coordinates,52.6220315,1.3093222
+Nott'm Forest,E0,England,Forest,success,stadium_coordinates,52.94,-1.132778
+QPR,E0,England,London,missing,city_manual,51.5074,-0.1278
+Reading,E0,England,Reading,success,stadium_coordinates,51.4223346,-0.9831238
+Sheffield United,E0,England,Sheffield,success,stadium_coordinates,53.4286674,-1.370864
+Southampton,E0,England,Southampton,success,stadium_coordinates,50.9058615,-1.3908774
+Stoke,E0,England,Stoke,success,stadium_coordinates,52.0549518,1.1452848
+Sunderland,E0,England,Sunderland,success,stadium_coordinates,54.9143953,-1.3882579
+Swansea,E0,England,Swansea,success,stadium_coordinates,51.6428065,-3.934739
+Tottenham,E0,England,Tottenham,success,stadium_coordinates,51.604157,-0.0662604
+Watford,E0,England,Watford,success,stadium_coordinates,51.6497589,-0.4013489
+West Brom,E0,England,West Bromwich,missing,city_manual,52.5181,-1.9945
+West Ham,E0,England,London,missing,city_manual,51.5074,-0.1278
+Wigan,E0,England,Wigan,success,stadium_coordinates,53.5477333,-2.6540131
+Wolves,E0,England,Wolves,success,stadium_coordinates,52.6076564,-2.1494975
+Aston Villa,E1,England,Villa,success,stadium_coordinates,52.5091264,-1.8850354
+Barnsley,E1,England,Barnsley,success,stadium_coordinates,53.5521491,-1.4677429
+Birmingham,E1,England,Birmingham,success,stadium_coordinates,52.4797407,-1.9150322
+Blackburn,E1,England,Blackburn,missing,city_manual,53.7486,-2.4875
+Blackpool,E1,England,Blackpool,success,stadium_coordinates,53.8047874,-3.0482513
+Bolton,E1,England,Bolton,success,stadium_coordinates,53.5805396,-2.5356648
+Bournemouth,E1,England,Bournemouth,success,stadium_coordinates,50.7351814,-1.8383279
+Brentford,E1,England,Brentford,success,stadium_coordinates,51.490713,-0.2889802
+Brighton,E1,England,Brighton,success,stadium_coordinates,50.8615471,-0.0836931
+Bristol City,E1,England,Bristol,success,stadium_coordinates,51.4398694,-2.6203405
+Burnley,E1,England,Burnley,success,stadium_coordinates,53.8054523,-2.2952421
+Burton,E1,England,Burton,success,stadium_coordinates,52.8218506,-1.6269256
+Cardiff,E1,England,Cardiff,success,stadium_coordinates,51.4782485,-3.1826256
+Charlton,E1,England,Charlton,success,stadium_coordinates,51.4794928,0.0527221
+Coventry,E1,England,Coventry,success,stadium_coordinates,52.4481581,-1.4970174
+Crystal Palace,E1,England,Palace,success,stadium_coordinates,51.4191635,-0.0687969
+Derby,E1,England,Derby,success,stadium_coordinates,52.9149454,-1.4473191
+Doncaster,E1,England,Doncaster,success,stadium_coordinates,53.5890159,-1.0298081
+Fulham,E1,England,Fulham,success,stadium_coordinates,51.482781,-0.1912833
+Huddersfield,E1,England,Huddersfield,success,stadium_coordinates,53.6543494,-1.7682999
+Hull,E1,England,Hull,success,stadium_coordinates,53.7462258,-0.3678239
+Ipswich,E1,England,Ipswich,success,stadium_coordinates,52.0549518,1.1452848
+Leeds,E1,England,Leeds,success,stadium_coordinates,53.7778612,-1.5721775
+Leicester,E1,England,Leicester,success,stadium_coordinates,52.620397,-1.1423352
+Luton,E1,England,Luton,success,stadium_coordinates,51.8841259,-0.4316701
+Middlesbrough,E1,England,Middlesbrough,success,stadium_coordinates,54.5783134,-1.2169153
+Millwall,E1,England,Millwall,success,stadium_coordinates,51.4855805,-0.0513983
+Milton Keynes Dons,E1,England,Dons,success,stadium_coordinates,52.0460472,-0.7466835
+Newcastle,E1,England,Newcastle,missing,city_manual,54.9783,-1.6178
+Norwich,E1,England,Norwich,success,stadium_coordinates,52.6220315,1.3093222
+Nott'm Forest,E1,England,Forest,success,stadium_coordinates,52.94,-1.132778
+Oxford,E1,England,Oxford,success,stadium_coordinates,51.7265293,-1.1998903
+Peterboro,E1,England,Peterborough,missing,city_manual,52.5695,-0.2405
+Plymouth,E1,England,Plymouth,missing,city_manual,50.3755,-4.1427
+Portsmouth,E1,England,Portsmouth,missing,city_manual,50.8198,-1.088
+Preston,E1,England,Preston,success,stadium_coordinates,53.7722148,-2.6885609
+QPR,E1,England,London,missing,city_manual,51.5074,-0.1278
+Reading,E1,England,Reading,success,stadium_coordinates,51.4223346,-0.9831238
+Rotherham,E1,England,Rotherham,success,stadium_coordinates,53.4267854,-1.362678
+Scunthorpe,E1,England,Scunthorpe,success,stadium_coordinates,53.5825219,-0.6783354
+Sheffield United,E1,England,Sheffield,success,stadium_coordinates,53.4286674,-1.370864
+Sheffield Weds,E1,England,Weds,success,stadium_coordinates,53.41138889,-1.500555556
+Southampton,E1,England,Southampton,success,stadium_coordinates,50.9058615,-1.3908774
+Stoke,E1,England,Stoke,success,stadium_coordinates,52.0549518,1.1452848
+Sunderland,E1,England,Sunderland,success,stadium_coordinates,54.9143953,-1.3882579
+Swansea,E1,England,Swansea,success,stadium_coordinates,51.6428065,-3.934739
+Watford,E1,England,Watford,success,stadium_coordinates,51.6497589,-0.4013489
+West Brom,E1,England,West Bromwich,missing,city_manual,52.5181,-1.9945
+West Ham,E1,England,London,missing,city_manual,51.5074,-0.1278
+Wigan,E1,England,Wigan,success,stadium_coordinates,53.5477333,-2.6540131
+Wolves,E1,England,Wolves,success,stadium_coordinates,52.6076564,-2.1494975
+Wrexham,E1,England,Wrexham,success,stadium_coordinates,53.0443125,-2.9766849
+Wycombe,E1,England,Wycombe,success,stadium_coordinates,51.6304108,-0.8002826
+Yeovil,E1,England,Yeovil,success,stadium_coordinates,50.9420451,-2.6318629
+AFC Wimbledon,E2,England,Wimbledon,success,stadium_coordinates,51.4315282,-0.1867047
+Accrington,E2,England,Accrington,success,stadium_coordinates,53.7654011,-2.370969
+Barnsley,E2,England,Barnsley,success,stadium_coordinates,53.5521491,-1.4677429
+Birmingham,E2,England,Birmingham,success,stadium_coordinates,52.4797407,-1.9150322
+Blackburn,E2,England,Blackburn,missing,city_manual,53.7486,-2.4875
+Blackpool,E2,England,Blackpool,success,stadium_coordinates,53.8047874,-3.0482513
+Bolton,E2,England,Bolton,success,stadium_coordinates,53.5805396,-2.5356648
+Bournemouth,E2,England,Bournemouth,success,stadium_coordinates,50.7351814,-1.8383279
+Bradford,E2,England,Bradford,missing,city_manual,53.795,-1.7594
+Brentford,E2,England,Brentford,success,stadium_coordinates,51.490713,-0.2889802
+Brighton,E2,England,Brighton,success,stadium_coordinates,50.8615471,-0.0836931
+Bristol City,E2,England,Bristol,success,stadium_coordinates,51.4398694,-2.6203405
+Bristol Rvs,E2,England,Bristol,success,stadium_coordinates,51.486111,-2.583611
+Burton,E2,England,Burton,success,stadium_coordinates,52.8218506,-1.6269256
+Bury,E2,England,Bury,success,stadium_coordinates,53.5805538,-2.2949212
+Cambridge,E2,England,Cambridge,success,stadium_coordinates,52.2120297,0.1541831
+Cardiff,E2,England,Cardiff,success,stadium_coordinates,51.4782485,-3.1826256
+Carlisle,E2,England,Carlisle,missing,city_manual,54.8925,-2.9329
+Charlton,E2,England,Charlton,success,stadium_coordinates,51.4794928,0.0527221
+Cheltenham,E2,England,Cheltenham,success,stadium_coordinates,51.9061781,-2.0602145
+Chesterfield,E2,England,Chesterfield,success,stadium_coordinates,53.2535581,-1.4258193
+Colchester,E2,England,Colchester,success,stadium_coordinates,51.923439,0.8976478
+Coventry,E2,England,Coventry,success,stadium_coordinates,52.4481581,-1.4970174
+Crawley Town,E2,England,Crawley,success,stadium_coordinates,51.1191344,-0.191615
+Crewe,E2,England,Crewe,success,stadium_coordinates,53.087402,-2.4357333
+Dag and Red,E2,England,Red,success,stadium_coordinates,51.5478,0.159867
+Derby,E2,England,Derby,success,stadium_coordinates,52.9149454,-1.4473191
+Doncaster,E2,England,Doncaster,success,stadium_coordinates,53.5890159,-1.0298081
+Exeter,E2,England,Exeter,success,stadium_coordinates,50.7093752,-3.4675489
+Fleetwood Town,E2,England,Fleetwood,success,stadium_coordinates,53.885312,-3.0084092
+Forest Green,E2,England,Green,success,stadium_coordinates,51.6989868,-2.2377653
+Gillingham,E2,England,Gillingham,success,stadium_coordinates,51.3842253,0.5609658
+Hartlepool,E2,England,Hartlepool,success,stadium_coordinates,54.6890602,-1.2126565
+Huddersfield,E2,England,Huddersfield,success,stadium_coordinates,53.6543494,-1.7682999
+Hull,E2,England,Hull,success,stadium_coordinates,53.7462258,-0.3678239
+Ipswich,E2,England,Ipswich,success,stadium_coordinates,52.0549518,1.1452848
+Leyton Orient,E2,England,Orient,success,stadium_coordinates,51.5599794,-0.013533
+Lincoln,E2,England,Lincoln,missing,city_manual,53.2307,-0.5406
+Luton,E2,England,Luton,success,stadium_coordinates,51.8841259,-0.4316701
+Mansfield,E2,England,Mansfield,missing,city_manual,53.1431,-1.1985
+Millwall,E2,England,Millwall,success,stadium_coordinates,51.4855805,-0.0513983
+Milton Keynes Dons,E2,England,Dons,success,stadium_coordinates,52.0460472,-0.7466835
+Morecambe,E2,England,Morecambe,success,stadium_coordinates,54.0614689,-2.8672646
+Northampton,E2,England,Northampton,success,stadium_coordinates,52.2352633,-0.9335741
+Notts County,E2,England,Notts,success,stadium_coordinates,52.9536232,-1.144662
+Oldham,E2,England,Oldham,success,stadium_coordinates,53.5475003,-2.1438254
+Oxford,E2,England,Oxford,success,stadium_coordinates,51.7265293,-1.1998903
+Peterboro,E2,England,Peterborough,missing,city_manual,52.5695,-0.2405
+Plymouth,E2,England,Plymouth,missing,city_manual,50.3755,-4.1427
+Port Vale,E2,England,Vale,success,stadium_coordinates,53.0500906,-2.1926292
+Portsmouth,E2,England,Portsmouth,missing,city_manual,50.8198,-1.088
+Preston,E2,England,Preston,success,stadium_coordinates,53.7722148,-2.6885609
+Reading,E2,England,Reading,success,stadium_coordinates,51.4223346,-0.9831238
+Rochdale,E2,England,Rochdale,success,stadium_coordinates,53.6207953,-2.1799129
+Rotherham,E2,England,Rotherham,success,stadium_coordinates,53.4267854,-1.362678
+Scunthorpe,E2,England,Scunthorpe,success,stadium_coordinates,53.5825219,-0.6783354
+Sheffield United,E2,England,Sheffield,success,stadium_coordinates,53.4286674,-1.370864
+Sheffield Weds,E2,England,Weds,success,stadium_coordinates,53.41138889,-1.500555556
+Shrewsbury,E2,England,Shrewsbury,success,stadium_coordinates,52.6865188,-2.7485853
+Southampton,E2,England,Southampton,success,stadium_coordinates,50.9058615,-1.3908774
+Southend,E2,England,Southend,success,stadium_coordinates,51.5490442,0.7015486
+Stevenage,E2,England,Stevenage,success,stadium_coordinates,51.8896479,-0.1937405
+Stockport,E2,England,Stockport,success,stadium_coordinates,53.3996433,-2.1664844
+Sunderland,E2,England,Sunderland,success,stadium_coordinates,54.9143953,-1.3882579
+Swindon,E2,England,Swindon,success,stadium_coordinates,51.607755,-1.7924329
+Tranmere,E2,England,Tranmere,success,stadium_coordinates,53.3738916,-3.0317875
+Walsall,E2,England,Walsall,success,stadium_coordinates,52.5655014,-1.9904976
+Wigan,E2,England,Wigan,success,stadium_coordinates,53.5477333,-2.6540131
+Wolves,E2,England,Wolves,success,stadium_coordinates,52.6076564,-2.1494975
+Wrexham,E2,England,Wrexham,success,stadium_coordinates,53.0443125,-2.9766849
+Wycombe,E2,England,Wycombe,success,stadium_coordinates,51.6304108,-0.8002826
+Yeovil,E2,England,Yeovil,success,stadium_coordinates,50.9420451,-2.6318629
+AFC Wimbledon,E3,England,Wimbledon,success,stadium_coordinates,51.4315282,-0.1867047
+Accrington,E3,England,Accrington,success,stadium_coordinates,53.7654011,-2.370969
+Aldershot,E3,England,Aldershot,success,stadium_coordinates,51.2646793,-0.754589
+Barnet,E3,England,Barnet,success,stadium_coordinates,51.6033587,-0.2242463
+Barrow,E3,England,Barrow,missing,city_manual,54.1109,-3.2261
+Blackpool,E3,England,Blackpool,success,stadium_coordinates,53.8047874,-3.0482513
+Bolton,E3,England,Bolton,success,stadium_coordinates,53.5805396,-2.5356648
+Bradford,E3,England,Bradford,missing,city_manual,53.795,-1.7594
+Bristol Rvs,E3,England,Bristol,success,stadium_coordinates,51.486111,-2.583611
+Bromley,E3,England,Bromley,success,stadium_coordinates,51.4191635,-0.0687969
+Burton,E3,England,Burton,success,stadium_coordinates,52.8218506,-1.6269256
+Bury,E3,England,Bury,success,stadium_coordinates,53.5805538,-2.2949212
+Cambridge,E3,England,Cambridge,success,stadium_coordinates,52.2120297,0.1541831
+Carlisle,E3,England,Carlisle,missing,city_manual,54.8925,-2.9329
+Cheltenham,E3,England,Cheltenham,success,stadium_coordinates,51.9061781,-2.0602145
+Chesterfield,E3,England,Chesterfield,success,stadium_coordinates,53.2535581,-1.4258193
+Colchester,E3,England,Colchester,success,stadium_coordinates,51.923439,0.8976478
+Coventry,E3,England,Coventry,success,stadium_coordinates,52.4481581,-1.4970174
+Crawley Town,E3,England,Crawley,success,stadium_coordinates,51.1191344,-0.191615
+Crewe,E3,England,Crewe,success,stadium_coordinates,53.087402,-2.4357333
+Dag and Red,E3,England,Red,success,stadium_coordinates,51.5478,0.159867
+Doncaster,E3,England,Doncaster,success,stadium_coordinates,53.5890159,-1.0298081
+Exeter,E3,England,Exeter,success,stadium_coordinates,50.7093752,-3.4675489
+Fleetwood Town,E3,England,Fleetwood,success,stadium_coordinates,53.885312,-3.0084092
+Forest Green,E3,England,Green,success,stadium_coordinates,51.6989868,-2.2377653
+Gillingham,E3,England,Gillingham,success,stadium_coordinates,51.3842253,0.5609658
+Grimsby,E3,England,Grimsby,success,stadium_coordinates,53.5702297,-0.0465117
+Harrogate,E3,England,Harrogate,success,stadium_coordinates,53.9662795,-1.4991883
+Hartlepool,E3,England,Hartlepool,success,stadium_coordinates,54.6890602,-1.2126565
+Hereford,E3,England,Hereford,missing,city_manual,52.0567,-2.716
+Leyton Orient,E3,England,Orient,success,stadium_coordinates,51.5599794,-0.013533
+Lincoln,E3,England,Lincoln,missing,city_manual,53.2307,-0.5406
+Luton,E3,England,Luton,success,stadium_coordinates,51.8841259,-0.4316701
+Macclesfield,E3,England,Macclesfield,success,stadium_coordinates,53.2726576,-2.1597453
+Mansfield,E3,England,Mansfield,missing,city_manual,53.1431,-1.1985
+Milton Keynes Dons,E3,England,Dons,success,stadium_coordinates,52.0460472,-0.7466835
+Morecambe,E3,England,Morecambe,success,stadium_coordinates,54.0614689,-2.8672646
+Newport County,E3,England,Newport,missing,city_manual,51.5842,-2.9977
+Northampton,E3,England,Northampton,success,stadium_coordinates,52.2352633,-0.9335741
+Notts County,E3,England,Notts,success,stadium_coordinates,52.9536232,-1.144662
+Oldham,E3,England,Oldham,success,stadium_coordinates,53.5475003,-2.1438254
+Oxford,E3,England,Oxford,success,stadium_coordinates,51.7265293,-1.1998903
+Plymouth,E3,England,Plymouth,missing,city_manual,50.3755,-4.1427
+Port Vale,E3,England,Vale,success,stadium_coordinates,53.0500906,-2.1926292
+Portsmouth,E3,England,Portsmouth,missing,city_manual,50.8198,-1.088
+Rochdale,E3,England,Rochdale,success,stadium_coordinates,53.6207953,-2.1799129
+Rotherham,E3,England,Rotherham,success,stadium_coordinates,53.4267854,-1.362678
+Salford,E3,England,Salford,success,stadium_coordinates,53.4693387,-2.3751921
+Scunthorpe,E3,England,Scunthorpe,success,stadium_coordinates,53.5825219,-0.6783354
+Shrewsbury,E3,England,Shrewsbury,success,stadium_coordinates,52.6865188,-2.7485853
+Southend,E3,England,Southend,success,stadium_coordinates,51.5490442,0.7015486
+Stevenage,E3,England,Stevenage,success,stadium_coordinates,51.8896479,-0.1937405
+Stockport,E3,England,Stockport,success,stadium_coordinates,53.3996433,-2.1664844
+Sutton,E3,England,Sutton,missing,city_manual,51.3618,-0.1945
+Swindon,E3,England,Swindon,success,stadium_coordinates,51.607755,-1.7924329
+Torquay,E3,England,Torquay,missing,city_manual,50.4619,-3.5253
+Tranmere,E3,England,Tranmere,success,stadium_coordinates,53.3738916,-3.0317875
+Walsall,E3,England,Walsall,success,stadium_coordinates,52.5655014,-1.9904976
+Wrexham,E3,England,Wrexham,success,stadium_coordinates,53.0443125,-2.9766849
+Wycombe,E3,England,Wycombe,success,stadium_coordinates,51.6304108,-0.8002826
+Yeovil,E3,England,Yeovil,success,stadium_coordinates,50.9420451,-2.6318629
+York,E3,England,York,missing,city_manual,53.959,-1.0815
+AFC Telford United,EC,England,Telford,success,stadium_coordinates,52.6973792,-2.5014353
+AFC Wimbledon,EC,England,Wimbledon,success,stadium_coordinates,51.4315282,-0.1867047
+Aldershot,EC,England,Aldershot,success,stadium_coordinates,51.2646793,-0.754589
+Alfreton Town,EC,England,Alfreton,success,stadium_coordinates,53.094456,-1.3811612
+Altrincham,EC,England,Altrincham,success,stadium_coordinates,53.3833838,-2.3352283
+Barnet,EC,England,Barnet,success,stadium_coordinates,51.6033587,-0.2242463
+Barrow,EC,England,Barrow,missing,city_manual,54.1109,-3.2261
+Bath City,EC,England,Bath,success,stadium_coordinates,51.378837,-2.3950494
+Boreham Wood,EC,England,Wood,success,stadium_coordinates,51.6620316,-0.2724395
+Boston Utd,EC,England,Boston,success,stadium_coordinates,52.9767861,-0.0191167
+Brackley Town,EC,England,Brackley,success,stadium_coordinates,52.0316579,-1.1385272
+Braintree Town,EC,England,Braintree,success,stadium_coordinates,51.9464939,0.6326725
+Bristol Rvs,EC,England,Bristol,success,stadium_coordinates,51.486111,-2.583611
+Bromley,EC,England,Bromley,success,stadium_coordinates,51.4191635,-0.0687969
+Cambridge,EC,England,Cambridge,success,stadium_coordinates,52.2120297,0.1541831
+Carlisle,EC,England,Carlisle,missing,city_manual,54.8925,-2.9329
+Cheltenham,EC,England,Cheltenham,success,stadium_coordinates,51.9061781,-2.0602145
+Chester,EC,England,Chester,success,stadium_coordinates,53.1892245,-2.923472
+Chesterfield,EC,England,Chesterfield,success,stadium_coordinates,53.2535581,-1.4258193
+Chorley,EC,England,Chorley,success,stadium_coordinates,53.6460264,-2.6294423
+Crawley Town,EC,England,Crawley,success,stadium_coordinates,51.1191344,-0.191615
+Dag and Red,EC,England,Red,success,stadium_coordinates,51.5478,0.159867
+Darlington,EC,England,Darlington,success,stadium_coordinates,54.5084255,-1.5344062
+Dartford,EC,England,Dartford,success,stadium_coordinates,51.4371824,0.2316846
+Dorking,EC,England,Dorking,success,stadium_coordinates,51.2344704,-0.3333497
+Dover Athletic,EC,England,Dover,success,stadium_coordinates,51.1378031,1.284886
+Eastbourne Borough,EC,England,Borough,success,stadium_coordinates,50.8041757,0.32079
+Eastleigh,EC,England,Eastleigh,success,stadium_coordinates,50.9524511,-1.3719149
+Ebbsfleet,EC,England,Ebbsfleet,success,stadium_coordinates,51.4494932,0.3223573
+Fleetwood Town,EC,England,Fleetwood,success,stadium_coordinates,53.885312,-3.0084092
+Forest Green,EC,England,Green,success,stadium_coordinates,51.6989868,-2.2377653
+Fylde,EC,England,Fylde,success,stadium_coordinates,53.7674552,-3.0238185
+Gateshead,EC,England,Gateshead,success,stadium_coordinates,54.9576691,-1.5881587
+Grimsby,EC,England,Grimsby,success,stadium_coordinates,53.5702297,-0.0465117
+Guiseley,EC,England,Guiseley,success,stadium_coordinates,53.8767122,-1.7199209
+Halifax,EC,England,Halifax,missing,city_manual,53.724,-1.86
+Harrogate,EC,England,Harrogate,success,stadium_coordinates,53.9662795,-1.4991883
+Hartlepool,EC,England,Hartlepool,success,stadium_coordinates,54.6890602,-1.2126565
+Havant & Waterlooville,EC,England,Waterlooville,success,stadium_coordinates,50.8673622,-0.9740793
+Hayes & Yeading,EC,England,Yeading,success,stadium_coordinates,51.5081537,-0.3956712
+Hereford,EC,England,Hereford,missing,city_manual,52.0567,-2.716
+Histon,EC,England,Histon,success,stadium_coordinates,52.2424218,0.1136269
+Hyde United,EC,England,Hyde,missing,city_manual,53.451,-2.079
+Kettering Town,EC,England,Kettering,success,stadium_coordinates,52.3667178,-0.6901143
+Kidderminster,EC,England,Kidderminster,success,stadium_coordinates,52.3804787,-2.2427359
+King’s Lynn,EC,England,Lynn,success,stadium_coordinates,52.7502176,0.4074534
+Leyton Orient,EC,England,Orient,success,stadium_coordinates,51.5599794,-0.013533
+Lincoln,EC,England,Lincoln,missing,city_manual,53.2307,-0.5406
+Luton,EC,England,Luton,success,stadium_coordinates,51.8841259,-0.4316701
+Macclesfield,EC,England,Macclesfield,success,stadium_coordinates,53.2726576,-2.1597453
+Maidenhead,EC,England,Maidenhead,success,stadium_coordinates,51.4641206,-0.6515445
+Maidstone,EC,England,Maidstone,success,stadium_coordinates,51.2797591,0.5162681
+Mansfield,EC,England,Mansfield,missing,city_manual,53.1431,-1.1985
+Morecambe,EC,England,Morecambe,success,stadium_coordinates,54.0614689,-2.8672646
+Newport County,EC,England,Newport,missing,city_manual,51.5842,-2.9977
+North Ferriby,EC,England,Ferriby,success,stadium_coordinates,53.7172985,-0.5001876
+Notts County,EC,England,Notts,success,stadium_coordinates,52.9536232,-1.144662
+Nuneaton Town,EC,England,Nuneaton,success,stadium_coordinates,52.5227973,-1.4679663
+Oldham,EC,England,Oldham,success,stadium_coordinates,53.5475003,-2.1438254
+Oxford City,EC,England,Oxford,missing,city_avg_from_existing,51.7265293,-1.1998903
+Rochdale,EC,England,Rochdale,success,stadium_coordinates,53.6207953,-2.1799129
+Rushden & D,EC,England,Rushden,missing,city_manual,52.289,-0.598
+Salford,EC,England,Salford,success,stadium_coordinates,53.4693387,-2.3751921
+Salisbury,EC,England,Salisbury,missing,city_manual,51.0688,-1.7945
+Scunthorpe,EC,England,Scunthorpe,success,stadium_coordinates,53.5825219,-0.6783354
+Solihull,EC,England,Solihull,success,stadium_coordinates,52.4318492,-1.7319529
+Southend,EC,England,Southend,success,stadium_coordinates,51.5490442,0.7015486
+Southport,EC,England,Southport,success,stadium_coordinates,53.6381176,-2.978788
+Stockport,EC,England,Stockport,success,stadium_coordinates,53.3996433,-2.1664844
+Sutton,EC,England,Sutton,missing,city_manual,51.3618,-0.1945
+Tamworth,EC,England,Tamworth,success,stadium_coordinates,52.6286125,-1.6890311
+Telford United,EC,England,Telford,success,stadium_coordinates,52.6973792,-2.5014353
+Torquay,EC,England,Torquay,missing,city_manual,50.4619,-3.5253
+Tranmere,EC,England,Tranmere,success,stadium_coordinates,53.3738916,-3.0317875
+Truro,EC,England,Truro,missing,city_manual,50.2632,-5.051
+Wealdstone,EC,England,Wealdstone,success,stadium_coordinates,51.5886665,-0.3161194
+Welling United,EC,England,Welling,missing,city_manual,51.4639,0.1075
+Weymouth,EC,England,Weymouth,success,stadium_coordinates,50.6203705,-2.4856837
+Woking,EC,England,Woking,success,stadium_coordinates,51.3063222,-0.5588831
+Wrexham,EC,England,Wrexham,success,stadium_coordinates,53.0443125,-2.9766849
+Yeovil,EC,England,Yeovil,success,stadium_coordinates,50.9420451,-2.6318629
+York,EC,England,York,missing,city_manual,53.959,-1.0815
+Ajaccio,F1,France,Ajaccio,missing,city_manual,41.9192,8.7386
+Ajaccio GFCO,F1,France,GFCO,success,stadium_coordinates,41.9513,8.772
+Amiens,F1,France,Amiens,success,stadium_coordinates,49.8941708,2.2956951
+Angers,F1,France,Angers,success,stadium_coordinates,47.4544659,-0.5425734
+Arles,F1,France,Arles,success,stadium_coordinates,43.6776223,4.6309653
+Auxerre,F1,France,Auxerre,success,stadium_coordinates,47.7961287,3.570579
+Bastia,F1,France,Bastia,missing,city_manual,42.7029,9.4509
+Bordeaux,F1,France,Bordeaux,success,stadium_coordinates,44.8992249,-0.5658288
+Brest,F1,France,Brest,success,stadium_coordinates,48.4049761,-4.508511
+Caen,F1,France,Caen,success,stadium_coordinates,49.1945475,-0.3637361
+Clermont,F1,France,Clermont,missing,city_manual,45.7772,3.087
+Dijon,F1,France,Dijon,success,stadium_coordinates,47.3037236,5.0615686
+Evian Thonon Gaillard,F1,France,Gaillard,success,stadium_coordinates,46.364874,6.467805
+Guingamp,F1,France,Guingamp,success,stadium_coordinates,48.5618483,-3.1502007
+Le Havre,F1,France,Havre,success,stadium_coordinates,49.4995445,0.1707735
+Lens,F1,France,Lens,missing,city_manual,50.432,2.833
+Lille,F1,France,Lille,success,stadium_coordinates,50.6119044,3.130508
+Lorient,F1,France,Lorient,success,stadium_coordinates,47.7477336,-3.3660907
+Lyon,F1,France,Lyon,success,stadium_coordinates,45.7653624,4.9820543
+Marseille,F1,France,Marseille,success,stadium_coordinates,43.269835,5.3959117
+Metz,F1,France,Metz,missing,city_manual,49.1193,6.1757
+Monaco,F1,France,Monaco,success,stadium_coordinates,43.7275713,7.4154577
+Montpellier,F1,France,Montpellier,success,stadium_coordinates,43.6495904,3.9293198
+Nancy,F1,France,Nancy,success,stadium_coordinates,48.7089174,6.1697685
+Nantes,F1,France,Nantes,success,stadium_coordinates,47.2487475,-1.5556413
+Nice,F1,France,Nice,success,stadium_coordinates,43.7009358,7.2683912
+Nimes,F1,France,Nimes,success,stadium_coordinates,43.8348854,4.3596245
+Paris FC,F1,France,Paris,success,stadium_coordinates,48.8607331,2.3644336
+Paris SG,F1,France,Paris,success,stadium_coordinates,48.8768502,2.3324723
+Reims,F1,France,Reims,success,stadium_coordinates,49.2577886,4.031926
+Rennes,F1,France,Rennes,success,stadium_coordinates,48.1055585,-1.718678
+Sochaux,F1,France,Sochaux,success,stadium_coordinates,47.4640453,6.8469032
+St Etienne,F1,France,St Etienne,success,stadium_coordinates,43.5934385,1.4441164
+Strasbourg,F1,France,Strasbourg,success,stadium_coordinates,48.8455793,2.489442
+Toulouse,F1,France,Toulouse,success,stadium_coordinates,43.5832262,1.4340638
+Troyes,F1,France,Troyes,success,stadium_coordinates,48.2971626,4.0746257
+Valenciennes,F1,France,Valenciennes,success,stadium_coordinates,50.3218132,3.5112505
+Ajaccio,F2,France,Ajaccio,missing,city_manual,41.9192,8.7386
+Ajaccio GFCO,F2,France,GFCO,success,stadium_coordinates,41.9513,8.772
+Amiens,F2,France,Amiens,success,stadium_coordinates,49.8941708,2.2956951
+Angers,F2,France,Angers,success,stadium_coordinates,47.4544659,-0.5425734
+Annecy,F2,France,Annecy,success,stadium_coordinates,45.8606841,6.0840922
+Arles,F2,France,Arles,success,stadium_coordinates,43.6776223,4.6309653
+Auxerre,F2,France,Auxerre,success,stadium_coordinates,47.7961287,3.570579
+Bastia,F2,France,Bastia,missing,city_manual,42.7029,9.4509
+Beziers,F2,France,Beziers,success,stadium_coordinates,43.2753893,3.1602074
+Bordeaux,F2,France,Bordeaux,success,stadium_coordinates,44.8992249,-0.5658288
+Boulogne,F2,France,Boulogne,success,stadium_coordinates,48.836915,2.2264631
+Bourg Peronnas,F2,France,Peronnas,success,stadium_coordinates,46.1798475,5.203589
+Brest,F2,France,Brest,success,stadium_coordinates,48.4049761,-4.508511
+CA Bastia,F2,France,Bastia,missing,city_manual,42.7029,9.4509
+Caen,F2,France,Caen,success,stadium_coordinates,49.1945475,-0.3637361
+Chambly,F2,France,Chambly,success,stadium_coordinates,49.1662774,2.2444986
+Chateauroux,F2,France,Chateauroux,success,stadium_coordinates,46.806523,1.8636384
+Clermont,F2,France,Clermont,missing,city_manual,45.7772,3.087
+Concarneau,F2,France,Concarneau,success,stadium_coordinates,47.8757017,-3.9223889
+Creteil,F2,France,Creteil,success,stadium_coordinates,48.7771486,2.4530731
+Dijon,F2,France,Dijon,success,stadium_coordinates,47.3037236,5.0615686
+Dunkerque,F2,France,Dunkerque,success,stadium_coordinates,51.0125722,2.320123
+Evian Thonon Gaillard,F2,France,Gaillard,success,stadium_coordinates,46.364874,6.467805
+Grenoble,F2,France,Grenoble,success,stadium_coordinates,51.7164667,-1.2076599
+Guingamp,F2,France,Guingamp,success,stadium_coordinates,48.5618483,-3.1502007
+Istres,F2,France,Istres,success,stadium_coordinates,43.4426949,5.2983277
+Laval,F2,France,Laval,missing,city_manual,48.07,-0.772
+Le Havre,F2,France,Havre,success,stadium_coordinates,49.4995445,0.1707735
+Le Mans,F2,France,Mans,success,stadium_coordinates,49.2797885,-1.5381145
+Lens,F2,France,Lens,missing,city_manual,50.432,2.833
+Lorient,F2,France,Lorient,success,stadium_coordinates,47.7477336,-3.3660907
+Martigues,F2,France,Martigues,success,stadium_coordinates,43.4140873,5.0454723
+Metz,F2,France,Metz,missing,city_manual,49.1193,6.1757
+Monaco,F2,France,Monaco,success,stadium_coordinates,43.7275713,7.4154577
+Montpellier,F2,France,Montpellier,success,stadium_coordinates,43.6495904,3.9293198
+Nancy,F2,France,Nancy,success,stadium_coordinates,48.7089174,6.1697685
+Nantes,F2,France,Nantes,success,stadium_coordinates,47.2487475,-1.5556413
+Nimes,F2,France,Nimes,success,stadium_coordinates,43.8348854,4.3596245
+Niort,F2,France,Niort,success,stadium_coordinates,46.3389499,-0.4020988
+Orleans,F2,France,Orleans,missing,city_manual,47.9029,1.9093
+Paris FC,F2,France,Paris,success,stadium_coordinates,48.8607331,2.3644336
+Pau FC,F2,France,Pau,success,stadium_coordinates,43.3231397,-0.5695793
+Quevilly Rouen,F2,France,Rouen,success,stadium_coordinates,49.4280853,1.0504878
+Red Star,F2,France,Saint-Ouen,missing,city_manual,48.911,2.333
+Reims,F2,France,Reims,success,stadium_coordinates,49.2577886,4.031926
+Rodez,F2,France,Rodez,success,stadium_coordinates,44.3705665,2.5148867
+Sedan,F2,France,Sedan,success,stadium_coordinates,49.7033759,4.9433409
+Sochaux,F2,France,Sochaux,success,stadium_coordinates,47.4640453,6.8469032
+St Etienne,F2,France,St Etienne,success,stadium_coordinates,43.5934385,1.4441164
+Strasbourg,F2,France,Strasbourg,success,stadium_coordinates,48.8455793,2.489442
+Toulouse,F2,France,Toulouse,success,stadium_coordinates,43.5832262,1.4340638
+Tours,F2,France,Tours,success,stadium_coordinates,47.3783683,0.7354595
+Troyes,F2,France,Troyes,success,stadium_coordinates,48.2971626,4.0746257
+Valenciennes,F2,France,Valenciennes,success,stadium_coordinates,50.3218132,3.5112505
+Vannes,F2,France,Vannes,success,stadium_coordinates,48.9178072,2.3227124
+AEK,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Apollon,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Apollon Apollon,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Aris,G1,Greece,Thessaloniki,missing,city_manual,40.6401,22.9444
+Asteras Tripolis,G1,Greece,Tripolis,missing,city_manual,37.508,22.379
+Athens Kallithea,G1,Greece,Kallithea,missing,city_manual,37.95,23.7
+Atromitos,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Doxa Dramas,G1,Greece,Drama,missing,city_manual,41.151,24.147
+Ergotelis,G1,Greece,Heraklion,missing,city_manual,35.3387,25.1442
+Giannina,G1,Greece,Ioannina,missing,city_manual,39.665,20.8537
+Ionikos,G1,Greece,Nikaia,missing,city_manual,37.965,23.65
+Iraklis,G1,Greece,Thessaloniki,missing,city_manual,40.6401,22.9444
+Kallonis,G1,Greece,Mytilene,missing,city_manual,39.105,26.557
+Kavala,G1,Greece,Kavala,missing,city_manual,40.939,24.401
+Kerkyra,G1,Greece,Corfu,missing,city_manual,39.6243,19.9217
+Kifisia,G1,Greece,Kifisia,missing,city_manual,38.073,23.811
+Lamia,G1,Greece,Lamia,missing,city_manual,38.9,22.433
+Larisa,G1,Greece,Larissa,missing,city_manual,39.639,22.419
+Levadeiakos,G1,Greece,Levadeiakos,missing,city_manual,38.436,22.873
+Niki Volos,G1,Greece,Volos,missing,city_manual,39.361,22.942
+OFI,G1,Greece,Heraklion,missing,city_manual,35.3387,25.1442
+OFI Crete,G1,Greece,Heraklion,missing,city_manual,35.3387,25.1442
+Olympiakos,G1,Greece,Piraeus,missing,city_manual,37.942,23.6465
+Olympiakos Volou,G1,Greece,Volos,missing,city_manual,39.361,22.942
+PAOK,G1,Greece,Thessaloniki,missing,city_manual,40.6401,22.9444
+Panathinaikos,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Panetolikos,G1,Greece,Agrinio,missing,city_manual,38.621,21.407
+Panionios,G1,Greece,Athens,missing,city_manual,37.9838,23.7275
+Panserraikos,G1,Greece,Serres,missing,city_manual,41.086,23.548
+Panthrakikos,G1,Greece,Komotini,missing,city_manual,41.118,25.405
+Platanias,G1,Greece,Chania,missing,city_manual,35.5138,24.018
+Veria,G1,Greece,Veria,missing,city_manual,40.524,22.202
+Volos NFC,G1,Greece,Volos,missing,city_manual,39.361,22.942
+Xanthi,G1,Greece,Xanthi,missing,city_manual,41.141,24.883
+Atalanta,I1,Italy,Bergamo,missing,city_manual,45.6983,9.6773
+Bari,I1,Italy,Bari,missing,city_manual,41.1171,16.8719
+Benevento,I1,Italy,Benevento,success,stadium_coordinates,41.1610474,14.6710769
+Bologna,I1,Italy,Bologna,success,stadium_coordinates,44.5166727,11.4166826
+Brescia,I1,Italy,Brescia,success,stadium_coordinates,45.5707175,10.2369776
+Cagliari,I1,Italy,Cagliari,success,stadium_coordinates,39.2171994,9.113311
+Carpi,I1,Italy,Carpi,success,stadium_coordinates,44.7835699,10.8854523
+Catania,I1,Italy,Catania,success,stadium_coordinates,37.5152798,15.0721339
+Cesena,I1,Italy,Cesena,success,stadium_coordinates,44.1403668,12.261877
+Chievo,I1,Italy,Chievo,success,stadium_coordinates,45.4575984,10.9464024
+Como,I1,Italy,Como,missing,city_manual,45.8081,9.0852
+Cremonese,I1,Italy,Cremonese,success,stadium_coordinates,45.1683868,9.8900934
+Crotone,I1,Italy,Crotone,success,stadium_coordinates,39.0806223,17.127196
+Empoli,I1,Italy,Empoli,success,stadium_coordinates,44.1321712,12.2258614
+Fiorentina,I1,Italy,Fiorentina,success,stadium_coordinates,44.1724202,12.4047015
+Frosinone,I1,Italy,Frosinone,success,stadium_coordinates,41.6419807,13.3469287
+Genoa,I1,Italy,Genoa,success,stadium_coordinates,44.4164753,8.9525341
+Inter,I1,Italy,Milan,missing,city_manual,45.4642,9.19
+Juventus,I1,Italy,Juventus,success,stadium_coordinates,45.1095759,7.6421338
+Lazio,I1,Italy,Lazio,success,stadium_coordinates,41.9339424,12.4547705
+Lecce,I1,Italy,Lecce,success,stadium_coordinates,40.3651144,18.2089177
+Livorno,I1,Italy,Livorno,success,stadium_coordinates,43.5721674,10.3347675
+Milan,I1,Italy,Milan,missing,city_manual,45.4642,9.19
+Monza,I1,Italy,Monza,success,stadium_coordinates,45.583112,9.3079276
+Napoli,I1,Italy,Napoli,success,stadium_coordinates,40.8982807,14.1739374
+Novara,I1,Italy,Novara,success,stadium_coordinates,45.6269886,8.5418444
+Palermo,I1,Italy,Palermo,missing,city_manual,38.1157,13.3615
+Parma,I1,Italy,Parma,missing,city_manual,44.8015,10.3279
+Pescara,I1,Italy,Pescara,success,stadium_coordinates,44.1196234,12.2439128
+Pisa,I1,Italy,Pisa,missing,city_manual,43.7228,10.4017
+Roma,I1,Italy,Roma,success,stadium_coordinates,41.9339424,12.4547705
+Salernitana,I1,Italy,Salernitana,success,stadium_coordinates,40.6813304,14.7546939
+Sampdoria,I1,Italy,Sampdoria,success,stadium_coordinates,44.4164753,8.9525341
+Sassuolo,I1,Italy,Sassuolo,success,stadium_coordinates,44.5409769,10.7829023
+Siena,I1,Italy,Siena,missing,city_manual,43.3188,11.3308
+Spal,I1,Italy,Spal,success,stadium_coordinates,44.8409312,11.6072586
+Spezia,I1,Italy,Spezia,success,stadium_coordinates,44.1457278,12.2032796
+Torino,I1,Italy,Torino,success,stadium_coordinates,45.1095759,7.6421338
+Udinese,I1,Italy,Udinese,success,stadium_coordinates,46.4097027,13.1951425
+Venezia,I1,Italy,Venezia,success,stadium_coordinates,46.081402,13.1997411
+Verona,I1,Italy,Verona,success,stadium_coordinates,45.4353328,10.9674348
+Albinoleffe,I2,Italy,Albinoleffe,success,stadium_coordinates,45.6321365,9.6701128
+Alessandria,I2,Italy,Alessandria,missing,city_manual,44.9123,8.618
+Ascoli,I2,Italy,Ascoli,success,stadium_coordinates,42.8537246,13.580707
+Atalanta,I2,Italy,Bergamo,missing,city_manual,45.6983,9.6773
+Avellino,I2,Italy,Avellino,success,stadium_coordinates,40.9141958,14.7888764
+Bari,I2,Italy,Bari,missing,city_manual,41.1171,16.8719
+Benevento,I2,Italy,Benevento,success,stadium_coordinates,41.1610474,14.6710769
+Bologna,I2,Italy,Bologna,success,stadium_coordinates,44.5166727,11.4166826
+Brescia,I2,Italy,Brescia,success,stadium_coordinates,45.5707175,10.2369776
+Cagliari,I2,Italy,Cagliari,success,stadium_coordinates,39.2171994,9.113311
+Carpi,I2,Italy,Carpi,success,stadium_coordinates,44.7835699,10.8854523
+Carrarese,I2,Italy,Carrarese,success,stadium_coordinates,45.2316493,11.4674787
+Catania,I2,Italy,Catania,success,stadium_coordinates,37.5152798,15.0721339
+Catanzaro,I2,Italy,Catanzaro,success,stadium_coordinates,39.0332743,16.434292
+Cesena,I2,Italy,Cesena,success,stadium_coordinates,44.1403668,12.261877
+Chievo,I2,Italy,Chievo,success,stadium_coordinates,45.4575984,10.9464024
+Cittadella,I2,Italy,Cittadella,missing,city_manual,45.648,11.783
+Como,I2,Italy,Como,missing,city_manual,45.8081,9.0852
+Cosenza,I2,Italy,Cosenza,success,stadium_coordinates,39.1613374,16.0689268
+Cremonese,I2,Italy,Cremonese,success,stadium_coordinates,45.1683868,9.8900934
+Crotone,I2,Italy,Crotone,success,stadium_coordinates,39.0806223,17.127196
+Empoli,I2,Italy,Empoli,success,stadium_coordinates,44.1321712,12.2258614
+FeralpiSalo,I2,Italy,FeralpiSalo,success,stadium_coordinates,45.60393,10.5128
+Foggia,I2,Italy,Foggia,success,stadium_coordinates,41.4620482,15.5432595
+Frosinone,I2,Italy,Frosinone,success,stadium_coordinates,41.6419807,13.3469287
+Genoa,I2,Italy,Genoa,success,stadium_coordinates,44.4164753,8.9525341
+Grosseto,I2,Italy,Grosseto,success,stadium_coordinates,42.7597261,11.1137389
+Gubbio,I2,Italy,Gubbio,success,stadium_coordinates,44.1073649,12.196018
+Juve Stabia,I2,Italy,Stabia,success,stadium_coordinates,40.706667,14.494444
+Latina,I2,Italy,Latina,success,stadium_coordinates,41.467299,12.9037518
+Lecce,I2,Italy,Lecce,success,stadium_coordinates,40.3651144,18.2089177
+Lecco,I2,Italy,Lecco,success,stadium_coordinates,45.7840111,9.4159312
+Livorno,I2,Italy,Livorno,success,stadium_coordinates,43.5721674,10.3347675
+Mantova,I2,Italy,Mantova,success,stadium_coordinates,45.2279167,10.7488286
+Modena,I2,Italy,Modena,success,stadium_coordinates,44.3093525,10.813321
+Monza,I2,Italy,Monza,success,stadium_coordinates,45.583112,9.3079276
+Nocerina,I2,Italy,Nocerina,success,stadium_coordinates,40.7526044,14.6502307
+Novara,I2,Italy,Novara,success,stadium_coordinates,45.6269886,8.5418444
+Padova,I2,Italy,Padova,success,stadium_coordinates,45.3948658,11.8754315
+Palermo,I2,Italy,Palermo,missing,city_manual,38.1157,13.3615
+Parma,I2,Italy,Parma,missing,city_manual,44.8015,10.3279
+Perugia,I2,Italy,Perugia,success,stadium_coordinates,43.0926004,12.3992997
+Pescara,I2,Italy,Pescara,success,stadium_coordinates,44.1196234,12.2439128
+Piacenza,I2,Italy,Piacenza,success,stadium_coordinates,45.0534751,9.6947461
+Pisa,I2,Italy,Pisa,missing,city_manual,43.7228,10.4017
+Pordenone,I2,Italy,Pordenone,success,stadium_coordinates,45.9538953,12.6846712
+Portogruaro,I2,Italy,Portogruaro,success,stadium_coordinates,45.775598,12.8374571
+Pro Vercelli,I2,Italy,Vercelli,success,stadium_coordinates,45.8575103,8.236397
+Reggiana,I2,Italy,Reggiana,success,stadium_coordinates,43.8745265,11.0705127
+Reggina,I2,Italy,Reggina,success,stadium_coordinates,43.593764,10.6691766
+Salernitana,I2,Italy,Salernitana,success,stadium_coordinates,40.6813304,14.7546939
+Sampdoria,I2,Italy,Sampdoria,success,stadium_coordinates,44.4164753,8.9525341
+Sassuolo,I2,Italy,Sassuolo,success,stadium_coordinates,44.5409769,10.7829023
+Siena,I2,Italy,Siena,missing,city_manual,43.3188,11.3308
+Spal,I2,Italy,Spal,success,stadium_coordinates,44.8409312,11.6072586
+Spezia,I2,Italy,Spezia,success,stadium_coordinates,44.1457278,12.2032796
+Sudtirol,I2,Italy,Sudtirol,success,stadium_coordinates,46.4929138,11.3150559
+Ternana,I2,Italy,Ternana,missing,city_manual,42.563,12.6443
+Torino,I2,Italy,Torino,success,stadium_coordinates,45.1095759,7.6421338
+Trapani,I2,Italy,Trapani,success,stadium_coordinates,38.028211,12.545885
+Triestina,I2,Italy,Triestina,success,stadium_coordinates,44.7984146,10.2554077
+Varese,I2,Italy,Varese,success,stadium_coordinates,44.1435788,12.2904555
+Venezia,I2,Italy,Venezia,success,stadium_coordinates,46.081402,13.1997411
+Verona,I2,Italy,Verona,success,stadium_coordinates,45.4353328,10.9674348
+Vicenza,I2,Italy,Vicenza,success,stadium_coordinates,45.5339648,11.478811
+Virtus Entella,I2,Italy,Entella,success,stadium_coordinates,44.3156,9.33725
+Virtus Lanciano,I2,Italy,Lanciano,success,stadium_coordinates,42.2182,14.3884
+AZ Alkmaar,N1,Netherlands,Alkmaar,missing,city_manual,52.6324,4.7534
+Ajax,N1,Netherlands,Amsterdam,missing,city_manual,52.3676,4.9041
+Almere City,N1,Netherlands,Almere,missing,city_manual,52.3508,5.2647
+Cambuur,N1,Netherlands,Leeuwarden,missing,city_manual,53.2012,5.7999
+Den Haag,N1,Netherlands,The Hague,missing,city_manual,52.0705,4.3007
+Dordrecht,N1,Netherlands,Dordrecht,missing,city_manual,51.8133,4.6901
+Excelsior,N1,Netherlands,Rotterdam,missing,city_manual,51.9244,4.4777
+FC Emmen,N1,Netherlands,Emmen,missing,city_manual,52.7858,6.8976
+Feyenoord,N1,Netherlands,Rotterdam,missing,city_manual,51.9244,4.4777
+For Sittard,N1,Netherlands,Sittard,missing,city_manual,50.9983,5.8697
+Go Ahead Eagles,N1,Netherlands,Deventer,missing,city_manual,52.2661,6.1552
+Graafschap,N1,Netherlands,Doetinchem,missing,city_manual,51.965,6.288
+Groningen,N1,Netherlands,Groningen,missing,city_manual,53.2194,6.5665
+Heerenveen,N1,Netherlands,Heerenveen,missing,city_manual,52.959,5.918
+Heracles,N1,Netherlands,Almelo,missing,city_manual,52.356,6.662
+NAC Breda,N1,Netherlands,Breda,missing,city_manual,51.5719,4.7683
+Nijmegen,N1,Netherlands,Nijmegen,missing,city_manual,51.8126,5.8372
+PSV Eindhoven,N1,Netherlands,Eindhoven,missing,city_manual,51.4416,5.4697
+Roda,N1,Netherlands,Kerkrade,missing,city_manual,50.865,6.062
+Sparta Rotterdam,N1,Netherlands,Rotterdam,missing,city_manual,51.9244,4.4777
+Telstar,N1,Netherlands,Velsen,missing,city_manual,52.458,4.62
+Twente,N1,Netherlands,Enschede,missing,city_manual,52.2215,6.8937
+Utrecht,N1,Netherlands,Utrecht,missing,city_manual,52.0907,5.1214
+VVV Venlo,N1,Netherlands,Venlo,missing,city_manual,51.3704,6.1724
+Vitesse,N1,Netherlands,Arnhem,missing,city_manual,51.9851,5.8987
+Volendam,N1,Netherlands,Volendam,missing,city_manual,52.495,5.0708
+Waalwijk,N1,Netherlands,Waalwijk,missing,city_manual,51.6829,5.0706
+Willem II,N1,Netherlands,Tilburg,missing,city_manual,51.5555,5.0913
+Zwolle,N1,Netherlands,Zwolle,missing,city_manual,52.5168,6.083
+AVS,P1,Portugal,Vila das Aves,missing,city_manual,41.37,-8.412
+Academica,P1,Portugal,Coimbra,missing,city_manual,40.2033,-8.4103
+Alverca,P1,Portugal,Alverca,missing,city_manual,38.898,-9.039
+Arouca,P1,Portugal,Arouca,missing,city_manual,40.932,-8.245
+Aves,P1,Portugal,Vila das Aves,missing,city_manual,41.37,-8.412
+Beira Mar,P1,Portugal,Aveiro,missing,city_manual,40.6405,-8.6538
+Belenenses,P1,Portugal,Lisbon,missing,city_manual,38.7223,-9.1393
+Benfica,P1,Portugal,Lisbon,missing,city_manual,38.7223,-9.1393
+Boavista,P1,Portugal,Porto,missing,city_manual,41.1579,-8.6291
+Casa Pia,P1,Portugal,Lisbon,missing,city_manual,38.7223,-9.1393
+Chaves,P1,Portugal,Chaves,missing,city_manual,41.7402,-7.4688
+Estoril,P1,Portugal,Estoril,missing,city_manual,38.7057,-9.3977
+Estrela,P1,Portugal,Amadora,missing,city_manual,38.7597,-9.239
+Famalicao,P1,Portugal,Famalicao,missing,city_manual,41.4078,-8.5198
+Farense,P1,Portugal,Farense,missing,city_manual,37.0194,-7.9304
+Feirense,P1,Portugal,Feirense,missing,city_manual,40.925,-8.542
+Gil Vicente,P1,Portugal,Barcelos,missing,city_manual,41.5388,-8.6151
+Guimaraes,P1,Portugal,Guimaraes,missing,city_manual,41.4444,-8.2962
+Leiria,P1,Portugal,Leiria,missing,city_manual,39.7436,-8.8071
+Maritimo,P1,Portugal,Funchal,missing,city_manual,32.6669,-16.9241
+Moreirense,P1,Portugal,Moreirense,missing,city_manual,41.382,-8.339
+Nacional,P1,Portugal,Funchal,missing,city_manual,32.6669,-16.9241
+Naval,P1,Portugal,Figueira da Foz,missing,city_manual,40.15,-8.8667
+Olhanense,P1,Portugal,Olhanense,missing,city_manual,37.0286,-7.8411
+Pacos Ferreira,P1,Portugal,Pacos de Ferreira,missing,city_manual,41.276,-8.376
+Penafiel,P1,Portugal,Penafiel,missing,city_manual,41.2084,-8.2829
+Portimonense,P1,Portugal,Portimonense,missing,city_manual,37.1366,-8.5377
+Porto,P1,Portugal,Porto,missing,city_manual,41.1579,-8.6291
+Rio Ave,P1,Portugal,Vila do Conde,missing,city_manual,41.3547,-8.7447
+Santa Clara,P1,Portugal,Ponta Delgada,missing,city_manual,37.7412,-25.6756
+Setubal,P1,Portugal,Setubal,missing,city_manual,38.5244,-8.8882
+Sp Braga,P1,Portugal,Braga,missing,city_manual,41.5454,-8.4265
+Sp Lisbon,P1,Portugal,Lisbon,missing,city_manual,38.7223,-9.1393
+Tondela,P1,Portugal,Tondela,missing,city_manual,40.516,-8.08
+Uniao Madeira,P1,Portugal,Funchal,missing,city_manual,32.6669,-16.9241
+Vizela,P1,Portugal,Vizela,missing,city_manual,41.3824,-8.2481
+Aberdeen,SC0,Scotland,Aberdeen,missing,city_manual,57.1497,-2.0943
+Celtic,SC0,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Dundee,SC0,Scotland,Dundee,missing,city_manual,56.462,-2.9707
+Dundee United,SC0,Scotland,Dundee,missing,city_manual,56.462,-2.9707
+Dunfermline,SC0,Scotland,Dunfermline,missing,city_manual,56.0717,-3.4393
+Falkirk,SC0,Scotland,Falkirk,missing,city_manual,56.0019,-3.7839
+Hamilton,SC0,Scotland,Hamilton,missing,city_manual,55.7774,-4.0547
+Hearts,SC0,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Hibernian,SC0,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Inverness C,SC0,Scotland,Inverness,missing,city_manual,57.4778,-4.2247
+Kilmarnock,SC0,Scotland,Kilmarnock,missing,city_manual,55.611,-4.4952
+Livingston,SC0,Scotland,Livingston,missing,city_manual,55.8864,-3.5226
+Motherwell,SC0,Scotland,Motherwell,missing,city_manual,55.789,-3.9919
+Partick,SC0,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Rangers,SC0,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Ross County,SC0,Scotland,Dingwall,missing,city_manual,57.595,-4.427
+St Johnstone,SC0,Scotland,Perth,missing,city_manual,56.3969,-3.437
+St Mirren,SC0,Scotland,Paisley,missing,city_manual,55.8473,-4.4277
+Airdrie Utd,SC1,Scotland,Airdrie,missing,city_manual,55.865,-3.98
+Alloa,SC1,Scotland,Alloa,missing,city_manual,56.115,-3.792
+Arbroath,SC1,Scotland,Arbroath,missing,city_manual,56.5591,-2.587
+Ayr,SC1,Scotland,Ayr,missing,city_manual,55.458,-4.629
+Brechin,SC1,Scotland,Brechin,missing,city_manual,56.6438,-2.8903
+Cove Rangers,SC1,Scotland,Aberdeen,missing,city_manual,57.1497,-2.0943
+Cowdenbeath,SC1,Scotland,Cowdenbeath,missing,city_manual,56.111,-3.343
+Dumbarton,SC1,Scotland,Dumbarton,missing,city_manual,55.9469,-4.5706
+Dundee,SC1,Scotland,Dundee,missing,city_manual,56.462,-2.9707
+Dundee United,SC1,Scotland,Dundee,missing,city_manual,56.462,-2.9707
+Dunfermline,SC1,Scotland,Dunfermline,missing,city_manual,56.0717,-3.4393
+Falkirk,SC1,Scotland,Falkirk,missing,city_manual,56.0019,-3.7839
+Hamilton,SC1,Scotland,Hamilton,missing,city_manual,55.7774,-4.0547
+Hearts,SC1,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Hibernian,SC1,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Inverness C,SC1,Scotland,Inverness,missing,city_manual,57.4778,-4.2247
+Kilmarnock,SC1,Scotland,Kilmarnock,missing,city_manual,55.611,-4.4952
+Livingston,SC1,Scotland,Livingston,missing,city_manual,55.8864,-3.5226
+Morton,SC1,Scotland,Greenock,missing,city_manual,55.9477,-4.763
+Partick,SC1,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Queen of Sth,SC1,Scotland,Dumfries,missing,city_manual,55.07,-3.605
+Queens Park,SC1,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Raith Rvs,SC1,Scotland,Kirkcaldy,missing,city_manual,56.1114,-3.159
+Rangers,SC1,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Ross County,SC1,Scotland,Dingwall,missing,city_manual,57.595,-4.427
+St Johnstone,SC1,Scotland,Perth,missing,city_manual,56.3969,-3.437
+St Mirren,SC1,Scotland,Paisley,missing,city_manual,55.8473,-4.4277
+Stirling,SC1,Scotland,Stirling,missing,city_manual,56.1165,-3.9369
+Airdrie Utd,SC2,Scotland,Airdrie,missing,city_manual,55.865,-3.98
+Albion Rvs,SC2,Scotland,Coatbridge,missing,city_manual,55.862,-4.038
+Alloa,SC2,Scotland,Alloa,missing,city_manual,56.115,-3.792
+Annan Athletic,SC2,Scotland,Annan,missing,city_manual,54.989,-3.258
+Arbroath,SC2,Scotland,Arbroath,missing,city_manual,56.5591,-2.587
+Ayr,SC2,Scotland,Ayr,missing,city_manual,55.458,-4.629
+Brechin,SC2,Scotland,Brechin,missing,city_manual,56.6438,-2.8903
+Clyde,SC2,Scotland,Cumbernauld,missing,city_manual,55.946,-3.99
+Cove Rangers,SC2,Scotland,Aberdeen,missing,city_manual,57.1497,-2.0943
+Cowdenbeath,SC2,Scotland,Cowdenbeath,missing,city_manual,56.111,-3.343
+Dumbarton,SC2,Scotland,Dumbarton,missing,city_manual,55.9469,-4.5706
+Dunfermline,SC2,Scotland,Dunfermline,missing,city_manual,56.0717,-3.4393
+East Fife,SC2,Scotland,Methil,missing,city_manual,56.185,-3.022
+Edinburgh City,SC2,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+FC Edinburgh,SC2,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Falkirk,SC2,Scotland,Falkirk,missing,city_manual,56.0019,-3.7839
+Forfar,SC2,Scotland,Forfar,missing,city_manual,56.6438,-2.8903
+Hamilton,SC2,Scotland,Hamilton,missing,city_manual,55.7774,-4.0547
+Inverness C,SC2,Scotland,Inverness,missing,city_manual,57.4778,-4.2247
+Kelty Hearts,SC2,Scotland,Kelty,missing,city_manual,56.133,-3.387
+Livingston,SC2,Scotland,Livingston,missing,city_manual,55.8864,-3.5226
+Montrose,SC2,Scotland,Montrose,missing,city_manual,56.712,-2.466
+Morton,SC2,Scotland,Greenock,missing,city_manual,55.9477,-4.763
+Partick,SC2,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Peterhead,SC2,Scotland,Peterhead,missing,city_manual,57.505,-1.784
+Queen of Sth,SC2,Scotland,Dumfries,missing,city_manual,55.07,-3.605
+Queens Park,SC2,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Raith Rvs,SC2,Scotland,Kirkcaldy,missing,city_manual,56.1114,-3.159
+Rangers,SC2,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Stenhousemuir,SC2,Scotland,Stenhousemuir,missing,city_manual,56.026,-3.814
+Stirling,SC2,Scotland,Stirling,missing,city_manual,56.1165,-3.9369
+Stranraer,SC2,Scotland,Stranraer,missing,city_manual,54.9039,-5.026
+Albion Rvs,SC3,Scotland,Coatbridge,missing,city_manual,55.862,-4.038
+Alloa,SC3,Scotland,Alloa,missing,city_manual,56.115,-3.792
+Annan Athletic,SC3,Scotland,Annan,missing,city_manual,54.989,-3.258
+Arbroath,SC3,Scotland,Arbroath,missing,city_manual,56.5591,-2.587
+Berwick,SC3,Scotland,Berwick-upon-Tweed,missing,city_manual,55.769,-2.002
+Bonnyrigg Rose,SC3,Scotland,Bonnyrigg,missing,city_manual,55.874,-3.105
+Brechin,SC3,Scotland,Brechin,missing,city_manual,56.6438,-2.8903
+Clyde,SC3,Scotland,Cumbernauld,missing,city_manual,55.946,-3.99
+Cove Rangers,SC3,Scotland,Aberdeen,missing,city_manual,57.1497,-2.0943
+Cowdenbeath,SC3,Scotland,Cowdenbeath,missing,city_manual,56.111,-3.343
+Dumbarton,SC3,Scotland,Dumbarton,missing,city_manual,55.9469,-4.5706
+East Fife,SC3,Scotland,Methil,missing,city_manual,56.185,-3.022
+East Kilbride,SC3,Scotland,East Kilbride,missing,city_manual,55.764,-4.176
+East Stirling,SC3,Scotland,Stirling,missing,city_manual,56.1165,-3.9369
+Edinburgh City,SC3,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Elgin,SC3,Scotland,Elgin,missing,city_manual,57.649,-3.318
+Forfar,SC3,Scotland,Forfar,missing,city_manual,56.6438,-2.8903
+Kelty Hearts,SC3,Scotland,Kelty,missing,city_manual,56.133,-3.387
+Montrose,SC3,Scotland,Montrose,missing,city_manual,56.712,-2.466
+Peterhead,SC3,Scotland,Peterhead,missing,city_manual,57.505,-1.784
+Queens Park,SC3,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Rangers,SC3,Scotland,Glasgow,missing,city_manual,55.8642,-4.2518
+Spartans,SC3,Scotland,Edinburgh,missing,city_manual,55.9533,-3.1883
+Stenhousemuir,SC3,Scotland,Stenhousemuir,missing,city_manual,56.026,-3.814
+Stirling,SC3,Scotland,Stirling,missing,city_manual,56.1165,-3.9369
+Stranraer,SC3,Scotland,Stranraer,missing,city_manual,54.9039,-5.026
+Alaves,SP1,Spain,Vitoria-Gasteiz,missing,city_manual,42.8467,-2.6716
+Almeria,SP1,Spain,Almeria,success,stadium_coordinates,36.840067,-2.4354672
+Ath Bilbao,SP1,Spain,Bilbao,success,stadium_coordinates,43.264205,-2.949369
+Ath Madrid,SP1,Spain,Madrid,success,stadium_coordinates,40.401667,-3.720556
+Barcelona,SP1,Spain,Barcelona,missing,city_manual,41.3851,2.1734
+Betis,SP1,Spain,Seville,missing,city_manual,37.3891,-5.9845
+Cadiz,SP1,Spain,Cadiz,success,stadium_coordinates,36.1630337,-5.4651325
+Celta,SP1,Spain,Vigo,missing,city_manual,42.2406,-8.7207
+Cordoba,SP1,Spain,Cordoba,success,stadium_coordinates,37.8721206,-4.7635163
+Eibar,SP1,Spain,Eibar,missing,city_manual,43.1849,-2.4733
+Elche,SP1,Spain,Elche,success,stadium_coordinates,38.2653307,-0.6988391
+Espanol,SP1,Spain,Barcelona,missing,city_manual,41.3851,2.1734
+Getafe,SP1,Spain,Getafe,success,stadium_coordinates,40.3070639,-3.7331808
+Girona,SP1,Spain,Girona,missing,city_manual,41.9794,2.8214
+Granada,SP1,Spain,Granada,missing,city_manual,37.1773,-3.5986
+Hercules,SP1,Spain,Alicante,missing,city_manual,38.3452,-0.481
+Huesca,SP1,Spain,Huesca,missing,city_manual,42.1318,-0.4089
+La Coruna,SP1,Spain,A Coruna,missing,city_manual,43.3623,-8.4115
+Las Palmas,SP1,Spain,Las Palmas,missing,city_manual,28.1235,-15.4363
+Leganes,SP1,Spain,Leganes,success,stadium_coordinates,40.3259427,-3.7586217
+Levante,SP1,Spain,Valencia,missing,city_manual,39.4699,-0.3763
+Malaga,SP1,Spain,Malaga,success,stadium_coordinates,37.0171996,-4.5571607
+Mallorca,SP1,Spain,Palma,missing,city_manual,39.5696,2.6502
+Osasuna,SP1,Spain,Pamplona,missing,city_manual,42.8125,-1.6458
+Oviedo,SP1,Spain,Oviedo,missing,city_manual,43.3619,-5.8494
+Real Madrid,SP1,Spain,Madrid,missing,city_avg_from_existing,40.401667,-3.720556
+Santander,SP1,Spain,Santander,missing,city_manual,43.4623,-3.80998
+Sevilla,SP1,Spain,Sevilla,success,stadium_coordinates,37.4172353,-6.0046134
+Sociedad,SP1,Spain,San Sebastian,missing,city_manual,43.3183,-1.9812
+Sp Gijon,SP1,Spain,Gijon,success,stadium_coordinates,43.536111,-5.637222
+Valencia,SP1,Spain,Valencia,missing,city_manual,39.4699,-0.3763
+Valladolid,SP1,Spain,Valladolid,success,stadium_coordinates,41.6445801,-4.7612576
+Vallecano,SP1,Spain,Vallecano,success,stadium_coordinates,40.377486,-3.6107685
+Villarreal,SP1,Spain,Villarreal,missing,city_manual,39.9383,-0.1009
+Zaragoza,SP1,Spain,Zaragoza,missing,city_manual,41.6488,-0.8891
+Alaves,SP2,Spain,Vitoria-Gasteiz,missing,city_manual,42.8467,-2.6716
+Albacete,SP2,Spain,Albacete,success,stadium_coordinates,38.997579,-1.8637986
+Alcorcon,SP2,Spain,Alcorcon,success,stadium_coordinates,40.3492998,-3.8284295
+Alcoyano,SP2,Spain,Alcoyano,missing,city_manual,38.697,-0.4747
+Almeria,SP2,Spain,Almeria,success,stadium_coordinates,36.840067,-2.4354672
+Amorebieta,SP2,Spain,Amorebieta,missing,city_manual,43.222,-2.733
+Andorra,SP2,Spain,Andorra,missing,city_manual,42.5063,1.5218
+Ath Bilbao B,SP2,Spain,Bilbao,success,stadium_coordinates,43.27833,-2.83861
+Barcelona B,SP2,Spain,Barcelona,missing,city_manual,41.3851,2.1734
+Betis,SP2,Spain,Seville,missing,city_manual,37.3891,-5.9845
+Burgos,SP2,Spain,Burgos,success,stadium_coordinates,42.6808132,-2.9353975
+Cadiz,SP2,Spain,Cadiz,success,stadium_coordinates,36.1630337,-5.4651325
+Cartagena,SP2,Spain,Cartagena,missing,city_manual,37.6257,-0.9966
+Castellon,SP2,Spain,Castellon,missing,city_manual,39.9864,-0.0513
+Celta,SP2,Spain,Vigo,missing,city_manual,42.2406,-8.7207
+Ceuta,SP2,Spain,Ceuta,missing,city_manual,35.8894,-5.3213
+Cordoba,SP2,Spain,Cordoba,success,stadium_coordinates,37.8721206,-4.7635163
+Cultural Leonesa,SP2,Spain,Leon,missing,city_manual,42.5987,-5.5671
+Eibar,SP2,Spain,Eibar,missing,city_manual,43.1849,-2.4733
+Elche,SP2,Spain,Elche,success,stadium_coordinates,38.2653307,-0.6988391
+Eldense,SP2,Spain,Eldense,missing,city_manual,38.478,-0.793
+Espanol,SP2,Spain,Barcelona,missing,city_manual,41.3851,2.1734
+Extremadura UD,SP2,Spain,Almendralejo,success,stadium_coordinates,38.8741557,-6.9683022
+Ferrol,SP2,Spain,Ferrol,missing,city_manual,43.4833,-8.236
+Fuenlabrada,SP2,Spain,Fuenlabrada,success,stadium_coordinates,40.282476,-3.7923422
+Getafe,SP2,Spain,Getafe,success,stadium_coordinates,40.3070639,-3.7331808
+Gimnastic,SP2,Spain,Tarragona,missing,city_manual,41.1189,1.2445
+Girona,SP2,Spain,Girona,missing,city_manual,41.9794,2.8214
+Granada,SP2,Spain,Granada,missing,city_manual,37.1773,-3.5986
+Guadalajara,SP2,Spain,Guadalajara,success,stadium_coordinates,40.6288126,-3.1674493
+Hercules,SP2,Spain,Alicante,missing,city_manual,38.3452,-0.481
+Huesca,SP2,Spain,Huesca,missing,city_manual,42.1318,-0.4089
+Ibiza,SP2,Spain,Ibiza,missing,city_manual,38.9067,1.4206
+Jaen,SP2,Spain,Jaen,success,stadium_coordinates,37.7741964,-3.7865262
+La Coruna,SP2,Spain,A Coruna,missing,city_manual,43.3623,-8.4115
+Las Palmas,SP2,Spain,Las Palmas,missing,city_manual,28.1235,-15.4363
+Leganes,SP2,Spain,Leganes,success,stadium_coordinates,40.3259427,-3.7586217
+Leonesa,SP2,Spain,Leon,missing,city_manual,42.5987,-5.5671
+Levante,SP2,Spain,Valencia,missing,city_manual,39.4699,-0.3763
+Llagostera,SP2,Spain,Llagostera,missing,city_manual,41.8333,2.9
+Logrones,SP2,Spain,Logrones,missing,city_manual,42.4627,-2.444
+Lorca,SP2,Spain,Lorca,success,stadium_coordinates,37.9698392,-3.815181
+Lugo,SP2,Spain,Lugo,missing,city_manual,43.0121,-7.555
+Malaga,SP2,Spain,Malaga,success,stadium_coordinates,37.0171996,-4.5571607
+Mallorca,SP2,Spain,Palma,missing,city_manual,39.5696,2.6502
+Mirandes,SP2,Spain,Mirandes,missing,city_manual,42.6865,-2.947
+Murcia,SP2,Spain,Murcia,success,stadium_coordinates,38.0422241,-1.1447324
+Numancia,SP2,Spain,Numancia,success,stadium_coordinates,40.3995283,-3.6596765
+Osasuna,SP2,Spain,Pamplona,missing,city_manual,42.8125,-1.6458
+Oviedo,SP2,Spain,Oviedo,missing,city_manual,43.3619,-5.8494
+Ponferradina,SP2,Spain,Ponferradina,success,stadium_coordinates,42.5567728,-6.6002877
+Rayo Majadahonda,SP2,Spain,Majadahonda,success,stadium_coordinates,40.4556465,-3.8642787
+Real Madrid B,SP2,Spain,Madrid,missing,city_avg_from_existing,40.401667,-3.720556
+Recreativo,SP2,Spain,Huelva,missing,city_manual,37.2614,-6.9447
+Reus Deportiu,SP2,Spain,Reus,missing,city_manual,41.1548,1.1087
+Sabadell,SP2,Spain,Sabadell,missing,city_manual,41.5463,2.1086
+Salamanca,SP2,Spain,Salamanca,success,stadium_coordinates,40.9772747,-5.661251
+Santander,SP2,Spain,Santander,missing,city_manual,43.4623,-3.80998
+Sevilla B,SP2,Spain,Seville,missing,city_manual,37.3891,-5.9845
+Sociedad B,SP2,Spain,San Sebastian,missing,city_manual,43.3183,-1.9812
+Sp Gijon,SP2,Spain,Gijon,success,stadium_coordinates,43.536111,-5.637222
+Tenerife,SP2,Spain,Tenerife,missing,city_manual,28.4636,-16.2518
+UCAM Murcia,SP2,Spain,Murcia,success,stadium_coordinates,37.9923235,-1.1863075
+Valladolid,SP2,Spain,Valladolid,success,stadium_coordinates,41.6445801,-4.7612576
+Vallecano,SP2,Spain,Vallecano,success,stadium_coordinates,40.377486,-3.6107685
+Villarreal,SP2,Spain,Villarreal,missing,city_manual,39.9383,-0.1009
+Villarreal B,SP2,Spain,Villarreal,missing,city_manual,39.9383,-0.1009
+Xerez,SP2,Spain,Xerez,missing,city_manual,36.6817,-6.1377
+Zaragoza,SP2,Spain,Zaragoza,missing,city_manual,41.6488,-0.8891
+Ad. Demirspor,T1,Turkey,Demirspor,success,stadium_coordinates,36.998889,35.329722
+Adanaspor,T1,Turkey,Adanaspor,success,stadium_coordinates,36.998889,35.329722
+Akhisar Belediyespor,T1,Turkey,Belediyespor,success,stadium_coordinates,38.623006,27.439933
+Alanyaspor,T1,Turkey,Alanyaspor,success,stadium_coordinates,36.562614,32.079143
+Altay,T1,Turkey,Izmir,missing,city_manual,38.4237,27.1428
+Ankaragucu,T1,Turkey,Ankaragucu,success,stadium_coordinates,39.9815285,32.6132533
+Antalyaspor,T1,Turkey,Antalya,missing,city_manual,36.8969,30.7133
+Balikesirspor,T1,Turkey,Balikesirspor,success,stadium_coordinates,39.64151944,27.88785
+Besiktas,T1,Turkey,Besiktas,success,stadium_coordinates,41.0428465,29.0075283
+Bodrumspor,T1,Turkey,Bodrumspor,success,stadium_coordinates,37.040556,27.431667
+Bucaspor,T1,Turkey,Bucaspor,success,stadium_coordinates,38.397585,27.195379
+Bursaspor,T1,Turkey,Bursaspor,success,stadium_coordinates,40.5191774,28.8264255
+Buyuksehyr,T1,Turkey,Buyuksehyr,success,stadium_coordinates,41.07447222,28.76570278
+Denizlispor,T1,Turkey,Denizlispor,success,stadium_coordinates,37.8157177,29.0579691
+Elazigspor,T1,Turkey,Elazigspor,success,stadium_coordinates,38.6240127,39.107531
+Erciyesspor,T1,Turkey,Erciyesspor,success,stadium_coordinates,38.7135388,35.4533518
+Erzurum BB,T1,Turkey,Erzurum,success,stadium_coordinates,39.90632,41.2727715
+Eskisehirspor,T1,Turkey,Eskisehirspor,success,stadium_coordinates,39.798069,30.5207231
+Eyupspor,T1,Turkey,Eyupspor,success,stadium_coordinates,41.04746,28.92974
+Fenerbahce,T1,Turkey,Fenerbahce,success,stadium_coordinates,40.9875807,29.0369773
+Galatasaray,T1,Turkey,Galatasaray,success,stadium_coordinates,41.1025976,28.9922753
+Gaziantep,T1,Turkey,Gaziantep,success,stadium_coordinates,37.0628317,37.3792617
+Gaziantepspor,T1,Turkey,Gaziantepspor,success,stadium_coordinates,37.067572,37.377592
+Genclerbirligi,T1,Turkey,Ankara,missing,city_manual,39.9334,32.8597
+Giresunspor,T1,Turkey,Giresunspor,success,stadium_coordinates,40.90972222,38.37194444
+Goztep,T1,Turkey,Goztep,success,stadium_coordinates,38.434861,27.178261
+Hatayspor,T1,Turkey,Hatayspor,success,stadium_coordinates,36.25806,36.20778
+Istanbulspor,T1,Turkey,Istanbulspor,success,stadium_coordinates,41.02444,28.69778
+Karabukspor,T1,Turkey,Karabukspor,success,stadium_coordinates,41.2090545,32.6168834
+Karagumruk,T1,Turkey,Karagumruk,success,stadium_coordinates,41.0268821,28.9373882
+Kasimpasa,T1,Turkey,Kasimpasa,success,stadium_coordinates,39.9733957,41.6691899
+Kayserispor,T1,Turkey,Kayserispor,success,stadium_coordinates,38.7656367,35.4592488
+Kocaelispor,T1,Turkey,Kocaelispor,success,stadium_coordinates,40.7556968,30.0130024
+Konyaspor,T1,Turkey,Konyaspor,success,stadium_coordinates,37.9461978,32.4867282
+Manisaspor,T1,Turkey,Manisaspor,success,stadium_coordinates,38.623006,27.439933
+Mersin Idman Yurdu,T1,Turkey,Yurdu,success,stadium_coordinates,36.7802711,34.6022692
+Orduspor,T1,Turkey,Orduspor,success,stadium_coordinates,40.982222,37.878333
+Osmanlispor,T1,Turkey,Osmanlispor,success,stadium_coordinates,39.9519599,32.7323364
+Pendikspor,T1,Turkey,Pendikspor,success,stadium_coordinates,40.887636,29.2276524
+Rizespor,T1,Turkey,Rizespor,success,stadium_coordinates,41.0466289,40.5874538
+Samsunspor,T1,Turkey,Samsunspor,success,stadium_coordinates,41.276854,36.3558754
+Sivasspor,T1,Turkey,Sivasspor,success,stadium_coordinates,39.7303685,36.9859944
+Trabzonspor,T1,Turkey,Trabzonspor,success,stadium_coordinates,40.895672,29.166289
+Umraniyespor,T1,Turkey,Umraniyespor,success,stadium_coordinates,41.05889,29.10944
+Yeni Malatyaspor,T1,Turkey,Malatyaspor,success,stadium_coordinates,38.352178,38.330494
