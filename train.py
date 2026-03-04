@@ -1106,8 +1106,8 @@ def main() -> None:
                         help="When tuning with --tune-metric dc_nll, optimize rho on the out-of-time validation slice and use tuned rho.")
     parser.add_argument("--dc-significance-z", type=float, default=1.96,
                         help="Critical z-value for selecting rho over 0 in OOT tuning (default 1.96 ~= 95% confidence).")
-    parser.add_argument("--dc-max-top-share", type=float, default=0.0,
-                        help="Optional heuristic cap for top-score mode share (0 disables; default disabled).")
+    parser.add_argument("--dc-max-top-share", type=float, default=1.0,
+                        help="Heuristic cap for top-score mode share (0-1.0; default 1.0 disables guardrail). Set <1.0 to enable concentration mitigation.")
     parser.add_argument("--fit-score-calibration", action=argparse.BooleanOptionalAction, default=True,
                         help="Fit post-hoc temperature calibration for exact-score distributions.")
     parser.add_argument("--use-isotonic-calibration", action=argparse.BooleanOptionalAction, default=False,
@@ -1131,9 +1131,9 @@ def main() -> None:
     if args.tune_metric == "dc_nll" and not args.fit_dc:
         raise ValueError("--tune-metric dc_nll requires --fit-dc")
 
-    if float(args.dc_max_top_share) > 0.0 and not bool(args.fit_dc):
+    if float(args.dc_max_top_share) < 1.0 and not bool(args.fit_dc):
         print(
-            "[warning] --dc-max-top-share is set but --fit-dc is disabled; "
+            "[warning] --dc-max-top-share is set to <1.0 but --fit-dc is disabled; "
             "the concentration guardrail only applies when Dixon-Coles is enabled."
         )
 
